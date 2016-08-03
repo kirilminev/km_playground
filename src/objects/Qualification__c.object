@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Used to indicate which products should have commission applied to them for the given qualification and if a multiplier should be applied.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Qualification_Priority__c</fullName>
+        <description>1 =&gt; Highest priority and it takes precedence over any subsequent number when calculating commissions.</description>
+        <externalId>false</externalId>
+        <label>Qualification Priority</label>
+        <precision>3</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Qualification_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Qualification Type</label>
+        <length>100</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Qualification</label>
+    <visibility>Public</visibility>
+</CustomObject>

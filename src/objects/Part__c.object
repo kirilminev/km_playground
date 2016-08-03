@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Parts - Product and Shipping Order junction object</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Account_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>CMH_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account Name</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Asset__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Asset</label>
+        <referenceTo>Asset</referenceTo>
+        <relationshipLabel>Parts (Asset)</relationshipLabel>
+        <relationshipName>Parts1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CMH_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Shipping_Order__r.Clinic_ID__c</formula>
+        <label>CMH ID</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CompetitorReturn__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Competitor Return</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>DateReceived__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Received</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Equipment_Prep_Deadline__c</fullName>
+        <externalId>false</externalId>
+        <formula>Shipping_Order__r.Equipment_Prep_Deadline__c</formula>
+        <label>Equipment Prep Deadline</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Equipment_Prepped__c</fullName>
+        <externalId>false</externalId>
+        <formula>Shipping_Order__r.Ernesto_TabletErnesto_Pre_Prepped__c</formula>
+        <label>Equipment Prepped</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Fedex_Label__c</fullName>
+        <externalId>false</externalId>
+        <formula>Asset__r.Fedex_Label__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Fedex Label</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>GroundPickUpFee__c</fullName>
+        <externalId>false</externalId>
+        <label>Ground Pick Up Fee</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Inventory_Count__c</fullName>
+        <externalId>false</externalId>
+        <formula>Asset__r.Product2.Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Inventory Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Local_Time__c</fullName>
+        <description>Formula field to calculate the local clinic time to display in player/tablet prep. table</description>
+        <externalId>false</externalId>
+        <formula>/*Dates are good till the year 2020 */ 
+IF( 
+(( DATEVALUE(now())&gt;= DATE(2003,4,6)) &amp;&amp; (DATEVALUE(now())&lt;= DATE(2003,10,26))) || 
+(( DATEVALUE(now())&gt;= DATE(2004,4,4)) &amp;&amp; (DATEVALUE(now())&lt;= DATE(2004,10,31))) || 
+(( DATEVALUE(now())&gt;= DATE(2005,4,3)) &amp;&amp; (DATEVALUE(now())&lt;= DATE(2005,10,30))) || 
+(( DATEVALUE(now())&gt;= DATE(2006,4,2)) &amp;&amp; (DATEVALUE(now())&lt;= DATE(2006,10,29))) || 
+(( DATEVALUE(now())&gt;= DATE(2007,3,11)) &amp;&amp; (DATEVALUE(now())&lt;= DATE(2007,11,4))) || 
+(( DATEVALUE(now())&gt;= DATE(2008,3,9)) &amp;&amp; (DATEVALUE(now())&lt;= DATE(2008,11,2))) || 
+(( DATEVALUE(now())&gt;= DATE(2009,3,8)) &amp;&amp; (DATEVALUE(now())&lt;= DATE(2009,11,1))) || 
+(( DATEVALUE(now())&gt;= DATE(2010,3,14)) &amp;&amp; (DATEVALUE(now())&lt;= DATE(2010,11,7))) || 
+(( DATEVALUE(now())&gt;= DATE(2011,3,13)) &amp;&amp; (DATEVALUE(now())&lt;= DATE(2011,11,6))) || 
+(( DATEVALUE(now())&gt;= DATE(2012,3,11)) &amp;&amp; (DATEVALUE(now())&lt;= DATE(2012,11,4))) || 
+(( DATEVALUE(now())&gt;= DATE(2013,3,10)) &amp;&amp; (DATEVALUE(now())&lt;= DATE(2013,11,3))) || 
+(( DATEVALUE(now())&gt;= DATE(2014,3,9)) &amp;&amp; (DATEVALUE(now())&lt;= DATE(2014,11,2))) || 
+(( DATEVALUE(now())&gt;= DATE(2015,3,8)) &amp;&amp; (DATEVALUE(now())&lt;= DATE(2015,11,1))) || 
+(( DATEVALUE(now())&gt;= DATE(2016,3,13)) &amp;&amp; (DATEVALUE(now())&lt;= DATE(2016,11,6))) || 
+(( DATEVALUE(now())&gt;= DATE(2017,3,12)) &amp;&amp; (DATEVALUE(now())&lt;= DATE(2017,11,5))) || 
+(( DATEVALUE(now())&gt;= DATE(2018,3,11)) &amp;&amp; (DATEVALUE(now())&lt;= DATE(2018,11,4))) || 
+(( DATEVALUE(now())&gt;= DATE(2019,3,10)) &amp;&amp; (DATEVALUE(now())&lt;= DATE(2019,11,3))) || 
+(( DATEVALUE(now())&gt;= DATE(2020,3,8)) &amp;&amp; (DATEVALUE(now())&lt;= DATE(2020,11,1))) 
+,(now() + ((Shipping_Order__r.Offset_ST__c-(-6))/24)),(now()+ ((Shipping_Order__r.Offset_DST__c-(-5))/24))) 
+/* the above line calculates the offset for Central Time only */</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Local Clinic Time</inlineHelpText>
+        <label>Local Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>MediaPlayer__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>MediaPlayer</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Network_Deployment__c</fullName>
+        <externalId>false</externalId>
+        <formula>Shipping_Order__r.Network_Deployment__c</formula>
+        <label>Network Deployment</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Network__c</fullName>
+        <externalId>false</externalId>
+        <formula>Shipping_Order__r.Network__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Network</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PackageType__c</fullName>
+        <externalId>false</externalId>
+        <label>Package Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Express</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FedEx 2Day</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FedEx 2Day A.M.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FedEx Express Saver</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FedEx First Overnight</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FedEx Priority Overnight</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FedEx Standard Overnight</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ground</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Home Delivery</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PartProduct__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Part</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Parts (Part)</relationshipLabel>
+        <relationshipName>Part</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>PartReceived__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Part Received</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Part_Notes_If_Other__c</fullName>
+        <externalId>false</externalId>
+        <label>Part Notes (If Other)</label>
+        <length>15</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Quantity_Scanned__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Quantity Scanned</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Quantity_Unscanned_1__c</fullName>
+        <externalId>false</externalId>
+        <formula>Quantity__c - Quantity_Scanned__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Quantity Unscanned 1</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Quantity_in_Part__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Quantity in Part</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Quickbase_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Quickbase Id</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Related_Asset__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Related Asset</label>
+        <lookupFilter>
+            <active>true</active>
+            <errorMessage>Can only select an asset that is in ContextMedia Inventory</errorMessage>
+            <filterItems>
+                <field>Asset.Account.Name</field>
+                <operation>equals</operation>
+                <value>ContextMedia Inventory</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Asset</referenceTo>
+        <relationshipLabel>Parts</relationshipLabel>
+        <relationshipName>Parts</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Related_Product_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>Asset__r.Product2.Id</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Related Product Id</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Related_Product__c</fullName>
+        <externalId>false</externalId>
+        <formula>Asset__r.Product2.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Related Product</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Requested_Date_of_Arrival__c</fullName>
+        <externalId>false</externalId>
+        <formula>Shipping_Order__r.RequestedDateofArrival__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Requested Date of Arrival</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>SPrint__c</fullName>
+        <externalId>false</externalId>
+        <label>SPrint</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ShipmentCost__c</fullName>
+        <externalId>false</externalId>
+        <label>Shipment Cost</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Shipped__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Shipped</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Shipping_Order_Notes__c</fullName>
+        <externalId>false</externalId>
+        <formula>Shipping_Order__r.Notes__c</formula>
+        <label>Shipping Order Notes</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Shipping_Order__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Shipping Order</label>
+        <referenceTo>Shipping_Order__c</referenceTo>
+        <relationshipLabel>Parts</relationshipLabel>
+        <relationshipName>Parts</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Static_IP__c</fullName>
+        <externalId>false</externalId>
+        <formula>Shipping_Order__r.Static_IP__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Static IP</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Tablet_Prepped__c</fullName>
+        <externalId>false</externalId>
+        <formula>Shipping_Order__r.Tablet_Prepped__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Tablet Prepped</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TimeShipped__c</fullName>
+        <externalId>false</externalId>
+        <label>Time Shipped</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Time_Zone__c</fullName>
+        <externalId>false</externalId>
+        <formula>Shipping_Order__r.Time_Zone__c</formula>
+        <label>Time Zone</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tracking__c</fullName>
+        <externalId>false</externalId>
+        <label>Tracking</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>text(Shipping_Order__r.Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X26Screen__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>26Screen</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>X32Screen__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>32Screen</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Part</label>
+    <nameField>
+        <displayFormat>PART-{000000}</displayFormat>
+        <label>Shipping Order Part</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Parts</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>PartProduct__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Related_Asset__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>PartProduct__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Related_Asset__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>PartProduct__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Related_Asset__c</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>PartProduct__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Related_Asset__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

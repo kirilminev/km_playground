@@ -1,0 +1,362 @@
+<apex:page docType="html-5.0" showHeader="true" sidebar="true" standardController="Case" extensions="CaseDetailsController">
+<head>
+	<link rel="stylesheet" href="{!URLFOR($Resource.lightning_design, 'assets/styles/salesforce-lightning-design-system-vf.css')}"></link>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"></link>
+	<link rel="stylesheet" href="{!URLFOR($Resource.alertifycorecss)}"></link>
+	<link rel="stylesheet" href="{!URLFOR($Resource.alertifydefaultcss)}"></link>
+	<link rel="stylesheet" href="{!URLFOR($Resource.multiselectuicss)}"></link>
+	<link rel="stylesheet" href="{!URLFOR($Resource.multiselectfiltercss)}"></link>
+	<link rel="stylesheet" href="{!URLFOR($Resource.GeneralCSS)}"></link>
+</head>
+<script>
+window.__APEX_VARS__ = {
+	caseId: "{!thisCase.Id}",
+	getOptions: CaseDetailsController.getOptions,
+	close: CaseDetailsController.close
+};
+window.availableDates = JSON.parse('{!serializedDays}');
+window.expediteDates = JSON.parse('{!serializedExpediteDays}');
+</script>
+<apex:actionStatus id="save-status" stopText="">
+	<apex:facet name="start">
+		<div class="popup-background"/>
+		<div class="popup-panel">
+			<img src="{!$Resource.progressbar}"/>
+		</div>
+	</apex:facet>
+</apex:actionStatus>
+
+<apex:pageMessages id="messages"></apex:pageMessages>
+<div class="slds">
+	<div class="slds-tabs--default">
+		<ul class="slds-tabs--default__nav" role="tablist">
+			<li class="slds-tabs--default__item slds-text-heading--label slds-active" title="Details"><a class="slds-tabs--default__link" href="#void" role="tab" tabindex="0" aria-selected="true" id="details-tab">Details</a></li>
+			<li class="slds-tabs--default__item slds-text-heading--label" title="Shipments" style="{!IF(showShipments, '', 'display:none;')}"><a class="slds-tabs--default__link" href="#void" role="tab" tabindex="0" aria-selected="true" id="shipments-tab">Shipments</a></li>
+		</ul>
+		<div id="details-tab--content" class="slds-tabs--default__content slds-show" role="tabpanel">
+			<apex:detail inlineEdit="true" showChatter="true"></apex:detail>
+		</div>
+		<div id="shipments-tab--content" class="slds-tabs--default__content slds-hide" role="tabpanel">
+			<!--
+			*********************************************************************************
+			This is the old Shipments section.
+			*********************************************************************************
+			-->
+			<apex:form id="shipment-form" rendered="{!showShipments}">
+				<apex:actionFunction action="{!clearShipment}" name="clearShipment" reRender="shipment-general-section, shipping-item-table, returning-asset, receiving-item-table, scripts"/>
+				<apex:actionFunction action="{!loadShipments}" name="loadShipments" reRender="shipment-info-block"/>
+				<apex:actionFunction action="{!refreshContact}" name="refreshContact" reRender="contact-phone, contact-email"/>
+				<apex:actionFunction action="{!addBox}" name="addBox" reRender="shipping-item-table, messages, scripts">
+					<apex:param name="product" value=""/>
+				</apex:actionFunction>
+				<apex:actionFunction action="{!removeProduct}" name="removeProduct" reRender="messages, shipping-item-table" status="save-status">
+					<apex:param name="product" value=""/>
+				</apex:actionFunction>
+				<apex:actionFunction status="save-status" action="{!editShipment}" name="editShipment" oncomplete="afterEditShipment({!shipment.shipment.Shipped__c}, '{!shipment.shipment.RequestedDateOfArrival__c}');" reRender="messages, general-section, shipment-general-section, shipping-item-table, package-contents-table-panel,shipment-info-section, returning-asset, receiving-item-table, add-package-button, add-product-button, is-expedited">
+					<apex:param name="orderId" value=""/>
+				</apex:actionFunction>
+				<apex:actionFunction status="save-status" action="{!cancelShipment}" name="cancelShipment" reRender="messages, shipment-info-block, receiving-item-table, returning-asset, scripts">
+					<apex:param name="orderId" value=""/>
+				</apex:actionFunction>
+				<apex:actionFunction status="save-status" action="{!cancelShipment}" name="cancelAndClearShipment" oncomplete="afterCancelShipment({!hasErrors});" reRender="messages, shipment-info-block, receiving-item-table, returning-asset, scripts">
+					<apex:param name="orderId" value=""/>
+				</apex:actionFunction>
+				<apex:inputHidden value="{!shipment.shipment.isExpedited__c}" id="is-expedited"/>
+				<apex:outputPanel id="new-shipment-section" layout="block" style="display:none;" styleClass="new-shipment-section">
+					<apex:pageBlock mode="edit" title="Shipment Details">
+						<apex:pageBlockButtons location="top" id="new-shipment-buttons">
+							<apex:commandButton id="save-shipment" value="Save & Submit" action="{!saveShipment}" oncomplete="afterSaveShipment({!hasErrors});" styleClass="save-and-submit" reRender="messages, scripts, shipment-general-section, shipping-item-table, returning-asset, receiving-item-table, shipment-info-block" status="save-status"/>
+							<apex:commandButton id="close-shipment" value="Close" action="{!clearShipment}"	onclick="closeShipment();" oncomplete="afterCloseShipment();" reRender="shipment-general-section, general-section, package-contents-table-panel, shipping-item-table, messages, returning-asset, receiving-item-table, add-package-button, add-product-button"/>
+						</apex:pageBlockButtons>
+						<apex:pageBlockSection id="shipment-general-section" title="General Information" columns="1" collapsible="false">
+							<apex:pageBlockSectionItem>
+								<apex:outputLabel for="new-shipment-requested-date" value="Requested Date of Arrival"/>
+								<apex:inputField id="new-shipment-requested-date" value="{!shipment.shipment.RequestedDateOfArrival__c}" showDatePicker="false" style="cursor:text;" styleClass="required-field date-picker-field"/>
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem rendered="{!showReceivingItems}">
+								<apex:outputLabel for="new-shipment-pickup-date" value="Requested Pick-up Date"/>
+								<apex:inputField id="new-shipment-pickup-date" value="{!shipment.shipment.RequestedPickupDate__c}" showDatePicker="false" style="cursor:text;"/>
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem>
+								<apex:outputLabel for="expedite-reason" value="Expedite Reason"/>
+								<apex:selectList id="expedite-reason" value="{!shipment.shipment.ExpediteReason__c}" size="1" styleClass="expedite-reason" disabled="{!!shipment.shipment.isExpedited__c}">
+									<apex:selectOptions value="{!shipment.expediteReasons}"/>
+								</apex:selectList>
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem>
+								<apex:outputLabel for="am-delivery" value="AM Delivery (This will increase the cost of shipping)"/>
+								<apex:inputCheckbox id="am-delivery" value="{!shipment.shipment.AMDelivery__c}" styleClass="am-delivery" disabled="{!!shipment.shipment.isExpedited__c}"/>
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem>
+								<apex:outputLabel for="primary-contact" value="Shipment Contact"/>
+								<apex:inputField id="primary-contact" value="{!shipment.shipment.Contact__c}" onchange="refreshContact();" styleClass="required-field, primary-contact"/>
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem>
+								<apex:outputLabel for="contact-phone" value="Contact Phone"/>
+								<apex:outputText id="contact-phone" value="{!shipmentContact.Phone}"/>
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem>
+								<apex:outputLabel for="contact-email" value="Contact Email"/>
+								<apex:outputText id="contact-email" value="{!shipmentContact.Email}"/>
+							</apex:pageBlockSectionItem>
+						</apex:pageBlockSection>
+							<apex:pageBlockSection id="general-section" title="Address Information" columns="1" collapsible="false">
+								<apex:outputText value="This work order is not assigned to a clinic." styleClass="unknown" rendered="{!account == null}"/>
+								<apex:pageBlockSectionItem rendered="{!!shipment.shipment.Shipped__c}">
+									<apex:outputLabel for="company" value="Company"/>
+									<apex:inputField id="company" value="{!shipment.shipment.Company__c}" styleClass="address-field"/>
+								</apex:pageBlockSectionItem>
+								<apex:pageBlockSectionItem rendered="{!!shipment.shipment.Shipped__c}">
+									<apex:outputLabel for="shipping-street" value="Street Address"/>
+									<apex:inputField id="shipping-street" value="{!shipment.shipment.ShippingStreet__c}" styleClass="required-field address-field"/>
+								</apex:pageBlockSectionItem>
+								<apex:pageBlockSectionItem rendered="{!!shipment.shipment.Shipped__c}">
+									<apex:outputLabel for="shipping-street-2" value="Street Address 2"/>
+									<apex:inputField id="shipping-street-2" value="{!shipment.shipment.ShippingStreet2__c}" styleClass="address-field"/>
+								</apex:pageBlockSectionItem>
+								<apex:pageBlockSectionItem rendered="{!!shipment.shipment.Shipped__c}">
+									<apex:outputLabel for="shipping-city" value="City"/>
+									<apex:inputField id="shipping-city" value="{!shipment.shipment.ShippingCity__c}" styleClass="required-field address-field"/>
+								</apex:pageBlockSectionItem>
+								<apex:pageBlockSectionItem rendered="{!!shipment.shipment.Shipped__c}">
+									<apex:outputLabel for="shipping-state" value="State"/>
+									<apex:inputField id="shipping-state" value="{!shipment.shipment.ShippingState__c}" styleClass="required-field address-field"/>
+								</apex:pageBlockSectionItem>
+								<apex:pageBlockSectionItem rendered="{!!shipment.shipment.Shipped__c}">
+									<apex:outputLabel for="shipping-zip" value="Zip Code"/>
+									<apex:inputField id="shipping-zip" value="{!shipment.shipment.ShippingPostalCode__c}" styleClass="required-field address-field"/>
+								</apex:pageBlockSectionItem>
+								<apex:pageBlockSectionItem rendered="{!shipment.shipment.Shipped__c}">
+									<apex:outputLabel for="company" value="Company"/>
+									<apex:outputText id="company" value="{!shipment.shipment.Company__c}"/>
+								</apex:pageBlockSectionItem>
+								<apex:pageBlockSectionItem rendered="{!shipment.shipment.Shipped__c}">
+									<apex:outputLabel for="shipping-street" value="Street Address"/>
+									<apex:outputText id="shipping-street" value="{!shipment.shipment.ShippingStreet__c}"/>
+								</apex:pageBlockSectionItem>
+								<apex:pageBlockSectionItem rendered="{!shipment.shipment.Shipped__c}">
+									<apex:outputLabel for="shipping-street-2" value="Street Address 2"/>
+									<apex:outputText id="shipping-street-2" value="{!shipment.shipment.ShippingStreet2__c}"/>
+								</apex:pageBlockSectionItem>
+								<apex:pageBlockSectionItem rendered="{!shipment.shipment.Shipped__c}">
+									<apex:outputLabel for="shipping-city" value="City"/>
+									<apex:outputText id="shipping-city" value="{!shipment.shipment.ShippingCity__c}"/>
+								</apex:pageBlockSectionItem>
+								<apex:pageBlockSectionItem rendered="{!shipment.shipment.Shipped__c}">
+									<apex:outputLabel for="shipping-state" value="State"/>
+									<apex:outputText id="shipping-state" value="{!shipment.shipment.ShippingState__c}"/>
+								</apex:pageBlockSectionItem>
+								<apex:pageBlockSectionItem rendered="{!shipment.shipment.Shipped__c}">
+									<apex:outputLabel for="shipping-zip" value="Zip Code"/>
+									<apex:outputText id="shipping-zip" value="{!shipment.shipment.ShippingPostalCode__c}"/>
+								</apex:pageBlockSectionItem>
+							</apex:pageBlockSection>
+							<apex:outputPanel id="package-contents-table-panel">
+							  <apex:pageBlockSection id="shipment-tracking-section" title="Shipment Tracking" columns="1" collapsible="false" rendered="{!showShipmentPackages}">
+								<apex:outputPanel id="package-contents-table" layout="block"  styleclass="package-contents-table">
+												<table class="list" border="0" cellpadding="0" cellspacing="0">
+													<tr class="headerRow">
+														<th class="headerRow"><apex:outputText value="Tracking Number"/></th>
+														<th class="headerRow"><apex:outputText value="Status"/></th>
+														<th class="headerRow"><apex:outputText value="Scheduled Delivery Date"/></th>
+														<th class="headerRow"><apex:outputText value="Signed By"/></th>
+														<th class="headerRow"><apex:outputText value="Left At Location"/></th>
+														<th class="headerRow"><apex:outputText value="Activity Date"/></th>
+													</tr>
+													<apex:repeat value="{!shipment.shipment.shipmentPackages__r}" var="package">
+													  <tr id="package-row" class="dataRow ParentRow">
+														<td>
+															<a href="http://wwwapps.ups.com/tracking/tracking.cgi?tracknum={!package.TrackingNumber__c}" target="_blank" style="color:blue">
+																{!package.TrackingNumber__c}
+															</a>
+														</td>
+														<td class="dataCell">
+															<apex:outputText value="{!package.Status__c}" style="color:{!IF(package.Status__c = 'DELIVERED', 'Green', IF(shipment.shipment.RequestedDateOfArrival__c < today(), 'Red', ''))};"/>
+														</td>
+														<td class="dataCell"><apex:outputText value=" {!package.ScheduledDeliveryDate__c}"/></td>
+														<td class="dataCell"><apex:outputText value="{!package.SignedForName__c}"/></td>
+														<td class="dataCell"><apex:outputText value="{!package.LeftAtLocation__c}"/></td>
+														<td class="dataCell"><apex:outputtext value=" {!package.ActivityDate__c}"/></td>
+													  </tr>
+													  <tr class="dataRow ChildRow">
+														<td style="border-bottom-width:0px;">
+														  <div class="slidingDiv" styleclass="slidingDiv">
+		 												    <table id="package-contents"  border="0" cellpadding="0" cellspacing="0" styleclass="package-contents">
+															  <apex:repeat id="Repeat-Tracking-Ship-Items" value="{!shipment.shipmentPackages[package.id]}" var="shipmentItem">	
+																<tr class="dataRow">
+																  <td style="border-bottom-width:0px;" class="dataCell" width="5%">
+																 	<apex:outputText value="{!shipmentItem.ProductCode}"/>
+																  </td>
+																  <td style="border-bottom-width:0px;" class="dataCell" width="50%">
+																  	<apex:outputText value="{!shipmentItem.ProductName}"/>
+																  </td>
+																</tr>
+															  </apex:repeat>
+														    </table>
+														  </div>
+														</td>
+													  </tr>
+													</apex:repeat>
+												</table> 
+									</apex:outputPanel>
+									<apex:outputPanel id="no_track_info_shipping-item-table" layout="block" styleClass="no_track_info_shipping-item-table">
+										<apex:pageBlockTable id="shipping-items" value="{!shipment.shipmentItemsList}" var="shipmentItem" rowClasses="draggable-row" styleClass="shipping-item-pb-table" rendered="{!showShipmentMissingTrackingItems}">
+											<apex:facet name="caption">
+												<apex:outputText value="Tracking Information Missing" style="font-weight:bold;"/>
+											</apex:facet>
+											<apex:column headerValue="Product Code" value="{!shipmentItem.productCode}"/>
+											<apex:column headerValue="Product Name" value="{!shipmentItem.productName}"/>
+											<apex:column headerValue="Quantity" value="{!shipmentItem.quantity}"/>
+										</apex:pageBlockTable>
+									</apex:outputPanel>
+							  </apex:pageBlockSection>
+							</apex:outputPanel>
+						<apex:pageBlockSection id="shipment-product-section" title="Products" columns="1" collapsible="false">
+							<apex:outputPanel layout="block" styleClass="table-section">
+								<apex:outputPanel layout="block" style="float:left; width:50%;">
+									<apex:selectList id="package-selector" value="{!selectedPackage}" styleClass="package-selector">
+										<apex:selectOptions value="{!shipment.packageOptions}"/>
+									</apex:selectList>
+									<apex:commandButton id="add-package-button" value="Add" action="{!addPackage}" status="save-status" oncomplete="uncheckAll('.package-selector');" disabled="{!shipment.shipment.Shipped__c}" reRender="shipping-item-table, messages, scripts"/>
+								</apex:outputPanel>
+								<apex:outputPanel layout="block" style="float:right; width:50%;">
+									<apex:selectList id="product-selector" multiselect="true" value="{!selectedProducts}" styleClass="product-selector">
+										<apex:selectOptions value="{!shipment.productOptions}"/>
+									</apex:selectList>
+									<apex:commandButton id="add-product-button" value="Add" action="{!addProducts}" status="save-status" oncomplete="uncheckAll('.product-selector');" disabled="{!shipment.shipment.Shipped__c}" reRender="shipping-item-table, messages, scripts"/>
+								</apex:outputPanel>
+								<apex:outputPanel id="shipping-item-table" layout="block" styleClass="shipping-item-table">
+									<apex:pageBlockTable id="shipping-items" value="{!shipment.shipmentItemsList}" var="shipmentItem" rowClasses="draggable-row" styleClass="shipping-item-pb-table" rendered="{!showShipmentItems}">
+										<apex:facet name="caption">
+											<apex:outputText value="Shipment Items" style="font-weight:bold;"/>
+										</apex:facet>
+										<apex:column style="width:25px;" rendered="{!!shipment.shipment.Shipped__c}">
+											<apex:image id="remove-product-icon" value="{!$Resource.removeicon}" width="20" height="20" style="float:right;" styleClass="clickable-icon" onclick="jQuery(this).parent().parent().remove(); removeProduct('{!shipmentItem.productCode}');"/>
+										</apex:column>
+										<apex:column headerValue="Product Code" value="{!shipmentItem.productCode}"/>
+										<apex:column headerValue="Product Name" value="{!shipmentItem.productName}"/>
+										<apex:column headerValue="Quantity">
+											<apex:input value="{!shipmentItem.quantity}" onchange="validateQuantity(this);" style="text-align:right; width:35px;" styleClass="required-field" rendered="{!!shipment.shipment.Shipped__c}"/>
+										</apex:column>
+									</apex:pageBlockTable>
+								</apex:outputPanel>
+								<apex:outputPanel id="receiving-item-table" layout="block" styleClass="receiving-item-table">
+									<apex:pageBlockTable id="receiving-items" value="{!shipment.returnItems}" var="returnItem" rowClasses="receiving-item-row" rendered="{!showReceivingItems}">
+										<apex:facet name="caption">
+											<apex:outputText value="Receiving Items" style="font-weight:bold;"/>
+										</apex:facet>
+										<apex:column style="width:35px;" headerValue="Returning">
+											<apex:inputCheckbox id="returning-asset" value="{!returnItem.returning}" styleClass="returning-checkbox" disabled="{!OR(AND(NOT(returnItem.asset.Shipment__c == shipment.shipment.Id), returnItem.returning),shipment.shipment.Shipped__c)}" onchange="if(this.checked){addBox('{!returnItem.asset.Product2.Box__r.ProductCode}');}"/>
+										</apex:column>
+										<apex:column headerValue="Asset ID" value="{!returnItem.asset.Name}"/>
+										<apex:column headerValue="Type" value="{!returnItem.asset.Type__c}"/>
+										<apex:column headerValue="Status" value="{!returnItem.asset.Status}"/>
+										<apex:column headerValue="Installation Status" value="{!returnItem.asset.Installation_Status__c}"/>
+										<apex:column headerValue="Installed Date" value="{!returnItem.asset.InstalledDate__c}"/>
+									</apex:pageBlockTable>
+								</apex:outputPanel>
+							</apex:outputPanel>
+						</apex:pageBlockSection>
+					</apex:pageBlock>
+				</apex:outputPanel>
+				<apex:outputPanel id="shipment-info-section" layout="block">
+					<apex:pageBlock id="shipment-info-block" mode="edit" title="Work Order - {!thisCase.Type}" helpTitle="Help for this Page" helpUrl="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+						<apex:pageBlockButtons location="top" id="main-shipment-buttons">
+							<apex:commandButton id="new-shipment-button" value="New Shipment" onclick="newShipment();" styleClass="new-shipment-button" reRender="none"/>
+						</apex:pageBlockButtons>
+						<apex:pageBlockSection id="order-section" title="Shipments" columns="1" collapsible="false" rendered="{!showShipmentHistory}">
+							<apex:pageBlockTable id="order-table" value="{!shipments}" var="order">
+								<apex:column style="width:25px;">
+									<apex:image title="Cancel" value="{!$Resource.cancelicon}" width="20" height="20" styleClass="clickable-icon" onclick="cancel('{!order.OrderId__c}', '{!shipment.shipment.OrderId__c}');" rendered="{!!order.Shipped__c}"/>
+								</apex:column>
+								<apex:column headerValue="Order ID">
+									<apex:commandLink onclick="modify('{!order.Id}');" style="color:blue;" reRender="none">
+										{!order.OrderId__c}
+									</apex:commandLink>
+								</apex:column>
+								<apex:column headerValue="Requested Date of Arrival" value="{!order.RequestedDateOfArrival__c}"/>
+								<apex:column headerValue="Shipped" value="{!order.Shipped__c}"/>
+								<apex:column headerValue="Shipped Date" value="{!order.ShippedDate__c}"/>
+								<apex:column headerValue="Created Date" value="{!order.CreatedDate}"/>>
+							</apex:pageBlockTable>
+						</apex:pageBlockSection>
+					</apex:pageBlock>
+				</apex:outputPanel>
+			</apex:form>
+			<!--
+			*********************************************************************************
+			This is the end of the old Shipments section.
+			*********************************************************************************
+			-->
+		</div>
+		<div id="close-case" style="display:none;">
+			<div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+				<div class="slds-modal__container">
+					<div class="slds-modal__header">
+						<h2 class="slds-text-heading--medium">Close Work Order</h2>
+						<p class="slds-m-top--x-small">{!IF(thisCase.Status == 'Closed', 'This case has already been closed.', 'In order to close this work order, please first indicate the status of each Asset which was shipped. Assets which are selected will be marked as Installed.')}</p>
+					</div>
+					<div class="slds-modal__content">
+						<div id="assets" class="slds-card">
+							<div class="slds-card__header slds-grid">
+								<h2 class="slds-text-heading--small slds-truncate">Assets</h2>
+							</div>
+							<div class="slds-card__body">
+								<div id="empty-assets-text" class="slds-text-align--center">
+									<h3 class="slds-text-heading--small slds-p-top--large slds-p-bottom--large">No Related Assets.</h3>
+								</div>
+								<table id="assets-table" class="slds-table slds-table--bordered slds-max-medium-table--stacked-horizontal">
+									<thead>
+										<tr>
+											<th class="slds-text-heading--label slds-size--1-of-5" scope="col">Installed</th>
+											<th class="slds-text-heading--label slds-size--2-of-5" scope="col">Outlet Lock</th>
+											<th class="slds-text-heading--label slds-size--1-of-5" scope="col">Status</th>
+											<th class="slds-text-heading--label slds-size--1-of-5" scope="col">Name</th>
+											<th class="slds-text-heading--label slds-size--1-of-5" scope="col">Type</th>
+										</tr>
+									</thead>
+									<tbody id="asset-table">
+										<tr id="asset-template" class="slds-hint-parent" style="display:none;">
+											<td class="slds-size--1-of-5" data-label="Installed">
+												<label class="slds-checkbox">
+													<input id="installed" type="checkbox"></input>
+													<span class="slds-checkbox--faux"></span>
+												</label>
+											</td>
+											<td class="slds-size--2-of-5" data-label="Outlet Lock">
+												<select id="outlet-lock-reason" class="slds-select">
+													<option value=""></option>
+												</select>
+											</td>
+											<td id="asset-status" class="slds-size--1-of-5" data-label="Status" fieldname="Status"></td>
+											<td id="asset-name" class="slds-size--1-of-5" data-label="Name" fieldname="Name"></td>
+											<td id="asset-type" class="slds-size--1-of-5" data-label="Type" fieldname="Type__c"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="slds-modal__footer">
+						<div class="slds-x-small-buttons--horizontal">
+							<button id="close-case-cancel" type="button" class="slds-button slds-button--neutral">{!IF(thisCase.Status == 'Closed', 'OK', 'Cancel')}</button>
+							<button id="close-case-save" type="button" class="slds-button slds-button--brand" style="{!IF(thisCase.Status == 'Closed', 'display:none;', '')}">Close Case</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="slds-backdrop slds-backdrop--open"></div>
+		</div>
+	</div>
+</div>
+<script src="{!URLFOR($Resource.CaseDetails)}"></script>
+<script src="{!URLFOR($Resource.alertify)}"></script>
+<script src="{!URLFOR($Resource.multiselectuijs)}"></script>
+<script src="{!URLFOR($Resource.multiselectfilterjs)}"></script>
+<script src="/support/console/36.0/integration.js"></script>
+<script>
+if (sforce.console.isInConsole()) {
+	sforce.console.setTabTitle("{!thisCase.RecordType.Name}: {!thisCase.CaseNumber}");
+}
+</script>
+</apex:page>

@@ -1,0 +1,6 @@
+<apex:page standardController="Case" extensions="CaseNotesClass">
+
+	
+	<apex:outputText value="{!notes}" escape="false" />
+
+</apex:page>

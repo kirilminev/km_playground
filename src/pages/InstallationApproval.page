@@ -1,0 +1,265 @@
+<apex:page showHeader="true" sidebar="false" standardController="Case" extensions="InstallationApprovalController">
+<head>
+	<!-- include Bootstrap here in addition to the JS resource. -->
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"/>
+	<apex:stylesheet value="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+	<apex:stylesheet value="https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"/>
+	<apex:includeScript value="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"/>
+	<apex:includeScript value="https://code.jquery.com/ui/1.11.2/jquery-ui.js"/>
+	<apex:includeScript value="{!URLFOR($Resource.multiselectjs)}"/>
+	<apex:stylesheet value="{!URLFOR($Resource.multiselectcss)}"/>
+	<apex:stylesheet value="{!URLFOR($Resource.GeneralCSS)}"/>
+
+<script>
+$(document).ready(function() {
+	makeMultiSelectDropDowns();
+
+	$('.toggle-box').click(function(){
+		$('.required-toggle').toggleClass('required-field');
+	});
+});
+
+function makeMultiSelectDropDowns(){
+	$('.connectivity-method').multiselect({
+		includeSelectAllOption: false,
+		nonSelectedText: 'Select Method(s)',
+		buttonClass: 'btn-default dropdown-button required-field'
+	});
+}
+</script>
+</head>
+
+<apex:form id="idForm" styleClass="form-select">
+<apex:actionStatus id="save-status" stopText="">
+	<apex:facet name="start">
+		<div>
+			<div class="popup-background"/>
+			<div class="popup-panel">
+				<table border="0" width="100%" height="100%">
+					<tr>
+						<td align="center"><b>Doing stuff...</b></td>
+					</tr>
+					<tr>
+						<td align="center"><img src="{!$Resource.progressbar}"/></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</apex:facet>
+</apex:actionStatus>
+<h2 id="idTitle">{!installationApproval.Account.Name}: <small>{!workOrder.Type}</small></h2>
+<apex:pageMessages id="messages"/>
+<apex:outputPanel layout="block" style="padding-top:20px;" styleClass="container-fluid">
+	<!-- Installation Approval Section -->
+	<apex:outputPanel layout="block" styleClass="container-fluid">
+		<apex:outputPanel layout="block" styleClass="row">
+			<apex:outputPanel layout="block" styleClass="col-md-2">
+				<apex:outputLabel for="idItContactName" value="IT Contact Name:"/>
+				<apex:inputField id="idItContactName" value="{!installationApproval.IT_Contact_Name__c}" styleClass="form-control"/>
+			</apex:outputPanel>
+			<apex:outputPanel layout="block" styleClass="col-md-2">
+				<apex:outputLabel for="idItEmailAddress" value="IT Email Address:"/>
+				<apex:inputField id="idItEmailAddress" value="{!installationApproval.IT_Email_Address__c}" styleClass="form-control"/>
+			</apex:outputPanel>
+			<apex:outputPanel layout="block" styleClass="col-md-2">
+				<apex:outputLabel for="idItPhoneNumber" value="IT Phone Number:"/>
+				<apex:inputField id="idItPhoneNumber" value="{!installationApproval.IT_Phone_Number__c}" styleClass="form-control"/>
+			</apex:outputPanel>
+		</apex:outputPanel>
+		<apex:outputPanel id="idAccessRow" layout="block" styleClass="row row-separation">
+			<apex:outputPanel layout="block" styleClass="col-md-3">
+				<apex:outputLabel for="idAccess" value="Access to Clinic's Network:"/>
+				<apex:inputField id="idAccess" value="{!installationApproval.AccessToNetwork__c}" style="margin-left: 5px;" styleClass="toggle-box"/>
+			</apex:outputPanel>
+		</apex:outputPanel>
+		<apex:outputPanel layout="block" styleClass="row row-separation">
+			<apex:outputPanel layout="block" styleClass="col-md-3">
+				<apex:outputLabel for="idElectricalOutlet" value="Electrical Outlet Near TV Location?"/>
+				<apex:inputField id="idElectricalOutlet" value="{!installationApproval.Electrical_Outlet_near_requested_TV_loca__c}" required="true" styleClass="form-control required-field"/>
+			</apex:outputPanel>
+			<apex:outputPanel id="idRequiredBlock" layout="block" styleClass="col-md-3">
+				<apex:outputLabel for="idDHCPNetwork" value="Is Office Network DHCP?"/>
+				<apex:inputField id="idDHCPNetwork" value="{!installationApproval.Is_office_network_DHCP__c}" styleClass="form-control required-field required-toggle"/>
+			</apex:outputPanel>
+		</apex:outputPanel>
+		
+		<apex:outputPanel layout="block" styleClass="row row-separation">
+			<apex:outputPanel layout="block" styleClass="col-md-3">
+				<apex:outputLabel for="idDataDrop" value="Data Drop Access"/>
+				<apex:inputField id="idDataDrop" value="{!installationApproval.Data_Drop_Access__c}" styleClass="form-control required-field required-toggle"/>
+			</apex:outputPanel>
+			<apex:outputPanel layout="block" styleClass="col-md-3">
+				<apex:outputLabel for="idTVsRemReloc" value="Number of TVs being Removed/Relocated"/>
+				<apex:inputField id="idTVsRemReloc" value="{!installationApproval.NumberofTVRemovedRelocated__c}" styleClass="form-control required-field"/>
+			</apex:outputPanel>
+		</apex:outputPanel>
+		<apex:outputPanel layout="block" styleClass="row row-separation">
+			<apex:outputPanel layout="block" styleClass="col-md-3">
+				<apex:outputLabel for="idBlockedTraffic" value="If No, Is Outbound Traffic Blocked?"/>
+				<apex:inputField id="idBlockedTraffic" value="{!installationApproval.If_no_will_traffic_through_a_proxy_serv__c}" styleClass="form-control"/>
+			</apex:outputPanel>
+			<apex:outputPanel layout="block" styleClass="col-md-3">
+				<apex:outputLabel for="idTabletConneType" value="Tablet Connection Type"/>
+				<apex:inputField id="idTabletConneType" value="{!installationApproval.TabletConnectionType__c}" styleClass="form-control"/>
+			</apex:outputPanel>
+		</apex:outputPanel>
+		<apex:outputPanel layout="block" styleClass="row row-separation">
+			<apex:outputPanel layout="block" styleClass="col-md-3">
+				<apex:outputLabel for="idWIFIAvailable" value="Is WiFi Available?"/>
+				<apex:inputField id="idWIFIAvailable" value="{!installationApproval.Is_WiFi_Available__c}" styleClass="form-control required-field required-toggle"/>
+			</apex:outputPanel>
+			<apex:outputPanel layout="block" styleClass="col-md-3">
+				<apex:outputLabel for="idWIFIspChar" value="Does WIFI have Any Special Characters?"/>
+				<apex:inputField id="idWIFIspChar" value="{!installationApproval.WIFISpecialCharacters__c}" styleClass="form-control"/>
+			</apex:outputPanel>
+		</apex:outputPanel>
+		<apex:outputPanel layout="block" styleClass="row row-separation">
+			<apex:outputPanel layout="block" styleClass="col-md-3">
+				<apex:outputLabel for="idPlayerType" value="Recommended Player Type"/>
+				<apex:inputField id="idPlayerType" value="{!installationApproval.Recommended_Player_Type__c}" styleClass="form-control required-field" required="true"/>
+			</apex:outputPanel>
+			<apex:outputPanel layout="block" styleClass="col-md-3">
+				<apex:outputLabel for="idWIFIAuthentication" value="Daily WiFi Authentication Required?"/>
+				<apex:inputField id="idWIFIAuthentication" value="{!installationApproval.Daily_WiFi_Authentication_Required__c}" styleClass="form-control required-field required-toggle"/>
+			</apex:outputPanel>
+		</apex:outputPanel>
+		<apex:outputPanel layout="block" styleClass="row row-separation">
+			<apex:outputPanel layout="block" styleClass="col-md-3">
+				<apex:outputLabel for="idConnectivityMethod" value="Connectivity Method" styleClass="form-label"/>
+				<apex:selectList id="idConnectivityMethod" value="{!connectivityMethods}" multiselect="true" styleClass="form-control select-field dropdown connectivity-method">
+					<apex:selectOption itemValue="LAN" itemLabel="LAN"/>
+					<apex:selectOption itemValue="Sprint" itemLabel="Sprint"/>
+					<apex:selectOption itemValue="Verizon" itemLabel="Verizon"/>
+					<apex:selectOption itemValue="Wifi" itemLabel="Wifi"/>
+				</apex:selectList>
+			</apex:outputPanel>
+			<apex:outputPanel layout="block" styleClass="col-md-3">
+				<apex:outputLabel for="idBestTimeWO" value="Best Day/Time For Work Order"/>
+				<apex:inputField id="ididBestTimeWO" value="{!installationApproval.Best_Day_Time_etc_for_Install__c}" styleClass="form-control"/>
+			</apex:outputPanel>
+		</apex:outputPanel>
+	</apex:outputPanel>
+	<!-- Service Date Section -->
+	<apex:outputPanel layout="block" styleClass="row">
+		<apex:outputPanel layout="block" styleClass="col-md-12">
+			<apex:image url="{!$Resource.minus}" styleClass="work-order-minus-sign clickable" width="24" height="24" onclick="$('.work-order-section').slideToggle();
+										 										   	   								$('.work-order-minus-sign').toggle();
+										 										  	   								$('.work-order-plus-sign').toggle();"/>
+			<apex:image url="{!$Resource.plus}" style="display:none;" styleClass="work-order-plus-sign clickable" width="24" height="24" onclick="$('.work-order-section').slideToggle();
+										 										   	   													$('.work-order-minus-sign').toggle();
+										 										  	   													$('.work-order-plus-sign').toggle();"/>
+			<h3>Work Order</h3>
+			<hr style="margin-top:2px;"/>
+		</apex:outputPanel>
+	</apex:outputPanel>
+	<apex:outputPanel id="idWorkOrderSection" layout="block" styleClass="container-fluid work-order-section">
+		<apex:outputPanel layout="block" styleClass="row">
+			<apex:outputPanel layout="block" styleClass="col-md-3">
+				<apex:outputLabel for="idWorkOrderType" value="Type"/>
+				<apex:inputField id="idWorkOrderType" value="{!workOrder.Type}" styleClass="form-control required-field type" required="true"/>
+			</apex:outputPanel>
+			<apex:outputPanel layout="block" styleClass="col-md-1">
+				<apex:outputLabel for="idWorkOrderProduct" value="Product"/>
+				<apex:inputField id="idWorkOrderProduct" value="{!workOrder.Product__c}" styleClass="form-control required-field" required="true"/>
+			</apex:outputPanel>
+			<apex:outputPanel layout="block" styleClass="col-md-1">
+				<apex:outputLabel for="idWorkOrderService" value="Service"/>
+				<apex:inputField id="idWorkOrderService" value="{!workOrder.Service__c}" styleClass="form-control required-field" required="true"/>
+			</apex:outputPanel>
+			<apex:outputPanel layout="block" styleClass="col-md-7"/>
+		</apex:outputPanel>
+		<apex:outputPanel layout="block" styleClass="row row-separation">
+			<apex:outputPanel layout="block" styleClass="col-md-1">
+				<apex:outputLabel for="idNumberOfPlayers" value="Players"/>
+				<apex:inputField id="idNumberOfPlayers" value="{!workOrder.Players_Being_Installed__c}"/>
+			</apex:outputPanel>
+			<apex:outputPanel layout="block" styleClass="col-md-11"/>
+		</apex:outputPanel>
+		<apex:outputPanel layout="block" styleClass="row">
+			<apex:outputPanel layout="block" styleClass="col-md-1">
+				<apex:outputLabel for="idNumberOfTVs" value="TVs"/>
+				<apex:inputField id="idNumberOfTVs" value="{!workOrder.TVs_Being_Installed__c}"/>
+			</apex:outputPanel>
+			<apex:outputPanel layout="block" styleClass="col-md-11"/>
+		</apex:outputPanel>
+		<apex:outputPanel layout="block" styleClass="row">
+			<apex:outputPanel layout="block" styleClass="col-md-1">
+				<apex:outputLabel for="idNumberOfTablets" value="Tablets"/>
+				<apex:inputField id="idNumberOfTablets" value="{!workOrder.Tablets_Being_Installed__c}"/>
+			</apex:outputPanel>
+			<apex:outputPanel layout="block" styleClass="col-md-11"/>
+		</apex:outputPanel>
+		<apex:outputPanel layout="block" styleClass="row">
+			<apex:outputPanel layout="block" styleClass="col-md-1">
+				<apex:outputLabel for="idNumberOfRouters" value="Routers"/>
+				<apex:inputField id="idNumberOfRouters" value="{!workOrder.Routers_Being_Installed__c}"/>
+			</apex:outputPanel>
+			<apex:outputPanel layout="block" styleClass="col-md-11"/>
+		</apex:outputPanel>
+		<apex:outputPanel layout="block" styleClass="row">
+			<apex:outputPanel layout="block" styleClass="col-md-1">
+				<apex:outputLabel for="number-of-wallboards" value="Wallboards"/>
+				<apex:inputField id="number-of-wallboards" value="{!workOrder.Wallboards_Being_Installed__c}"/>
+			</apex:outputPanel>
+			<apex:outputPanel layout="block" styleClass="col-md-11"/>
+		</apex:outputPanel>
+		<apex:outputPanel layout="block" styleClass="row">
+			<apex:outputPanel layout="block" styleClass="col-md-1">
+				<apex:outputLabel for="number-of-wifi" value="WiFi"/>
+				<apex:inputField id="number-of-wifi" value="{!workOrder.WiFi_Being_Installed__c}"/>
+			</apex:outputPanel>
+			<apex:outputPanel layout="block" styleClass="col-md-11"/>
+		</apex:outputPanel>
+		<apex:outputPanel layout="block" styleClass="row row-separation">
+			<apex:outputPanel layout="block" styleClass="col-md-2">
+				<apex:outputLabel for="idFieldParter" value="Field Partner Contact"/>
+				<apex:inputField value="{!workOrder.Field_Partner_Contact__c}" styleClass="form-control lookup required-field" required="true"/>
+			</apex:outputPanel>
+			<apex:outputPanel layout="block" styleClass="col-md-10"/>
+		</apex:outputPanel>
+		<apex:outputPanel layout="block" styleClass="row row-separation">	
+			<apex:outputPanel layout="block" styleClass="col-md-6">
+				<apex:outputLabel for="idSpecialInstructions" value="Special Instructions (optional)"/>
+				<apex:inputTextArea id="idSpecialInstructions" value="{!specialInstructions}" styleClass="form-control"/>
+			</apex:outputPanel>
+		</apex:outputPanel>
+	</apex:outputPanel>
+	<apex:outputPanel layout="block" styleClass="row">
+		<apex:outputPanel layout="block" styleClass="col-md-12">
+			<apex:image url="{!$Resource.minus}" styleClass="service-minus-sign clickable" width="24" height="24" onclick="$('.service-date-section').slideToggle();
+					 										   				 									 		   $('.service-minus-sign').toggle();
+					 										   				 									 		   $('.service-plus-sign').toggle();"/>
+			<apex:image url="{!$Resource.plus}" style="display:none;" styleClass="service-plus-sign clickable" width="24" height="24" onclick="$('.service-date-section').slideToggle();
+					 										   				 									 					 $('.service-minus-sign').toggle();
+					 										   				 									 					 $('.service-plus-sign').toggle();"/>
+			<h3>Service Date</h3>
+			<hr style="margin-top:2px;"/>
+		</apex:outputPanel>
+	</apex:outputPanel>
+	<apex:outputPanel id="idServiceDateSection" layout="block" styleClass="container-fluid service-date-section">
+		<apex:outputPanel layout="block" styleClass="row">
+			<apex:outputPanel layout="block" styleClass="col-md-2">
+				<apex:outputLabel for="idServiceStart" value="Start"/>
+				<apex:inputField id="idServiceStart" required="true" value="{!serviceDate.ServiceDateStart__c}" styleClass="form-control required-field"/>
+			</apex:outputPanel>
+			<apex:outputPanel layout="block" styleClass="col-md-2">
+				<apex:outputLabel for="idServiceEnd" value="End (optional)"/>
+				<apex:inputField id="idServiceEnd" value="{!serviceDate.ServiceDateEnd__c}" styleClass="form-control"/>
+			</apex:outputPanel>
+			<apex:outputPanel layout="block" styleClass="col-md-8"/>
+		</apex:outputPanel>
+	</apex:outputPanel>
+
+	<apex:outputPanel layout="block" styleClass="row">
+		<apex:outputPanel layout="block" styleClass="col-md-4"/>
+		<apex:outputPanel layout="block" styleClass="col-md-2">
+			<apex:commandButton value="Submit" action="{!submit}" styleClass="btn btn-default form-control" rerender="messages" onclick="this.disabled=true;" oncomplete="this.disabled=false;" status="save-status"/>
+		</apex:outputPanel>
+		<apex:outputPanel layout="block" styleClass="col-md-2">
+			<apex:commandButton value="Cancel" action="{!cancel}" styleClass="btn btn-default form-control" immediate="true"/>
+		</apex:outputPanel>
+		<apex:outputPanel layout="block" styleClass="col-md-4"/>
+	</apex:outputPanel>
+</apex:outputPanel>
+</apex:form>
+</apex:page>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EditOpportunitySplits</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveAndClose</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>OpportunityId</fullName>
+        <type>MasterDetail</type>
+    </fields>
+    <fields>
+        <fullName>OpportunitySplitId__c</fullName>
+        <externalId>false</externalId>
+        <formula>Id</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Opportunity Split ID</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PaidAmount__c</fullName>
+        <description>The commission amount paid for the given split.</description>
+        <externalId>false</externalId>
+        <label>Paid Amount</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>PaidOn__c</fullName>
+        <description>The date which the given commission was paid to the team member.</description>
+        <externalId>false</externalId>
+        <label>Paid On</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>SplitAmount</fullName>
+    </fields>
+    <fields>
+        <fullName>SplitNote</fullName>
+    </fields>
+    <fields>
+        <fullName>SplitOwnerEmployeeNumber__c</fullName>
+        <description>This field is being used on a Commission Report. Please do not delete without contacting Bogumil or Matt first.</description>
+        <externalId>false</externalId>
+        <formula>SplitOwner.EmployeeNumber</formula>
+        <label>Split Owner Employee Number</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SplitOwnerId</fullName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SplitPercentage</fullName>
+    </fields>
+    <fields>
+        <fullName>SplitTypeId</fullName>
+        <type>Lookup</type>
+    </fields>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

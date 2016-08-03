@@ -1,0 +1,1248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Close</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>DeleteSeries</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>NewTask</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <enableFeeds>false</enableFeeds>
+    <fieldSets>
+        <fullName>activities__CreateTasks</fullName>
+        <availableFields>
+            <field>AccountId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Id</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>IsRecurrence</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>RecurrenceActivityId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>RecurrenceDayOfMonth</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>RecurrenceDayOfWeekMask</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>RecurrenceInterval</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>RecurrenceMonthOfYear</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>RecurrenceRegeneratedType</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>WhatId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>WhoId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <description>CreateTasks</description>
+        <displayedFields>
+            <field>OwnerId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ActivityDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Subject</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Status</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Type</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Priority</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Description</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>CreateTasks</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>activities__MassUpdateTasks</fullName>
+        <description>UpdateTasks</description>
+        <displayedFields>
+            <field>OwnerId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ActivityDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Subject</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Status</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>WhoId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>WhatId</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Type</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Priority</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IsReminderSet</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>ReminderDateTime</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Description</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>MassUpdateTasks</label>
+    </fieldSets>
+    <fields>
+        <fullName>ActivityDate</fullName>
+    </fields>
+    <fields>
+        <fullName>CallDisposition</fullName>
+    </fields>
+    <fields>
+        <fullName>CallDurationInSeconds</fullName>
+    </fields>
+    <fields>
+        <fullName>CallObject</fullName>
+    </fields>
+    <fields>
+        <fullName>CallType</fullName>
+    </fields>
+    <fields>
+        <fullName>Description</fullName>
+    </fields>
+    <fields>
+        <fullName>Email</fullName>
+    </fields>
+    <fields>
+        <fullName>OwnerId</fullName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Phone</fullName>
+    </fields>
+    <fields>
+        <fullName>Priority</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>10 OBD Help</fullName>
+                <color>#FF0000</color>
+                <default>false</default>
+                <highPriority>false</highPriority>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1 Closing</fullName>
+                <color>#009900</color>
+                <default>false</default>
+                <highPriority>true</highPriority>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2 High</fullName>
+                <color>#0B6FCE</color>
+                <default>false</default>
+                <highPriority>false</highPriority>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3 Normal</fullName>
+                <color>#DDDDDD</color>
+                <default>true</default>
+                <highPriority>false</highPriority>
+            </picklistValues>
+            <picklistValues>
+                <fullName>High</fullName>
+                <default>false</default>
+                <highPriority>true</highPriority>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Low</fullName>
+                <default>false</default>
+                <highPriority>false</highPriority>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Normal</fullName>
+                <default>false</default>
+                <highPriority>false</highPriority>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>RecurrenceInterval</fullName>
+    </fields>
+    <fields>
+        <fullName>RecurrenceRegeneratedType</fullName>
+    </fields>
+    <fields>
+        <fullName>Status</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+                <closed>false</closed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+                <closed>false</closed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed</fullName>
+                <default>false</default>
+                <closed>true</closed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Waiting on someone else</fullName>
+                <default>false</default>
+                <closed>false</closed>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deferred</fullName>
+                <default>false</default>
+                <closed>false</closed>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Subject</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TaskSubtype</fullName>
+    </fields>
+    <fields>
+        <fullName>Type</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Outbound call</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Inbound call</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Email response</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fax</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>WhatId</fullName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>WhoId</fullName>
+        <type>Lookup</type>
+    </fields>
+    <recordTypes>
+        <fullName>Ad_Sales</fullName>
+        <active>true</active>
+        <label>Ad Sales</label>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>10 OBD Help</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Normal</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason_for_Interaction__c</picklist>
+            <values>
+                <fullName>Attending Conference%28s%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Battle Objection%28s%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closing Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitor Removal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Confirm Sale</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Courtesy Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DO NOTE DO 24 hr pre call HERE%2C USE FIELDS ON THE CASE%21%21%21%21%21%21%21</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Doctor Decision</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Get the Signup Form</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In-Person Visit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MS Help Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSE Introduction Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Product</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OBD Assist Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending IT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Post work order review call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prescriber Audit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resell</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Schedule Install</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Survey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Troubleshooting</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Referrals__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Result__c</picklist>
+            <values>
+                <fullName>Closed On Site</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Requires Follow Up</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ScheduleType__c</picklist>
+            <values>
+                <fullName>Pop In</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deferred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Waiting on someone else</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Member_Outreach</fullName>
+        <active>true</active>
+        <label>Member Outreach</label>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>1 Closing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10 OBD Help</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3 Normal</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason_for_Interaction__c</picklist>
+            <values>
+                <fullName>Attending Conference%28s%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Battle Objection%28s%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clinic Sidebar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clinic Slides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closing Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitor Removal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Confirm Sale</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Courtesy Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom Video</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DO NOTE DO 24 hr pre call HERE%2C USE FIELDS ON THE CASE%21%21%21%21%21%21%21</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Doctor Decision</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drop-In</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exception</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Get the Signup Form</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IHS - Call %28no convo%29%2C left VM or hung up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IHS - Conference Call%2FPhone Pitch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IHS - Email Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IHS - Gift Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IHS - In Person Pitch Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IHS- Live FSI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IHS- Live FUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IHS- Phone FSI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IHS- Phone FUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In-Person Visit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MS Help Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSE Introduction Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Visit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Neurology Referral %28from mailer%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Product</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OBD Assist Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending IT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Post work order review call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prescriber Audit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resell</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rheumatology Referral %28from mailer%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Schedule Install</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled Visit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Survey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Troubleshooting</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Result__c</picklist>
+            <values>
+                <fullName>Closed On Site</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Requires Follow Up</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ScheduleType__c</picklist>
+            <values>
+                <fullName>Pop In</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deferred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Waiting on someone else</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Member_Services</fullName>
+        <active>true</active>
+        <label>Member Services</label>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>1 Closing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10 OBD Help</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2 High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3 Normal</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason_for_Interaction__c</picklist>
+            <values>
+                <fullName>Attending Conference%28s%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Battle Objection%28s%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clinic Sidebar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clinic Slides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closing Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitor Removal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Confirm Sale</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Courtesy Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom Video</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DO NOTE DO 24 hr pre call HERE%2C USE FIELDS ON THE CASE%21%21%21%21%21%21%21</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Doctor Decision</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exception</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Get the Signup Form</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hours Change</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IHS - Call %28no convo%29%2C left VM or hung up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IHS - Conference Call%2FPhone Pitch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IHS - Email Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IHS - Gift Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IHS - In Person Pitch Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IHS- Live FSI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IHS- Live FUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IHS- Phone FSI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IHS- Phone FUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In-Person Visit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MS Help Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MSE Introduction Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Visit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Member Feedback Content</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Member Feedback Functionality</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Member Feedback Product Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Neurology Referral %28from mailer%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Product</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OBD Assist Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending IT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Post work order review call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prescriber Audit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reference</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resell</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rheumatology Referral %28from mailer%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Schedule Electrician</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Schedule Install</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Survey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Testimonial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Troubleshooting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Volume Change</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Result__c</picklist>
+            <values>
+                <fullName>Closed On Site</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Requires Follow Up</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ScheduleType__c</picklist>
+            <values>
+                <fullName>Pop In</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deferred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Waiting on someone else</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Email response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inbound call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outbound call</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <sharingModel>ControlledByParent</sharingModel>
+    <webLinks>
+        <fullName>New_Note</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>New Note</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <url>/apex/ActivityCommentPage?id={!Task.What}&amp;tid={!Task.Id}&amp;isNote=true</url>
+    </webLinks>
+    <webLinks>
+        <fullName>New_Task_Activity</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>New Task Activity</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/00T/&amp;retURL=%2F{!Contact.Id}&amp;who_id={!Contact.Id}&amp;what_i
+d={!Account.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>activities__Mass_Update</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Mass Update Tasks</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/20.0/connection.js&quot;)}
+var records =  {!GETRECORDIDS( $ObjectType.Task)};
+var returnURL = window.location.href;
+if(records != null &amp;&amp; records != &apos;&apos;){
+     mywin = window.open(&apos;/apex/activities__UpdateTasks?Ids=&apos;+records+&apos;&amp;retURL=&apos;+returnURL , &apos;_top&apos;,
+                                             &apos;height=400,width=600,status=yes,toolbar=no,menubar=no,location=no,center=yes,resizable=no&apos;);
+     mywin.focus();
+}else{
+    alert(&apos;Please select atleast one task.&apos;);
+}</url>
+    </webLinks>
+</CustomObject>

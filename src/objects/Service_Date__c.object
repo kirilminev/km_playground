@@ -1,0 +1,2217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Service Dates for Work Orders</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Acknowledge_competitor_swap__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Acknowledge competitor swap</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CMH_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Related_Work_Order__r.CMH_ID__c</formula>
+        <label>CMH ID</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CM_WO_Time__c</fullName>
+        <description>Calculates Central Time for the work order starting end time.</description>
+        <externalId>false</externalId>
+        <formula>/*Dates are good till the year 2020 */
+IF( 
+(( DATEVALUE(ServiceDateEnd__c)&gt;= DATE(2003,4,6)) &amp;&amp; (DATEVALUE(ServiceDateEnd__c)&lt;= DATE(2003,10,26))) || 
+(( DATEVALUE(ServiceDateEnd__c)&gt;= DATE(2004,4,4)) &amp;&amp; (DATEVALUE(ServiceDateEnd__c)&lt;= DATE(2004,10,31))) || 
+(( DATEVALUE(ServiceDateEnd__c)&gt;= DATE(2005,4,3)) &amp;&amp; (DATEVALUE(ServiceDateEnd__c)&lt;= DATE(2005,10,30))) || 
+(( DATEVALUE(ServiceDateEnd__c)&gt;= DATE(2006,4,2)) &amp;&amp; (DATEVALUE(ServiceDateEnd__c)&lt;= DATE(2006,10,29))) || 
+(( DATEVALUE(ServiceDateEnd__c)&gt;= DATE(2007,3,11)) &amp;&amp; (DATEVALUE(ServiceDateEnd__c)&lt;= DATE(2007,11,4))) || 
+(( DATEVALUE(ServiceDateEnd__c)&gt;= DATE(2008,3,9)) &amp;&amp; (DATEVALUE(ServiceDateEnd__c)&lt;= DATE(2008,11,2))) || 
+(( DATEVALUE(ServiceDateEnd__c)&gt;= DATE(2009,3,8)) &amp;&amp; (DATEVALUE(ServiceDateEnd__c)&lt;= DATE(2009,11,1))) || 
+(( DATEVALUE(ServiceDateEnd__c)&gt;= DATE(2010,3,14)) &amp;&amp; (DATEVALUE(ServiceDateEnd__c)&lt;= DATE(2010,11,7))) || 
+(( DATEVALUE(ServiceDateEnd__c)&gt;= DATE(2011,3,13)) &amp;&amp; (DATEVALUE(ServiceDateEnd__c)&lt;= DATE(2011,11,6))) || 
+(( DATEVALUE(ServiceDateEnd__c)&gt;= DATE(2012,3,11)) &amp;&amp; (DATEVALUE(ServiceDateEnd__c)&lt;= DATE(2012,11,4))) || 
+(( DATEVALUE(ServiceDateEnd__c)&gt;= DATE(2013,3,10)) &amp;&amp; (DATEVALUE(ServiceDateEnd__c)&lt;= DATE(2013,11,3))) || 
+(( DATEVALUE(ServiceDateEnd__c)&gt;= DATE(2014,3,9)) &amp;&amp; (DATEVALUE(ServiceDateEnd__c)&lt;= DATE(2014,11,2))) || 
+(( DATEVALUE(ServiceDateEnd__c)&gt;= DATE(2015,3,8)) &amp;&amp; (DATEVALUE(ServiceDateEnd__c)&lt;= DATE(2015,11,1))) ||
+(( DATEVALUE(ServiceDateEnd__c)&gt;= DATE(2016,3,13)) &amp;&amp; (DATEVALUE(ServiceDateEnd__c)&lt;= DATE(2016,11,6))) ||
+(( DATEVALUE(ServiceDateEnd__c)&gt;= DATE(2017,3,12)) &amp;&amp; (DATEVALUE(ServiceDateEnd__c)&lt;= DATE(2017,11,5))) ||
+(( DATEVALUE(ServiceDateEnd__c)&gt;= DATE(2018,3,11)) &amp;&amp; (DATEVALUE(ServiceDateEnd__c)&lt;= DATE(2018,11,4))) ||
+(( DATEVALUE(ServiceDateEnd__c)&gt;= DATE(2019,3,10)) &amp;&amp; (DATEVALUE(ServiceDateEnd__c)&lt;= DATE(2019,11,3))) ||
+(( DATEVALUE(ServiceDateEnd__c)&gt;= DATE(2020,3,8)) &amp;&amp; (DATEVALUE(ServiceDateEnd__c)&lt;= DATE(2020,11,1)))  
+,(ServiceDateEnd__c - (OFFSET_DST_c__c/24)- 5/24),(ServiceDateEnd__c  - (OFFSET_ST__c /24) - 6/24))
+/* the above line calculates the offset for Central Time only */</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>A formula field that translates the time of the work order from the local clinic time to central time.</inlineHelpText>
+        <label>CM WO Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Case_Owner_Phone__c</fullName>
+        <externalId>false</externalId>
+        <formula>Related_Work_Order__r.Owner:User.Phone</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Case Owner Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Case_Owner__c</fullName>
+        <externalId>false</externalId>
+        <formula>(Related_Work_Order__r.Owner:User.FirstName + &quot; &quot; + Related_Work_Order__r.Owner:User.LastName)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Case Owner</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CheckInTime__c</fullName>
+        <externalId>false</externalId>
+        <label>Check In Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>CheckOutTime__c</fullName>
+        <externalId>false</externalId>
+        <label>Check Out Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>CheckedInYES__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Checked In, YES</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CheckedOutYES__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Checked Out, YES</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Competitor_Switch__c</fullName>
+        <externalId>false</externalId>
+        <formula>Related_Work_Order__r.CompetitorSwap__c</formula>
+        <label>Competitor Switch</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CompletedBy__c</fullName>
+        <externalId>false</externalId>
+        <label>Completed By</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Castillo, Alex</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cohn, Daniel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Coyne, George</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dunn, Nick</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Escobar, Gilberto</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Foster, Marcel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Halpin, Joe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Han, John</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Heer, Kamal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Kemp, Travis</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Kiefer, Joe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Okocha, Ifeanyi</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Richardson, Caleb</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vega, Salvador</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>DateField__c</fullName>
+        <externalId>false</externalId>
+        <label>DateField</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Early__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Early</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Field_Partner__c</fullName>
+        <externalId>false</externalId>
+        <formula>Related_Work_Order__r.Field_Partner_Contact__r.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Field Partner</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>InstallDateConfirmed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Install Date Confirmed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Issue__c</fullName>
+        <externalId>false</externalId>
+        <label>Issue(s)</label>
+        <picklist>
+            <picklistValues>
+                <fullName>No Issues</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Assets&gt;Not associated in MDM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Assets&gt;Not associated in SF</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IT Approval&gt;Data Drop Not Possible</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IT Approval&gt;WiFi Captive Portal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IT Approval&gt;No Coverage</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IT Approval&gt;OTHER&gt;SEE CASE NOTES</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Membership&gt;Extra Equip Sent&gt;See Notes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Membership&gt;Improper 24hr Check&gt;See Notes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Membership&gt;Incomplete Shipment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Membership&gt;Scheduling&gt;Job Ran Long</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Membership&gt;Wrong Equip Sent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Membership&gt;OTHER&gt;SEE CASE NOTES</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Site&gt;Clinic Busy&gt;Turned Tech Away</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Site&gt;OTHER&gt;SEE CASE NOTES</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Site&gt;Power Outages/Unstable</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Site&gt;Range Extender (Almond) Needed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Site&gt;Weather Conditions</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tech&gt;Abandoned Job</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tech&gt;Compliance Issue</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tech&gt;Late</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tech&gt;No Show</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product&gt;Almond&gt;No_Map</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product&gt;Player&gt;Connectivity/Lan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product&gt;Player&gt;Connectivity/MDM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product&gt;Player&gt;Connectivity/WiFi</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product&gt;Player&gt;Hard Drive Failure</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product&gt;Tablet&gt;Bad Cable</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product&gt;Tablet&gt;Connectivity/WiFi</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product&gt;Tablet&gt;Not Charging/Dead</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product&gt;Tablet&gt;Registration/MDM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product&gt;Wallboard&gt;Auto-Registration Fail</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product&gt;Wallboard&gt;Bad Power Cable</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product&gt;Wallboard&gt;Bad Screen</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product&gt;WiFi&gt;Blocked Ports</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product&gt;WiFi&gt;Clinic Refusal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product&gt;WiFi&gt;Not Prepped</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product&gt;TV&gt;Locked Philips TV</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product&gt;OTHER&gt;SEE CASE NOTES</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shipping&gt;OTHER&gt;SEE CASE NOTES</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SHIPPING&gt;Delivery Exception/Refusal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Broken Equip&gt;32”, 42”, 43” Screen</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Broken Equip&gt;24”, 49”, 55” Screen</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Broken Equip&gt;Almond Router</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Broken Equip&gt;Airtight AP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Broken Equip&gt;Dual Screen Syncer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Broken Equip&gt;Network Switch</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Broken Equip&gt;OTHER&gt;SEE CASE NOTES</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Broken Equip&gt;RS232</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Broken Equip&gt;Tablet</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Broken Equip&gt;Tablet Stand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Broken Equip&gt;Tablet Charger</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Broken Equip&gt;TP-Link</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Broken Equip&gt;TV - Shipping Issue</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Broken Equip&gt;TV- Previously Installed TV</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Broken Equip&gt;TV Floor Stand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Broken Equip&gt;TV Mount</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Broken Equip&gt;USB Verizon Modem</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Broken Equip&gt;VGA Cable</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Broken Equip&gt;Wallboard - Shipping Issue</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Almond Router</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Airtight AP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Cat 5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Deinstallation Bag Kit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Drywall Screws</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Dual Screen Syncer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Floor Stand Screws</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Gray Extension Cord</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;LAN Player</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;LAN Player Bag Kit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;LG Remote</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Network Switch</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Non LAN Player Bag Kit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;OTHER&gt;SEE CASE NOTES</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Panduit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;PC Repair Bag Kit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Philips Power Cord</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Philips Remote</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Player Bag Kit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Player Power Brick/Cable</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;RCA Audio Cable</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Relocation Package</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;RS232 cable</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Sound Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Tablet</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Tablet Short Floor Stand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Tablet Charger</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;TP-Link</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;TV</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;TV Floor Stand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;TV Mount</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;TV Repair Bag Kit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;USB Verizon Modem</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;VGA Cable</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;VGA-HDMI Converter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;WiFi player</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Wireless Speakers</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Missing Equip&gt;Wallboard</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vendor&gt;Missing Case Notes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Isthisareturntrip__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is this a return trip?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Late__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Late</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Logistical_Shipping_Error__c</fullName>
+        <externalId>false</externalId>
+        <label>Logistical Shipping Error?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Member_Practice_City_State__c</fullName>
+        <externalId>false</externalId>
+        <formula>Related_Work_Order__r.Account.BillingCity &amp; &quot;,&quot; &amp; Related_Work_Order__r.Account.BillingState</formula>
+        <label>Member Practice City &amp; State</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Member_Practice_Sprint_devices__c</fullName>
+        <externalId>false</externalId>
+        <label>Member Practice - # Sprint devices</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Member_Practice_Stage__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text( Related_Work_Order__r.Account.Stage__c )</formula>
+        <label>Member Practice Stage</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MemberpracticeofWorkOrders__c</fullName>
+        <externalId>false</externalId>
+        <label>Member practice - # of Work Orders</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MissingEquipment__c</fullName>
+        <externalId>false</externalId>
+        <label>Missing Equipment</label>
+        <picklist>
+            <picklistValues>
+                <fullName>PC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cable Tester</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Keyboard</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>NextActionOwner__c</fullName>
+        <externalId>false</externalId>
+        <formula>Related_Work_Order__r.Next_Action_Owner__r.FirstName + &apos; &apos;+ Related_Work_Order__r.Next_Action_Owner__r.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Next Action Owner</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OFFSET_DST_c__c</fullName>
+        <externalId>false</externalId>
+        <formula>Related_Work_Order__r.OFFSET_DST_c__c</formula>
+        <label>OFFSET_DST__c</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OFFSET_ST__c</fullName>
+        <externalId>false</externalId>
+        <formula>Related_Work_Order__r.OFFSET_ST__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>OFFSET ST</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Ontime__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Ontime</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Pictures_Received__c</fullName>
+        <externalId>false</externalId>
+        <formula>Related_Work_Order__r.PicturesReceived__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Pictures Received</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>QuickBase_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>QuickBase ID</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reason_for_second_reschedule__c</fullName>
+        <externalId>false</externalId>
+        <label>Reasons for reschedule</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Reasonforreturntrip__c</fullName>
+        <externalId>false</externalId>
+        <label>Conclusion</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Success - Work Order Closed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local Power Outage</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Weather Conditions</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shipping - Broken Tablet</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shipping - Broken TV</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shipping - Assets not associated in Salesforce</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shipping - iD did not ship a part</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hardware - Issue with player</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hardware - Issue with TV / other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hardware - Issue with Tablet</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Scheduling  - Tech Caused</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Scheduling - Job ran long</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Clinic Caused - Add to Google Doc</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Clinic Caused - Clinic busy, turned tech away</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Improper 24 Hour Check - Clinic not available (on creator + NDS)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Improper 24 Hour Check - IT not available  (on creator + NDS)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Improper 24 Hour Check - Equipment not available (hasn&apos;t arrived)  (on creator + NDS)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Improper 24 Hour Check - Competitor equipment still on site  (on creator + NDS)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Improper OBD Questions - Wrong equipment sent  (on creator + NDS)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Improper IT Approval - Wifi has captive portal  (on creator + NDS)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Improper IT Approval - Wifi is not available  (on creator + NDS)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Improper IT Approval - Data drop not possible  (on creator + NDS)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tech Issue - Compliance Issue</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tech Issue - Tech Abandoned Job</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tech Issue - Tech No Show</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Reasonplayerwasdown__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason player was down</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Related_Member_Practice__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot; &amp; Related_Work_Order__r.AccountId, Related_Work_Order__r.Account.Name, &quot;_self&quot;)</formula>
+        <label>Related Member Practice</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Related_Work_Order__c</fullName>
+        <externalId>false</externalId>
+        <label>Related Work Order</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Service Dates</relationshipLabel>
+        <relationshipName>Service_Dates</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>RequestedRescheduleDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Requested Reschedule Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>ReviewCompleted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Review Completed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ScheduledtoInstalledLength__c</fullName>
+        <externalId>false</externalId>
+        <label>Scheduled to Installed Length</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ServiceDateEndOffset__c</fullName>
+        <description>this formula calculates 30 min prior the Central Time</description>
+        <externalId>false</externalId>
+        <formula>(CM_WO_Time__c - ((1/24.0)/2))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Service Date End Offset</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>ServiceDateEnd__c</fullName>
+        <externalId>false</externalId>
+        <label>Service Date - End</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>ServiceDateLink__c</fullName>
+        <externalId>false</externalId>
+        <label>Service Date Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ServiceDateStart__c</fullName>
+        <externalId>false</externalId>
+        <label>Service Date - Start</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Shipping_Error_Explanation__c</fullName>
+        <externalId>false</externalId>
+        <label>Shipping Error Explanation</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>StatusIcon__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+AND(NOT(ISPICKVAL(Status__c, &quot;Canceled&quot;)),
+    NOT(ISPICKVAL(Status__c, &quot;Completed&quot;)),
+    NOT(ISNULL(ServiceDateEnd__c)),
+    NOT(CheckedInYES__c),
+    NOW() &gt; ServiceDateEnd__c + 0.02073),
+IMAGE(&quot;servlet/servlet.FileDownload?file=015C0000002Pedy&quot;, &quot;Red Flag&quot;, 30, 30),
+IF(
+AND(NOT(ISPICKVAL(Status__c, &quot;Canceled&quot;)),
+    NOT(ISPICKVAL(Status__c, &quot;Completed&quot;)),
+    NOT(ISNULL(ServiceDateEnd__c)),
+    CheckedInYES__c,
+    NOT(CheckedOutYES__c),
+    NOW() &gt; LastModifiedDate + 0.04146),
+IMAGE(&quot;servlet/servlet.FileDownload?file=015C0000001pvEJ&quot;, &quot;Blue Flag&quot;, 30, 30),
+IF(
+AND(NOT(ISPICKVAL(Status__c, &quot;Canceled&quot;)),
+    NOT(ISPICKVAL(Status__c, &quot;Completed&quot;)),
+    NOT(ISNULL(ServiceDateEnd__c)),
+    CheckedInYES__c,
+    NOT(CheckedOutYES__c),
+    NOW() &lt; LastModifiedDate + 0.04146),
+IMAGE(&quot;servlet/servlet.FileDownload?file=015C0000001pvEL&quot;, &quot;Green Flag&quot;, 30, 30),
+&quot;&quot;)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Status Icon</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>StatusReason__c</fullName>
+        <externalId>false</externalId>
+        <label>Status Reason</label>
+        <picklist>
+            <controllingField>Status__c</controllingField>
+            <picklistValues>
+                <fullName>Clinic Completed Work</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canceled - Do Not Pay</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Clinic No-Show</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed - Billable</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Clinic Reconsidered</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed - Billable</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Clinic Rescheduled</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canceled - Do Not Pay</controllingFieldValues>
+                <controllingFieldValues>Closed - Billable</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Equipment Damaged/Missing</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed - Billable</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Equipment Not Delivered</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canceled - Do Not Pay</controllingFieldValues>
+                <controllingFieldValues>Closed - Billable</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hardware Issue (iD)</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed - Billable</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hardware Issue (Product)</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed - Billable</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Process</fullName>
+                <default>false</default>
+                <controllingFieldValues>New</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IT Blocked</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed - Billable</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Job Ran Long</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed - Billable</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Legacy Rescheduled</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canceled - Do Not Pay</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Legacy Tech Related Issue</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canceled - Do Not Pay</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Legacy Unable to Source Technician</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canceled - Do Not Pay</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Membership Error</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canceled - Do Not Pay</controllingFieldValues>
+                <controllingFieldValues>Closed - Billable</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MTI Rescheduled</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canceled - Do Not Pay</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MTI Tech Related Issue</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canceled - Do Not Pay</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MTI Unable to Source Technician</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canceled - Do Not Pay</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No Technician Needed</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canceled - Do Not Pay</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product/Hardware Issues</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed - Billable</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SMS Tech Related Issue</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canceled - Do Not Pay</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SMS Unable to Source Technician</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canceled - Do Not Pay</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Techlink Rescheduled</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canceled - Do Not Pay</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Techlink Tech Related Issue</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canceled - Do Not Pay</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TechLink Unable to Source Technician</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canceled - Do Not Pay</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Weather Related</fullName>
+                <default>false</default>
+                <controllingFieldValues>Canceled - Do Not Pay</controllingFieldValues>
+                <controllingFieldValues>Closed - Billable</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Work Complete</fullName>
+                <default>false</default>
+                <controllingFieldValues>Closed - Billable</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>Updated by TechLink through the API.</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>New</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed - Billable</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Canceled - Do Not Pay</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Release To Vendor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Received</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TechLate__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>TechLate</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TechLink_Work_Order_ID__c</fullName>
+        <description>Updated by TechLink through the API.</description>
+        <externalId>false</externalId>
+        <label>TechLink Work Order ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TechNoShow__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Tech No Show</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TechReview__c</fullName>
+        <externalId>false</externalId>
+        <label>Tech Review</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tech_Update__c</fullName>
+        <externalId>false</externalId>
+        <formula>Related_Work_Order__r.Tech_Update__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Tech Update</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TechnicianNameFromLegacy__c</fullName>
+        <externalId>false</externalId>
+        <label>Technician Name (from Legacy)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TechnicianPhoneFromLegacy__c</fullName>
+        <externalId>false</externalId>
+        <label>Technician Phone (from Legacy)</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TechnicianTechnicalAcumen__c</fullName>
+        <externalId>false</externalId>
+        <label>Technician - Technical Acumen</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Technician_City_and_State__c</fullName>
+        <externalId>false</externalId>
+        <formula>Technician_Name__r.MailingCity &amp; &quot;,&quot; &amp;  Technician_Name__r.MailingState</formula>
+        <label>Technician City and State</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Technician_Email_Address__c</fullName>
+        <externalId>false</externalId>
+        <formula>Technician_Name__r.Email</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Technician Email Address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Technician_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Technician Name</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Contact.Account.Name</field>
+                <operation>equals</operation>
+                <value>ContextMedia Contractors</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Service Dates</relationshipLabel>
+        <relationshipName>Service_Dates</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Technician_Phone__c</fullName>
+        <externalId>false</externalId>
+        <formula>Technician_Name__r.Phone</formula>
+        <label>Technician Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Technician_Role__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(Technician_Name__r.Role__c)</formula>
+        <label>Technician Role</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Time_Late__c</fullName>
+        <externalId>false</externalId>
+        <formula>(CheckInTime__c - CM_WO_Time__c) *1440</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Time Late (in mins)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Time_Zone__c</fullName>
+        <externalId>false</externalId>
+        <formula>Related_Work_Order__r.Time_Zon__c</formula>
+        <label>Time Zone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Time__c</fullName>
+        <externalId>false</externalId>
+        <label>Time</label>
+        <picklist>
+            <picklistValues>
+                <fullName>7:00 AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>7:30 AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>8:00 AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>8:30 AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>9:00 AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>9:30 AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>10:00 AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>10:30 AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11:00 AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11:30 AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12:00 PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12:30 PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1:00 PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1:30 PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2:00 PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2:30 PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3:00 PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3:30 PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4:00 PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4:30 PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5:00 PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5:30 PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6:00 PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Total_Work_Order_Time__c</fullName>
+        <externalId>false</externalId>
+        <formula>(CheckOutTime__c - CheckInTime__c) *1440</formula>
+        <label>Total Work Order Time (in mins)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Video_Received__c</fullName>
+        <externalId>false</externalId>
+        <formula>Related_Work_Order__r.Video_Received__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Video Received</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>WOTimeWindow__c</fullName>
+        <externalId>false</externalId>
+        <label>WO Time Window</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>WorkOrderAssignee__c</fullName>
+        <externalId>false</externalId>
+        <label>Work Order - Assignee</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>WorkOrderCompleted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Work Order - Completed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Work_Order_Closed__c</fullName>
+        <externalId>false</externalId>
+        <formula>Related_Work_Order__r.IsClosed</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Work Order Closed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Work_Order_Date_of_Initial_Operaion__c</fullName>
+        <externalId>false</externalId>
+        <label>Work Order - Date of Initial Operation</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Work_Order_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>Related_Work_Order__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Work Order Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Work_Order_MSE__c</fullName>
+        <externalId>false</externalId>
+        <label>Work Order - MSE</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Work_Order_Member_Practice_City__c</fullName>
+        <externalId>false</externalId>
+        <label>Work Order Member Practice City</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Work_Order_Member_practice_Sprint__c</fullName>
+        <externalId>false</externalId>
+        <label>Work Order - Member practice - # Sprint</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Work_Order_Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Work Order - Notes</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Work_Order_Pictures_Received__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Work Order -  Pictures Received</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Work_Order_Reason_for_Return_Trip__c</fullName>
+        <externalId>false</externalId>
+        <label>Work Order - Reason for Return Trip</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Work_Order_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>text(Related_Work_Order__r.Type)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Work Order Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Work_Order__c</fullName>
+        <externalId>false</externalId>
+        <label>Work Order - Type of Internet</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Work_Order_of_Service_Dates2__c</fullName>
+        <externalId>false</externalId>
+        <label>Work Order - # of Service Dates2</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ofReviewsforSD__c</fullName>
+        <externalId>false</externalId>
+        <label># of Reviews for SD</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>of_reschedules__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label># of reschedules</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Service Date</label>
+    <listViews>
+        <fullName>OBD_My_Service_Dates_Today</fullName>
+        <columns>CMH_ID__c</columns>
+        <columns>Work_Order_Type__c</columns>
+        <columns>NAME</columns>
+        <columns>Related_Work_Order__c</columns>
+        <columns>Related_Member_Practice__c</columns>
+        <columns>Member_Practice_City_State__c</columns>
+        <columns>CM_WO_Time__c</columns>
+        <columns>CheckedInYES__c</columns>
+        <columns>CheckedOutYES__c</columns>
+        <columns>Issue__c</columns>
+        <columns>Technician_Name__c</columns>
+        <columns>Technician_Phone__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ServiceDateStart__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <label>OBD_My Service Dates Today</label>
+        <sharedTo>
+            <roleAndSubordinates>OnboardingManager</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>OBD_My_Service_Dates_Tomorrow</fullName>
+        <columns>Field_Partner__c</columns>
+        <columns>CMH_ID__c</columns>
+        <columns>Work_Order_Type__c</columns>
+        <columns>Related_Work_Order__c</columns>
+        <columns>Related_Member_Practice__c</columns>
+        <columns>Member_Practice_City_State__c</columns>
+        <columns>CM_WO_Time__c</columns>
+        <columns>Tech_Update__c</columns>
+        <columns>TechnicianPhoneFromLegacy__c</columns>
+        <columns>TechnicianNameFromLegacy__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ServiceDateEnd__c</field>
+            <operation>equals</operation>
+            <value>TOMORROW</value>
+        </filters>
+        <label>OBD_My Service Dates Tomorrow</label>
+        <sharedTo>
+            <roleAndSubordinates>OnboardingManager</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>OBD_My_Week_s_Service_Dates</fullName>
+        <columns>CMH_ID__c</columns>
+        <columns>Work_Order_Type__c</columns>
+        <columns>Related_Work_Order__c</columns>
+        <columns>Related_Member_Practice__c</columns>
+        <columns>Member_Practice_City_State__c</columns>
+        <columns>CM_WO_Time__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ServiceDateEnd__c</field>
+            <operation>equals</operation>
+            <value>NEXT_N_DAYS:7</value>
+        </filters>
+        <label>OBD_My Week&apos;s Service Dates</label>
+        <sharedTo>
+            <roleAndSubordinates>OnboardingManager</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Outstanding_Pictures_and_Videos</fullName>
+        <booleanFilter>1 AND 2 AND (3 OR 4) AND 5</booleanFilter>
+        <columns>Related_Member_Practice__c</columns>
+        <columns>CMH_ID__c</columns>
+        <columns>Work_Order_Type__c</columns>
+        <columns>NAME</columns>
+        <columns>Member_Practice_City_State__c</columns>
+        <columns>Technician_Name__c</columns>
+        <columns>Technician_Phone__c</columns>
+        <columns>Pictures_Received__c</columns>
+        <columns>Video_Received__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ServiceDateEnd__c</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:30</value>
+        </filters>
+        <filters>
+            <field>Work_Order_Type__c</field>
+            <operation>contains</operation>
+            <value>Installation</value>
+        </filters>
+        <filters>
+            <field>Pictures_Received__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Video_Received__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Work_Order_Type__c</field>
+            <operation>notEqual</operation>
+            <value>Deinstallation</value>
+        </filters>
+        <label>Outstanding Pictures and Videos</label>
+    </listViews>
+    <listViews>
+        <fullName>Today_s_Service_Closed_Dates</fullName>
+        <columns>Case_Owner__c</columns>
+        <columns>Case_Owner_Phone__c</columns>
+        <columns>CMH_ID__c</columns>
+        <columns>Work_Order_Type__c</columns>
+        <columns>Related_Work_Order__c</columns>
+        <columns>Related_Member_Practice__c</columns>
+        <columns>Member_Practice_City_State__c</columns>
+        <columns>CM_WO_Time__c</columns>
+        <columns>CheckedInYES__c</columns>
+        <columns>CheckedOutYES__c</columns>
+        <columns>Technician_Name__c</columns>
+        <columns>Technician_Phone__c</columns>
+        <columns>Field_Partner__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ServiceDateStart__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Work_Order_Closed__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>CheckedOutYES__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Today&apos;s Service Dates_Closed</label>
+    </listViews>
+    <listViews>
+        <fullName>Today_s_Service_Dates</fullName>
+        <columns>Case_Owner__c</columns>
+        <columns>Case_Owner_Phone__c</columns>
+        <columns>CMH_ID__c</columns>
+        <columns>Work_Order_Type__c</columns>
+        <columns>NAME</columns>
+        <columns>Related_Work_Order__c</columns>
+        <columns>Related_Member_Practice__c</columns>
+        <columns>Member_Practice_City_State__c</columns>
+        <columns>CM_WO_Time__c</columns>
+        <columns>CheckedInYES__c</columns>
+        <columns>CheckedOutYES__c</columns>
+        <columns>Issue__c</columns>
+        <columns>Technician_Name__c</columns>
+        <columns>Technician_Phone__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ServiceDateStart__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <label>Today&apos;s Service Dates</label>
+    </listViews>
+    <listViews>
+        <fullName>Today_s_Service_Dates_Open_FollowUp</fullName>
+        <columns>Case_Owner__c</columns>
+        <columns>Case_Owner_Phone__c</columns>
+        <columns>CMH_ID__c</columns>
+        <columns>Work_Order_Type__c</columns>
+        <columns>Related_Work_Order__c</columns>
+        <columns>Related_Member_Practice__c</columns>
+        <columns>Member_Practice_City_State__c</columns>
+        <columns>CM_WO_Time__c</columns>
+        <columns>CheckedInYES__c</columns>
+        <columns>CheckedOutYES__c</columns>
+        <columns>Technician_Name__c</columns>
+        <columns>Technician_Phone__c</columns>
+        <columns>Field_Partner__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ServiceDateStart__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>WorkOrderCompleted__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Work_Order_Closed__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>Today&apos;s Service Dates_Open_FollowUp</label>
+    </listViews>
+    <listViews>
+        <fullName>Today_s_Service_Open_Dates</fullName>
+        <columns>Case_Owner__c</columns>
+        <columns>Case_Owner_Phone__c</columns>
+        <columns>CMH_ID__c</columns>
+        <columns>Work_Order_Type__c</columns>
+        <columns>Related_Work_Order__c</columns>
+        <columns>Related_Member_Practice__c</columns>
+        <columns>Member_Practice_City_State__c</columns>
+        <columns>CM_WO_Time__c</columns>
+        <columns>CheckedInYES__c</columns>
+        <columns>CheckedOutYES__c</columns>
+        <columns>Technician_Name__c</columns>
+        <columns>Technician_Phone__c</columns>
+        <columns>Field_Partner__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ServiceDateStart__c</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>WorkOrderCompleted__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Work_Order_Closed__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>CheckedOutYES__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>Today&apos;s Service Dates_Open</label>
+    </listViews>
+    <listViews>
+        <fullName>Tomorrows_Service_Dates</fullName>
+        <columns>Case_Owner__c</columns>
+        <columns>Field_Partner__c</columns>
+        <columns>CMH_ID__c</columns>
+        <columns>Work_Order_Type__c</columns>
+        <columns>Related_Work_Order__c</columns>
+        <columns>Related_Member_Practice__c</columns>
+        <columns>Member_Practice_City_State__c</columns>
+        <columns>CM_WO_Time__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ServiceDateEnd__c</field>
+            <operation>equals</operation>
+            <value>TOMORROW</value>
+        </filters>
+        <label>Tomorrow&apos;s Service Dates</label>
+    </listViews>
+    <listViews>
+        <fullName>Week_s_Service_Dates</fullName>
+        <columns>Case_Owner__c</columns>
+        <columns>CMH_ID__c</columns>
+        <columns>Work_Order_Type__c</columns>
+        <columns>Related_Work_Order__c</columns>
+        <columns>Related_Member_Practice__c</columns>
+        <columns>Member_Practice_City_State__c</columns>
+        <columns>CM_WO_Time__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ServiceDateEnd__c</field>
+            <operation>equals</operation>
+            <value>NEXT_N_DAYS:7</value>
+        </filters>
+        <label>Week&apos;s Service Dates</label>
+    </listViews>
+    <listViews>
+        <fullName>Week_s_Service_Dates_Not_Assigned_NDS</fullName>
+        <columns>Case_Owner__c</columns>
+        <columns>CMH_ID__c</columns>
+        <columns>Work_Order_Type__c</columns>
+        <columns>Related_Work_Order__c</columns>
+        <columns>Related_Member_Practice__c</columns>
+        <columns>Member_Practice_City_State__c</columns>
+        <columns>CM_WO_Time__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ServiceDateEnd__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>TODAY</value>
+        </filters>
+        <filters>
+            <field>Case_Owner__c</field>
+            <operation>notEqual</operation>
+            <value>Ronnie Jackson,Alexander Castillo,Josh Filippi,Nick Dunn,Kamal Heer</value>
+        </filters>
+        <filters>
+            <field>Case_Owner__c</field>
+            <operation>notEqual</operation>
+            <value>Tim Stevenson,Caleb Richardson,Daniel Cohn,Salvador Vega,Ifeanyi Okocha</value>
+        </filters>
+        <filters>
+            <field>Case_Owner__c</field>
+            <operation>notContain</operation>
+            <value>MTI</value>
+        </filters>
+        <label>Week&apos;s Service Dates Not Assigned NDS</label>
+    </listViews>
+    <listViews>
+        <fullName>techlink_SD</fullName>
+        <columns>NAME</columns>
+        <columns>ServiceDateStart__c</columns>
+        <columns>CMH_ID__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Field_Partner__c</field>
+            <operation>equals</operation>
+            <value>techlink</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <label>Techlink-SD Not Released</label>
+    </listViews>
+    <nameField>
+        <displayFormat>ServiceDate-{000000}</displayFormat>
+        <label>Service Date Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Service Dates</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Completed_Service_Date_with_no_Issue</fullName>
+        <active>true</active>
+        <description>Don&apos;t allow the user to save a service date as completed but not fill out an issue.</description>
+        <errorConditionFormula>AND(ISPICKVAL(Status__c, &quot;Closed - Billable&quot;), ISBLANK(Issue__c))</errorConditionFormula>
+        <errorDisplayField>Issue__c</errorDisplayField>
+        <errorMessage>You must fill out the issue field before you can save this Service Date as Completed.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Record_Can_NOT_Be_Created</fullName>
+        <active>true</active>
+        <description>The new Service Date for this work order can not be created because there are existing Service dates with &quot;New&quot; status. Please Close/Cancel existing Service date  and create new   record.</description>
+        <errorConditionFormula>AND(ISNEW(), Related_Work_Order__r.NumberofNewServiceDates__c&gt;0 )</errorConditionFormula>
+        <errorMessage>The new Service Date for this work order can not be created because there are existing Service dates with &quot;New&quot; status.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Record_Can_NOT_be_ReOpened</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISPICKVAL(Status__c,&quot;New&quot;), 
+(OR( 
+ISPICKVAL(PRIORVALUE(Status__c), &quot;Closed - Billable&quot;), 
+ISPICKVAL(PRIORVALUE(Status__c), &quot;Canceled - Do Not Pay&quot;) 
+)))</errorConditionFormula>
+        <errorMessage>After status has changed to &quot;Canceled&quot; or &quot;Closed&quot; it can&apos;t be returned back to &quot;New&quot;</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Service_Date_End_greater_than_Start</fullName>
+        <active>true</active>
+        <errorConditionFormula>ServiceDateEnd__c &lt;  ServiceDateStart__c</errorConditionFormula>
+        <errorDisplayField>ServiceDateEnd__c</errorDisplayField>
+        <errorMessage>Service Date End must be greater than Service Date Start</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Service_dates_can_not_be_modified</fullName>
+        <active>true</active>
+        <description>Service dates can&apos;t be modified once selected and saved.</description>
+        <errorConditionFormula>OR(
+AND((DATEVALUE(ServiceDateStart__c))&lt;&gt;(DATEVALUE(PRIORVALUE(ServiceDateStart__c))),  
+NOT(ISBLANK(PRIORVALUE(ServiceDateStart__c)))),
+AND((DATEVALUE(ServiceDateEnd__c))&lt;&gt;(DATEVALUE(PRIORVALUE(ServiceDateEnd__c))),  
+NOT(ISBLANK(PRIORVALUE(ServiceDateEnd__c))))
+)</errorConditionFormula>
+        <errorMessage>Service dates can&apos;t be modified once selected and saved. Cancel or close this record and create new service date.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Status_Reason_Required</fullName>
+        <active>true</active>
+        <description>Status Reason is required when Status is not &quot;New&quot;</description>
+        <errorConditionFormula>AND(AND (
+NOT(ISPICKVAL( Status__c , &apos;NEW&apos;)), 
+NOT(ISPICKVAL( Status__c , &apos;Release to Vendor&apos;)),
+NOT(ISPICKVAL( Status__c , &apos;Received&apos;))  
+) ,ISBLANK(TEXT(StatusReason__c)))</errorConditionFormula>
+        <errorMessage>Status Reason is required when Status is &quot;Canceled&quot; or &quot;Closed&quot;</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Tech_Issues_Required</fullName>
+        <active>true</active>
+        <description>When Status Reason selection is &quot;Tech Related Issue&quot; then Issue(s) field should have at least one entry starting with &quot;Tech&gt;&quot;</description>
+        <errorConditionFormula>AND(CONTAINS( TEXT( StatusReason__c),&quot;Tech Related Issue&quot;),
+ (AND
+(
+NOT(INCLUDES(Issue__c, &quot;Tech&gt;Abandoned Job&quot; )),
+NOT(INCLUDES(Issue__c, &quot;Tech&gt;Compliance Issue&quot; )),
+NOT(INCLUDES(Issue__c, &quot;Tech&gt;Late&quot; )),
+NOT(INCLUDES(Issue__c, &quot;Tech&gt;No Show&quot; ))
+)
+)
+)</errorConditionFormula>
+        <errorMessage>When Status Reason selection is &quot;Tech Related Issue&quot; then Issue(s) field should have at least one entry starting with &quot;Tech&gt;&quot;</errorMessage>
+    </validationRules>
+</CustomObject>

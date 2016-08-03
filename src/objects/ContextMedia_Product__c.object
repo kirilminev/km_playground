@@ -1,0 +1,2827 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>ContextMedia Products</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Account_Owner__c</fullName>
+        <externalId>false</externalId>
+        <formula>(Account__r.Owner.FirstName + &quot; &quot; + Account__r.Owner.LastName)</formula>
+        <label>Account Owner</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>Products1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Amount_paid_for_cycle__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Amount paid for cycle</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>AssignedSpecialitySale__c</fullName>
+        <description>Returns true if the lead category of the Account associated to the product matches the product owner&apos;s speciality in his/her role name.</description>
+        <externalId>false</externalId>
+        <formula>AND(NOT(ISPICKVAL(Account__r.LeadCategory__c, &quot;&quot;)),CONTAINS(Owner:User.UserRole.Name, TEXT(Account__r.LeadCategory__c)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Assigned Speciality Sale</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CMHID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.CMHID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CMHID</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Color_on_Unconfirmed_Outreach__c</fullName>
+        <externalId>false</externalId>
+        <label>Color on Unconfirmed Outreach</label>
+        <length>150</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Comment__c</fullName>
+        <externalId>false</externalId>
+        <label>Comment</label>
+        <length>10000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Commission_Amount_Due__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Commission Amount Due</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Commission_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Commission Amount - OLD</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Commission__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(AND(OR(ISPICKVAL(Product_Type__c, &quot;Tablet&quot;),
+          ISPICKVAL(Product_Type__c, &quot;Wallboard&quot;),
+          ISPICKVAL(Product_Type__c, &quot;Waiting Room Wifi&quot;),
+          ISPICKVAL(Product_Type__c, &quot;Waiting Room Wifi - Sprint/Verizon&quot;)),
+       of_Qualified_Prescribers__c &gt; 0,
+       Quantity__c &gt; 0), 40, 0)
+    +
+    IF(AND(ISPICKVAL(Product_Type__c, &quot;Waiting Room Screen&quot;),
+           of_Qualified_Prescribers__c &gt; 0,
+           of_Qualified_Waiting_Rooms__c &gt; 0,
+           Quantity__c &gt; 0),
+    (100 *  IF(Quantity__c &gt;  of_Qualified_Waiting_Rooms__c, of_Qualified_Waiting_Rooms__c, Quantity__c))
+  + IF(of_Qualified_Prescribers__c &gt; of_Qualified_Waiting_Rooms__c, (of_Qualified_Prescribers__c - of_Qualified_Waiting_Rooms__c) * 50, 0), 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Commission Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Competitor_Switchout__c</fullName>
+        <externalId>false</externalId>
+        <formula>text(Account__r.CompetitorSwitchout__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Competitor Switchout</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Conf_to_Installed_WDO__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(MOD( SoldDate__c - DATE(1985,6,24),7), 
+
+  0 , CASE( MOD( DateInstalled__c - SoldDate__c ,7),1,2,2,3,3,4,4,5,5,5,6,5,1), 
+  1 , CASE( MOD( DateInstalled__c - SoldDate__c ,7),1,2,2,3,3,4,4,4,5,4,6,5,1), 
+  2 , CASE( MOD( DateInstalled__c - SoldDate__c ,7),1,2,2,3,3,3,4,3,5,4,6,5,1), 
+  3 , CASE( MOD( DateInstalled__c - SoldDate__c ,7),1,2,2,2,3,2,4,3,5,4,6,5,1), 
+  4 , CASE( MOD( DateInstalled__c - SoldDate__c ,7),1,1,2,1,3,2,4,3,5,4,6,5,1), 
+  5 , CASE( MOD( DateInstalled__c - SoldDate__c ,7),1,0,2,1,3,2,4,3,5,4,6,5,0), 
+  6 , CASE( MOD( DateInstalled__c - SoldDate__c ,7),1,1,2,2,3,3,4,4,5,5,6,5,0), 
+  999) 
+  + 
+  (FLOOR(( DateInstalled__c - SoldDate__c )/7)*5)-1</formula>
+        <label>Conf. to Installed. - WDO</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ConftoInstalled__c</fullName>
+        <externalId>false</externalId>
+        <label>Conf. to Installed</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact_for_Scheduling_from_acct__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.Contact_for_Scheduling__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Contact for Scheduling from acct</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DateConfirmed__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Confirmed</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>DateInstalled__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Installed</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>DateScheduled__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Scheduled</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>DateSpecificScreenUninstalled__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Specific Screen Uninstalled</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_of_Initial_Operation__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.DateofInitialOperation__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Date of Initial Operation</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Days_Since_Confirmation__c</fullName>
+        <externalId>false</externalId>
+        <formula>TODAY() - DateConfirmed__c</formula>
+        <label>Days Since Confirmation</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Days_Since_Sold__c</fullName>
+        <externalId>false</externalId>
+        <formula>TODAY() -  SoldDate__c</formula>
+        <label>Days Since Sold</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Debug__c</fullName>
+        <externalId>false</externalId>
+        <label>Debug</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Exclude__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Exclude</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ITPhoneandEmail__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.IT_Phone_and_Email__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>ITPhoneandEmail</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IncentiveMailed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Incentive Mailed</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IncentiveNotes__c</fullName>
+        <externalId>false</externalId>
+        <label>Incentive Notes</label>
+        <length>10000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>LeadCategory__c</fullName>
+        <externalId>false</externalId>
+        <label>Lead Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Cardiology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dermatology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gastroenterology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>General Health</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Infectious Disease</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Neurology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Obstetrics and Gynecology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oncology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rheumatology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Urology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>LeadSource__c</fullName>
+        <externalId>false</externalId>
+        <label>Lead Source</label>
+        <picklist>
+            <picklistValues>
+                <fullName>16 Aug AADE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb ACC CV Summit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb ACC Summit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb Advances in GI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb ASGE Improving Quality and Safety</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb Baptist Cardio Meeting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb CNIDBS Conference</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb CO Neuro Conf</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb Critical Care Congress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb CRT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb HX360/HIMSS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb International Stroke Conference</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb LDN ID Conference</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb May GI and Hep 2016</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb Melanoma and Cutaneous Malignancies Derm</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb Min Invasive Surgery Symposium (MISS)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb Mississippi Gastro Meeting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb NC Neuro Society Meeting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb Pregnancy Meeting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb QCOR AHA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb Texas Neuro Meeting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb Western AF (cardio) Symposium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb Western AFib Symposium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Feb Winship Cancer Institute</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Jan ACG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Jan AF Symposium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Jan Breakthroughs in Neuro</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Jan Cardio Imaging</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Jan Mayo Clinic Cardio</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Jan Min Invasive GYN Surgery</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Jan Min Invasive OBGYN Conf</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Jan Orlando Derm Aesthetic Conf</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Jan Primary Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Jan Women and Heart Disease</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Jan Zero Prostate Walk</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Mar AAAAI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Mar AAD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Mar ADAM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Mar Cerebrovascular Update</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Mar CMHC West</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Mar Complex Inflam Bowel Disease</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Mar Echocardiography Conf</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Mar GI Ed Meeting in LA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Mar HX360 HIMSS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Mar IDAC Winter Event</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Mar LGS Anual Meeting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Mar NEI Synapse</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Mar Pulmonary Hypertension</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Mar SAGES</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Mar Spine and Peripheral Nerves</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16 Mar Treatments in Chronic Liver</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>20151 IHI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2015 Miami Neuro Symposium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2015 NHPC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2015 WiFi</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AAAAI 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AACE 2009</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AACE 2010</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AACE  2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AACE 2012</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AACE 2013</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AACE 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AADE 2010</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AADE 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AADE 2012</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AADE 2014</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AADE 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AAD Summer Academy 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AAN15 Fall Conference</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AAN 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AAN Vegas 2014</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ACG - Annual 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ACG-Eastern Regional 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ACG Midwestern Regional Course 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ACG Western Regional 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ACOG 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ACR 2010</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ACR 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ACR 2012</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ACR 2013</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ACR 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ACR Annual Meeting 2014</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ACR Cocktail Reception</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ACR-SOTA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ACR SOTA 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ADA 2009</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ADA 2010</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ADA 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ADA 2012</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ADA 2013</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ADA 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ADAM 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Additional Screen in Office (Current Member)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Affidavit Referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Affidavit Referral - DHN July 2010</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Affidavit Referral - RHN October 2010</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Affiliated site referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AHA 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ATA-2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AT May Newsletter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AUA15 South Central</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AUA North Section 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>August Oncology Mailer 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>August WiFi Mailer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CA-AACE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cardio August &apos;15 Campaign</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Carolinas AACE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CC Accucheck</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CCR 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CCR 2012</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CCR 2013</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CCR 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CEU 2009</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CEU 2010</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CEU 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CEU 2012</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cleveland Endo Review</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cold Call</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CRA (California Rheumatology Alliance) - 2012</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CUS 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DDW 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dec 2015 $100 Incentive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dec 2015 Brand Awareness DM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dec 2015 Cardio Hologram Direct Mail</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>December Member Referral Survey</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dermatology to Mailer 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DHN Affidavit Referral 2012</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DHN Best Postcard</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DHN Prequalified Letter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DHNReferral2010</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DHN Referral 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DHN Summer Postcard 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DHN Third Sheeter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DHN Webcast</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DirectMail2010</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Direct Mail 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EMAIL #1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Endo 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Endo 2012</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ENDO Conference 2013</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ENDO Expo 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ex-Member Resold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Father&apos;s Day Mailer 2013</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fax2010</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fax 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fax Aug 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fax Blast 1 - 2008</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fax Blast 2 - 2008</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fax Blast 3 - 2008</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fax Blast may 2013</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Feb 2016 $100 Incentive DM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Feb 2016 GI/Plat PCP DM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Feb 2016 Heart Health DM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FRS AM 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FSR 2012</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FSR 2013</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FSR Conference 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GA-AACE 2012</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GSR 2012</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HCIC 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HIMSS 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Holiday Mailer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Holiday Mailer 2014</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IAS 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ID August &apos;15 Campaign</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IDWeek 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IL-AACE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Inbound Sale</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>iPad Mini Fax Blast</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>J&amp;J List</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Jan 2016 Cardio/Neuro DM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Jan 2016 Holiday Mailer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Joslin hand-written letter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>July Foam Tablet Mailer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>June &apos;15 Tablet Campaign</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Las Vegas Fall Derm 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Levemir List</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LifeScan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LUGPA 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Magazine Ad 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>March 2016 $100 Incentive DM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>March 2016 Brand Awareness DM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>March 2016 MSE Wallboard DM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Marketing Lead</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Marketing- Web Submission</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Visit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MDNG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MGMA15</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MI-AACE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MSE Conference</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MSE Fax Blast</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MSE Mailer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MSE Marketing Night-Fax</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MSE Marketing Night-Pointdrive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MSE Sales Call</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NCRA 2012</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Neuro Symposium 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Newsletter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NHPC 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NORM 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NORM 2012</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NORM 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nov 2015 $100 Incentive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nov 2015 Brand Awareness DM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nov 2015 Direct Mail Survey</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nov 2015 Email Survey</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NRCA 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NV-AACE-2012</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NYU Langone Conference</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OBGYN August &apos;15 Campaign</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oct 2015 $100 Incentive DM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oct 2015 Jump For You Direct Mail</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oct 2015 Wallboard Fax</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oct 2015 WiFi Fax</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oct 2015 WiFi Mailer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Online</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On-site Visit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ORR - AACE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Outside Sale</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Patient Engagement Summit 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Perspectives 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Radio Interview</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RHN Prequalified Letter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RNS 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RSN Conference</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sept 2015 $100 Incentive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sept 2015 Brand Awareness Email</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sept 2015 Direct Mail Survey</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sept 2015 Email Survey</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sept 2015 Wallboard Direct Mail</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sept 2015 Wallboard Email</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sept 2015 Wallboard Fax</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sept 2015 WiFi Fax</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>September Member Newsletter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SHSMD15</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sister Site Sale</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spring &apos;15 Allergy Mailer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spring Competitor Mailer 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spring Mailer 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SS-AACE 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SS-AACE 2012</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SS Fax Blast 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Summer 2013 Ipad Mini Drawing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tablet Fax Blast 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TS_16 Mar ACG Spring Symposium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TS_16 Mar NCDR 16</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TS_16 Mar NJ GI and Endo Society</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Upgrade</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Urology August &apos;15 Campaign</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UV Awareness Mailer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Valentine&apos;s Day Mailer 2015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vday 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vday 2013</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WebForm2010</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Web Form 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Web Submission</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WiFi Fax Blast</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>LightingBolt__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Lighting Bolt ($50 Bonus)</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Live_Hand_Off__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Live Hand Off</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Mount_type__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>For Tablets: Floor mount, Wall mount, etc
+For TVs: Wall mount, Table mount, etc</inlineHelpText>
+        <label>Mount type</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Network_from_act__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(INCLUDES( Account__r.Network__c, &quot;Diabetes&quot;), &quot;Diabetes&quot; + BR(), NULL) +
+IF(INCLUDES( Account__r.Network__c, &quot;Rheumatoid&quot;), &quot;Rheumatoid&quot; + BR(), NULL) +
+IF(INCLUDES( Account__r.Network__c, &quot;Neurology&quot;), &quot;Neurology&quot; + BR(), NULL) +
+IF(INCLUDES( Account__r.Network__c, &quot;Heart&quot;), &quot;Heart&quot; + BR(), NULL) +
+IF(INCLUDES( Account__r.Network__c, &quot;Dermatology&quot;), &quot;Dermatology&quot; + BR(), NULL) +
+IF(INCLUDES( Account__r.Network__c, &quot;GI&quot;), &quot;GI&quot; + BR(), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Network from act</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NotesforOBD__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.Notes__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>NotesforOBD</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumberOfSales__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+   ISPICKVAL(Product_Type__c, &quot;Waiting Room Screen&quot;),
+   IF( of_Qualified_Waiting_Rooms__c = 0,
+   1,
+   IF( Quantity__c &lt; of_Qualified_Waiting_Rooms__c,
+       Quantity__c,
+       of_Qualified_Waiting_Rooms__c)),
+   Quantity__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Number of Sales</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Objection_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Objection Reason</label>
+        <picklist>
+            <controllingField>Sales_Stage__c</controllingField>
+            <picklistValues>
+                <fullName>HIPAA Concerns</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product Form Factor Too Big</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hard No (no reason given)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Working with Competitor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hospital/System Regulations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product Features/Functionality (fill out text field)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Advertising</fullName>
+                <default>false</default>
+                <controllingFieldValues>Objection</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cable Installed</fullName>
+                <default>false</default>
+                <controllingFieldValues>Objection</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Competitor Installed</fullName>
+                <default>false</default>
+                <controllingFieldValues>Objection</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Proprietary System</fullName>
+                <default>false</default>
+                <controllingFieldValues>Objection</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sound</fullName>
+                <default>false</default>
+                <controllingFieldValues>Objection</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Waiting Room Size</fullName>
+                <default>false</default>
+                <controllingFieldValues>Objection</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dislike Televisions</fullName>
+                <default>false</default>
+                <controllingFieldValues>Objection</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Music Playing</fullName>
+                <default>false</default>
+                <controllingFieldValues>Objection</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <controllingFieldValues>Objection</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Has Patient WiFi</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Business Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Onboarding_Overview__c</fullName>
+        <externalId>false</externalId>
+        <label>Sale to Install Explanation</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Onboarding_Specialist__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.onboarding_specialist__r.FirstName + &quot; &quot; +  Account__r.onboarding_specialist__r.LastName</formula>
+        <label>Onboarding Specialist</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OtherObjectionDetails__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Objection Details</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Owner_Employee_Number__c</fullName>
+        <description>This field is being used on the Commission Report. Please do not delete without contacting Bogumil or Matt first.</description>
+        <externalId>false</externalId>
+        <formula>Owner:User.EmployeeNumber</formula>
+        <label>Owner Employee Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PaidAmount__c</fullName>
+        <externalId>false</externalId>
+        <label>Paid Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>PaidOn__c</fullName>
+        <externalId>false</externalId>
+        <label>Paid On</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Ph_email_for_sched_fr_acct__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.Phone_for_schedule__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Ph email for sched fr acct</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Waiting Room Screen</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tablet</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Infusion Room Tablet</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Waiting Room Wifi</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Waiting Room Wifi - Sprint/Verizon</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BAT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wallboard</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Product__c</fullName>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <picklist>
+            <picklistValues>
+                <fullName>AHN 2.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brochure Holder (Pair)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Clinic Slides</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DeHN 2.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DHN 1.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DHN 2.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Exam Room Screen</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Exam Room Tablet - AHN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Exam Room Tablet - CMH</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Exam Room Tablet - DeHN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Exam Room Tablet - DHN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Exam Room Tablet - GI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Exam Room Tablet - ID</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Exam Room Tablet - NHN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Exam Room Tablet - OBG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Exam Room Tablet - RHN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Exam Room Tablet - UHN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GI 2.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HHN 1.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HHN 2.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ID 2.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Infusion Room Tablet - Oncology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NHN 2.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OBG 2.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RHN 2.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RHN IR Screen</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UHN 2.0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Waiting Room Wifi</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wallboard</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Promotion__c</fullName>
+        <externalId>false</externalId>
+        <label>Promotion</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Gift Card $50</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gift Card $75</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gift Card $100</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gift Card $150</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gift Card $200</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gift Card $250</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gift Card $300</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gift Card $350</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gift Card $400</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gift Card $450</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gift Card $500</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>iPad</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>iPad mini</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lunch $50</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pay for Internet $50</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pay for Internet $75</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pay for Internet $100</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pay for Internet $100 for 1 Year</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Qualified_Waiting_Rooms__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.NumberOfQualifiedWaitingRooms__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label># Qualified Waiting Rooms</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Quantity__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Total # of products that we are installing</inlineHelpText>
+        <label>Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>QuickBase_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>QuickBase ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Reason_Went_Unconfirmed_Outreach__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason Went Unconfirmed Outreach</label>
+        <picklist>
+            <controllingField>Sales_Stage__c</controllingField>
+            <picklistValues>
+                <fullName>Sale Was Passed Through, but I CANNOT Contact the Office in the Next 2 Weeks</fullName>
+                <default>false</default>
+                <controllingFieldValues>Unconfirmed Outreach</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Upon Contacting the Office, It Cannot Be Scheduled in 14 Days or Less</fullName>
+                <default>false</default>
+                <controllingFieldValues>Unconfirmed Outreach</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>POC Did Not Have Authorization</fullName>
+                <default>false</default>
+                <controllingFieldValues>Unconfirmed Outreach</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cannot Get in Contact to Confirm/Schedule</fullName>
+                <default>false</default>
+                <controllingFieldValues>Unconfirmed Outreach</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Part of Larger System - Further Approval Required</fullName>
+                <default>false</default>
+                <controllingFieldValues>Unconfirmed Outreach</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>POC/Physician Changed Their Mind</fullName>
+                <default>false</default>
+                <controllingFieldValues>Unconfirmed Outreach</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>POC/Physician is Remaining With Competitor</fullName>
+                <default>false</default>
+                <controllingFieldValues>Unconfirmed Outreach</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IT Will Not Let Us Install - Even If We Provide Our Own Network</fullName>
+                <default>false</default>
+                <controllingFieldValues>Unconfirmed Outreach</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Office Wants Our Other Products, Holding Off on This One</fullName>
+                <default>false</default>
+                <controllingFieldValues>Unconfirmed Outreach</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Office/Location Does Not Exist Yet</fullName>
+                <default>false</default>
+                <controllingFieldValues>Unconfirmed Outreach</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Multi-Waiting Room Sales, No pics or Approval</fullName>
+                <default>false</default>
+                <controllingFieldValues>Unconfirmed Outreach</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ReferralOwner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Referral Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>ContextMediaProducts1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ReferredBy__c</fullName>
+        <externalId>false</externalId>
+        <label>Referred By</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Refunded__c</fullName>
+        <externalId>false</externalId>
+        <label>Refunded</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>RelatedAccount__c</fullName>
+        <externalId>false</externalId>
+        <label>Related Account</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RelatedMemberpractice__c</fullName>
+        <externalId>false</externalId>
+        <label>Related Member practice</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rep__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Rep</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>ContextMedia_Products</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SalesSubmissionDetails__c</fullName>
+        <description>Filled by the sales submission workflow which captures a snapshot of the pertinent information in a qualified product.</description>
+        <externalId>false</externalId>
+        <label>Sales Submission Details</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Sales_Stage__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Stage</label>
+        <picklist>
+            <picklistValues>
+                <fullName>New</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Initial Touch</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pitched &amp; Info Sent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ongoing Dialogue</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Objection</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Verbal Commitment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Agreement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Qualified</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HSE Hold On Calling</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IHS Hold On Calling</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unconfirmed Outreach</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>SignUp_to_Sched_WDO__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(MOD( DateScheduled__c - DATE(1985,6,24),7), 
+
+0 , CASE( MOD( DateScheduled__c - SoldDate__c ,7),1,2,2,3,3,4,4,5,5,5,6,5,1), 
+1 , CASE( MOD( DateScheduled__c - SoldDate__c ,7),1,2,2,3,3,4,4,4,5,4,6,5,1), 
+2 , CASE( MOD( DateScheduled__c - SoldDate__c ,7),1,2,2,3,3,3,4,3,5,4,6,5,1), 
+3 , CASE( MOD( DateScheduled__c - SoldDate__c ,7),1,2,2,2,3,2,4,3,5,4,6,5,1), 
+4 , CASE( MOD( DateScheduled__c - SoldDate__c ,7),1,1,2,1,3,2,4,3,5,4,6,5,1), 
+5 , CASE( MOD( DateScheduled__c - SoldDate__c ,7),1,0,2,1,3,2,4,3,5,4,6,5,0), 
+6 , CASE( MOD( DateScheduled__c - SoldDate__c ,7),1,1,2,2,3,3,4,4,5,5,6,5,0), 
+999) 
++ 
+(FLOOR(( DateScheduled__c - SoldDate__c )/7)*5)-1</formula>
+        <label>SignUp to Sched. - WDO</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SignUptoConf__c</fullName>
+        <externalId>false</externalId>
+        <label>SignUp to Conf.</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sign_Up_to_Install_all_days__c</fullName>
+        <externalId>false</externalId>
+        <formula>DateInstalled__c - SoldDate__c</formula>
+        <label>Sign Up to Install (all days)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SoldDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Sold Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Sold_delayed_confirmation_requested__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Sold, delayed confirmation requested</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Sold_delayed_installation_requested__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Sold, delayed installation requested</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Stage__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Stage</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Unconfirmed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Confirmed Unscheduled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Waitlist</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending IT Coordination</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending Competitor Removal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending Line Drop</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Scheduled - Competitor Removal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Installed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partial Install Plays Content</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partial Install No Content</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partial Install DVD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending Repair - No Content</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending Repair - Playing Content</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DVD Site - Pending Repair/Awaiting Upgrade</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Uninstalled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Retired</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sold Delayed Confirmation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Confirmed Delayed Installation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Would close, but doesn&apos;t currently qualify</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Upgrade__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Upgrade</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Waiting_Rooms_Screens__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.NumberOfScreensInstalled__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label># Waiting Rooms Screens</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>What_Would_They_Take__c</fullName>
+        <externalId>false</externalId>
+        <label>What Would They Take?</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Would_Close_Not_Currently__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Would Close, Office Not Qualified</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>X30_Day_Hold__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>30 Day Hold</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>of_Products_Installed__c</fullName>
+        <externalId>false</externalId>
+        <label># of Products Installed</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>of_Qualified_Prescribers__c</fullName>
+        <externalId>false</externalId>
+        <label># of Qualified Prescribers&apos;</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>of_Qualified_Waiting_Rooms__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>How many waiting rooms are we paying commissions on</inlineHelpText>
+        <label># of Qualified Waiting Rooms (</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>of_Tablets_Installed__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.NumberOfTabletsInstalled__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label># of Tablets Installed</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sortoutIT__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.Contact_to_sort_out_IT__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>sortoutIT</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>week_days_between_sale_and_confirmed__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(MOD( SoldDate__c - DATE(1985,6,24),7), 
+
+  0 , CASE( MOD( DateInstalled__c  - SoldDate__c ,7),1,2,2,3,3,4,4,5,5,5,6,5,1), 
+  1 , CASE( MOD( DateInstalled__c  - SoldDate__c ,7),1,2,2,3,3,4,4,4,5,4,6,5,1), 
+  2 , CASE( MOD( DateInstalled__c  - SoldDate__c ,7),1,2,2,3,3,3,4,3,5,4,6,5,1), 
+  3 , CASE( MOD( DateInstalled__c  - SoldDate__c ,7),1,2,2,2,3,2,4,3,5,4,6,5,1), 
+  4 , CASE( MOD( DateInstalled__c  - SoldDate__c ,7),1,1,2,1,3,2,4,3,5,4,6,5,1), 
+  5 , CASE( MOD( DateInstalled__c  - SoldDate__c ,7),1,0,2,1,3,2,4,3,5,4,6,5,0), 
+  6 , CASE( MOD( DateInstalled__c  - SoldDate__c ,7),1,1,2,2,3,3,4,4,5,5,6,5,0), 
+  999) 
+  + 
+  (FLOOR(( DateInstalled__c - SoldDate__c  )/7)*5)-1</formula>
+        <label>SignUp to Installed. - WDO</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>ContextMedia Product</label>
+    <listViews>
+        <fullName>Alyssa_s_Wifi_Products</fullName>
+        <columns>Product_Type__c</columns>
+        <columns>Account__c</columns>
+        <columns>Sales_Stage__c</columns>
+        <columns>Comment__c</columns>
+        <columns>NAME</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Product_Type__c</field>
+            <operation>contains</operation>
+            <value>Waiting Room Wifi,Waiting Room Wifi - Sprint/Verizon</value>
+        </filters>
+        <filters>
+            <field>Sales_Stage__c</field>
+            <operation>notContain</operation>
+            <value>Qualified</value>
+        </filters>
+        <label>Alyssa&apos;s Wifi Products</label>
+    </listViews>
+    <listViews>
+        <fullName>Audit</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Stage__c</columns>
+        <columns>Product_Type__c</columns>
+        <columns>of_Tablets_Installed__c</columns>
+        <columns>DateScheduled__c</columns>
+        <columns>DateConfirmed__c</columns>
+        <columns>DateInstalled__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Sales_Stage__c</field>
+            <operation>equals</operation>
+            <value>Qualified</value>
+        </filters>
+        <filters>
+            <field>Stage__c</field>
+            <operation>notEqual</operation>
+            <value>Installed,Uninstalled</value>
+        </filters>
+        <filters>
+            <field>DateScheduled__c</field>
+            <operation>lessOrEqual</operation>
+            <value>9/13/2015</value>
+        </filters>
+        <label>MSE Product Activation Audit</label>
+    </listViews>
+    <listViews>
+        <fullName>Conor_Klu_s_Products</fullName>
+        <columns>Sales_Stage__c</columns>
+        <columns>Account__c</columns>
+        <columns>Product_Type__c</columns>
+        <columns>of_Qualified_Prescribers__c</columns>
+        <columns>of_Tablets_Installed__c</columns>
+        <columns>SoldDate__c</columns>
+        <columns>DateConfirmed__c</columns>
+        <columns>DateScheduled__c</columns>
+        <columns>DateInstalled__c</columns>
+        <columns>NAME</columns>
+        <columns>Product__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Account_Owner__c</field>
+            <operation>equals</operation>
+            <value>Conor Klusendorf</value>
+        </filters>
+        <filters>
+            <field>Product_Type__c</field>
+            <operation>equals</operation>
+            <value>BAT</value>
+        </filters>
+        <filters>
+            <field>Sales_Stage__c</field>
+            <operation>contains</operation>
+            <value>Open,New,Initial Touch,Ongoing Dialogue,Pitched &amp; Info Sent,Verbal Co</value>
+        </filters>
+        <label>Conor Klu&apos;s BATs</label>
+    </listViews>
+    <listViews>
+        <fullName>Conor_Klu_s_Products1</fullName>
+        <columns>Account__c</columns>
+        <columns>Product_Type__c</columns>
+        <columns>NAME</columns>
+        <columns>Sales_Stage__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Account_Owner__c</field>
+            <operation>equals</operation>
+            <value>Conor Klusendorf</value>
+        </filters>
+        <filters>
+            <field>Product_Type__c</field>
+            <operation>equals</operation>
+            <value>Waiting Room Wifi</value>
+        </filters>
+        <label>Conor Klu&apos;s WiFi!!!!</label>
+    </listViews>
+    <listViews>
+        <fullName>Conor_Klu_s_WiFi</fullName>
+        <columns>Account__c</columns>
+        <columns>Product_Type__c</columns>
+        <columns>NAME</columns>
+        <columns>Sales_Stage__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Account_Owner__c</field>
+            <operation>equals</operation>
+            <value>Conor Klusendorf</value>
+        </filters>
+        <filters>
+            <field>Product_Type__c</field>
+            <operation>equals</operation>
+            <value>Waiting Room Wifi</value>
+        </filters>
+        <filters>
+            <field>Sales_Stage__c</field>
+            <operation>contains</operation>
+            <value>New,Initial Touch,Objection,Ongoing Dialogue,Open,Pitched &amp; Info Sent,Qual</value>
+        </filters>
+        <label>Conor Klu&apos;s WiFi</label>
+    </listViews>
+    <listViews>
+        <fullName>Conor_Klu_s_WiFi1</fullName>
+        <columns>Account__c</columns>
+        <columns>Sales_Stage__c</columns>
+        <columns>Product_Type__c</columns>
+        <columns>NAME</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Account_Owner__c</field>
+            <operation>equals</operation>
+            <value>Conor Klusendorf</value>
+        </filters>
+        <filters>
+            <field>Product_Type__c</field>
+            <operation>equals</operation>
+            <value>Waiting Room Wifi</value>
+        </filters>
+        <filters>
+            <field>Sales_Stage__c</field>
+            <operation>contains</operation>
+            <value>New,Initial Touch,Objection,Ongoing Dialogue,Open,Pitched &amp; Info Sent,Qual</value>
+        </filters>
+        <label>Conor Klu&apos;s WiFi</label>
+    </listViews>
+    <listViews>
+        <fullName>Frank_Products</fullName>
+        <columns>NAME</columns>
+        <columns>Product__c</columns>
+        <columns>Account__c</columns>
+        <columns>DateConfirmed__c</columns>
+        <columns>DateInstalled__c</columns>
+        <columns>SoldDate__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>Rep__c</columns>
+        <filterScope>Mine</filterScope>
+        <label>Frank_Products</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Tablets</fullName>
+        <columns>Sales_Stage__c</columns>
+        <columns>Account__c</columns>
+        <columns>Product_Type__c</columns>
+        <columns>of_Qualified_Prescribers__c</columns>
+        <columns>of_Tablets_Installed__c</columns>
+        <columns>SoldDate__c</columns>
+        <columns>DateConfirmed__c</columns>
+        <columns>DateScheduled__c</columns>
+        <columns>DateInstalled__c</columns>
+        <columns>NAME</columns>
+        <columns>Product__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Account_Owner__c</field>
+            <operation>equals</operation>
+            <value>Conor Klusendorf</value>
+        </filters>
+        <filters>
+            <field>Product_Type__c</field>
+            <operation>contains</operation>
+            <value>Tablet</value>
+        </filters>
+        <filters>
+            <field>Sales_Stage__c</field>
+            <operation>contains</operation>
+            <value>Open,New,Initial Touch,Ongoing Dialogue,Pitched &amp; Info Sent,Verbal Co</value>
+        </filters>
+        <label>Conor Klu&apos;s Tablets</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Wifi_Product</fullName>
+        <columns>Product_Type__c</columns>
+        <columns>Account__c</columns>
+        <columns>Product__c</columns>
+        <columns>Network_from_act__c</columns>
+        <columns>Sales_Stage__c</columns>
+        <columns>NAME</columns>
+        <columns>Comment__c</columns>
+        <columns>DateScheduled__c</columns>
+        <columns>of_Qualified_Prescribers__c</columns>
+        <columns>of_Qualified_Waiting_Rooms__c</columns>
+        <columns>Qualified_Waiting_Rooms__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Product_Type__c</field>
+            <operation>equals</operation>
+            <value>Waiting Room Wifi,Waiting Room Wifi - Sprint/Verizon</value>
+        </filters>
+        <filters>
+            <field>Network_from_act__c</field>
+            <operation>notContain</operation>
+            <value>general health</value>
+        </filters>
+        <label>My Wifi Product</label>
+    </listViews>
+    <nameField>
+        <displayFormat>P-{000000}</displayFormat>
+        <label>Product Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>ContextMedia Products</pluralLabel>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>Product__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>DateConfirmed__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>SoldDate__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>DateInstalled__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>PaidOn__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>PaidAmount__c</lookupDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Product__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>DateConfirmed__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>SoldDate__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>DateInstalled__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>PaidOn__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>PaidAmount__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Color_for_Unconfirmed_Outreach_is_Req</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF(
+    AND(
+        TEXT(Sales_Stage__c) = &quot;Unconfirmed Outreach&quot;, 
+        ISBLANK(Color_on_Unconfirmed_Outreach__c)), True, False
+ )</errorConditionFormula>
+        <errorDisplayField>Color_on_Unconfirmed_Outreach__c</errorDisplayField>
+        <errorMessage>&quot;Hey!!! Don&apos;t forget to add some color as to the reason why this Product/Account went Unconfirmed Outreach.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Installed_Verification</fullName>
+        <active>true</active>
+        <errorConditionFormula>OR( 
+	AND(NOT(ISBLANK(DateInstalled__c)), 
+	OR( 
+	AND( 
+		NOT(ISPICKVAL(Stage__c, &apos;Installed&apos;)), 
+		NOT(ISPICKVAL(Stage__c, &apos;Partial Install Plays Content&apos;)), 
+		NOT(ISPICKVAL(Stage__c, &apos;Partial Install No Content&apos;)), 
+		NOT(ISPICKVAL(Stage__c, &apos;Uninstalled&apos;)) 
+ ), 
+ISBLANK(of_Products_Installed__c) 
+) 
+), 
+AND(OR( 
+		(ISPICKVAL(Stage__c, &apos;Installed&apos;)), 
+		(ISPICKVAL(Stage__c, &apos;Partial Install Plays Content&apos;)), 
+		(ISPICKVAL(Stage__c, &apos;Partial Install No Content&apos;)), 
+		(ISPICKVAL(Stage__c, &apos;Uninstalled&apos;)) 
+	), 
+	ISBLANK(of_Products_Installed__c) 
+	) 
+)</errorConditionFormula>
+        <errorMessage>Installed Date, Product Stage, and # of Products Installed must all be filled out at once if the Product Stage is Installed or Partial Install.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Other_Objection_Details</fullName>
+        <active>true</active>
+        <description>Requires other objection details if Other was selected as the objection reason.</description>
+        <errorConditionFormula>AND(ISPICKVAL(Objection_Reason__c, &quot;Other&quot;), ISBLANK(OtherObjectionDetails__c))</errorConditionFormula>
+        <errorDisplayField>OtherObjectionDetails__c</errorDisplayField>
+        <errorMessage>If you selected &quot;Other&quot; for objection reason, you must enter an explanation.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Qualified_Required_Fields</fullName>
+        <active>true</active>
+        <description>Ensures that required fields are filled out prior to a product becoming qualified.</description>
+        <errorConditionFormula>AND(ISPICKVAL(Sales_Stage__c, &quot;Qualified&quot;),
+    Account__r.RecordType.Name = &quot;Member Outreach&quot;,
+    OR(
+       ISNULL(Account__r.Contact_for_Scheduling__c),
+       ISNULL(Account__r.Network__c),
+       ISNULL(of_Qualified_Waiting_Rooms__c),
+       ISPICKVAL(Product_Type__c, &quot;&quot;),
+       ISPICKVAL(Product__c, &quot;&quot;),
+       ISNULL(Quantity__c),
+       ISNULL(Account__r.Notes__c),
+       ISNULL(Account__r.Phone_for_schedule__c),
+       ISNULL(Account__r.IT_Phone_and_Email__c)))</errorConditionFormula>
+        <errorMessage>The following fields are required in order to qualify this product. Ensure they are filled out and try again. (Contact/Phone/Email for Scheduling, Content Requested, # Waiting Rooms, Product,Product Type, Quantity, Lead Source, and Notes for OBD)</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Uninstalled_Date_Required</fullName>
+        <active>true</active>
+        <errorConditionFormula>OR(
+AND(NOT(ISBLANK(DateSpecificScreenUninstalled__c)), NOT(ISPICKVAL(Stage__c, &apos;Uninstalled&apos;))),
+AND(ISPICKVAL(Stage__c, &apos;Uninstalled&apos;), ISNULL(DateSpecificScreenUninstalled__c)) 
+)</errorConditionFormula>
+        <errorDisplayField>Stage__c</errorDisplayField>
+        <errorMessage>If Stage is &quot;Uninstalled&quot; then  Date Uninstalled can&apos;t be empty and vice versa.</errorMessage>
+    </validationRules>
+</CustomObject>

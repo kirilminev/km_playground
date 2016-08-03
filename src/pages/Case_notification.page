@@ -1,0 +1,37 @@
+<apex:page standardcontroller="Case" extensions="ext_Case_notification" >
+
+<apex:form >
+    <apex:pageBlock >
+        <apex:pageBlockSection columns="1">
+            <apex:outputText rendered="{!caselist.size==0}"> No open cases for this account</apex:outputText>
+            <apex:pageBlockTable value="{!caselist}" var="cse" rendered="{!caselist.size!=0}">
+                <apex:column headerValue="Case Number">
+                    <apex:outputLink value="/{!cse['Id']}" target="_TOP" ><b>{!cse.casenumber}</b></apex:outputLink>
+                </apex:column>
+                <apex:column headerValue="Type">
+                    <apex:outputText ><b>{!cse.Type}</b></apex:outputText>
+                </apex:column>
+                <apex:column headerValue="Subject" >
+                    <apex:outputText ><b>{!cse.Subject}</b></apex:outputText>
+                </apex:column>
+                <apex:column headerValue="Tablets Impacted" >
+                    <b><apex:outputfield value="{!cse.Tablets_Impacted__c}" /></b>
+                </apex:column>                
+                <apex:column headerValue="Created Date" >
+                    <b><apex:outputfield value="{!cse.createddate}" /></b>
+                </apex:column>
+                
+                <apex:column headerValue="Last Modified Date" >
+                    <b><apex:outputfield value="{!cse.lastmodifieddate}" /></b>
+                </apex:column>
+                
+                
+                
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+
+    
+    </apex:pageBlock>
+</apex:form>
+
+</apex:page>

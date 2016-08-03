@@ -1,0 +1,399 @@
+<!--
+Created by: Matt Thomas
+
+This page is intended to override the standard "Add Product" button on the Opportunity Products related list on Opportunities, however it currently is not.
+Rather, this page is accessed via a detail page button on the Opportunity layout entitled "Membership". The "Sponsorship" Opportunity types are currently using
+the standard Add Product functionality.
+
+Developer notes for this page:
+-If you're going to add fields to any of the dialogs, include the "fieldname" attr so that it's included in validation and Remote Objects.
+-->
+<apex:page applyHtmlTag="true" showHeader="true" sidebar="true" standardController="Opportunity" extensions="AddProductsController">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.alertifycorecss)}"/>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.alertifydefaultcss)}"/>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jstree, 'dist/themes/default/style.css')}"/>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.GeneralCSS)}"/>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.lightning_design, 'assets/styles/salesforce-lightning-design-system-vf.css')}"/>
+    <script>
+    window.__APEX_VARS__ = {
+        OPPORTUNITY_ID : "{!opportunity.Id}",
+        LIGHTNING_DESIGN : "{!URLFOR($Resource.lightning_design)}",
+        PARENT_ACCOUNT_ID : "{!superParent.Id}",
+        PRICEBOOK : {
+            ID : "{!opportunity.Pricebook2Id}",
+            NAME : "{!opportunity.Pricebook2.Name}"
+        },
+        PRODUCT_CATALOG : {}
+    };
+    </script>
+</head>
+<apex:remoteObjects >
+    <apex:remoteObjectModel name="Account" fields="BillingCity,
+                                                   BillingPostalCode,
+                                                   BillingState,
+                                                   BillingStreet,
+                                                   Id,
+                                                   Name,
+                                                   ParentId,
+                                                   Phone" id="account-object"/>
+    <apex:remoteObjectModel name="AccountContactRole" fields="AccountId,
+                                                              ContactId"/>
+    <apex:remoteObjectModel name="Contact" fields="AccountId,Email,Fax,FirstName,Id,LastName,NPI__c,Phone,Prescriber__c,Qualification__c,Qualified__c,Specialty__c,Title__c"/>
+    <apex:remoteObjectModel name="Opportunity" fields="AccountId,
+                                                       Amount,
+                                                       Id"/>
+    <apex:remoteObjectModel name="OpportunityLineItem" fields="Account__c,Name,OpportunityId,PricebookEntryId,ProductCode,Quantity,TotalPrice"/>
+</apex:remoteObjects>
+
+<!-- OPPORTUNITY CARD -->
+<div class="slds">
+    <div class="slds-page-header" role="banner">
+        <div class="slds-grid">
+            <div class="slds-col slds-has-flexi-truncate">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <img src="{!URLFOR($Resource.lightning_design, '/assets/icons/standard/opportunity_120.png')}" class="slds-icon slds-icon--large slds-icon-standard-opportunity"></img>
+                    </div>
+                    <div class="slds-media__body">
+                        <p class="slds-text-heading--label">OPPORTUNITY</p>
+                        <div class="slds-grid">
+                            <h1 class="slds-text-heading--medium slds-m-right--small slds-truncate slds-align-middle" title="Record Title">{!opportunity.Name}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-no-flex slds-align-bottom">
+                <div class="slds-button-group" role="group">
+                    <button id="back-button" type="button" class="slds-button slds-button--brand">
+                        <img src="{!URLFOR($Resource.lightning_design, '/assets/icons/action/back_60.png')}" class="slds-button__icon slds-button__icon--left"></img>
+                        Back to Details
+                    </button>
+                    <button id="help-button" type="button" class="slds-button slds-button--neutral">Help</button>
+                </div>
+            </div>
+        </div>
+        <div class="slds-grid slds-page-header__detail-row">
+            <div class="slds-col--padded slds-size--1-of-4">
+                <dl>
+                    <dt>
+                        <p class="slds-text-heading--label slds-truncate" title="Account">Account</p>
+                    </dt>
+                    <dd>
+                        <p class="slds-text-body--regular slds-truncate">{!opportunity.Account.Name}</p>
+                    </dd>
+                </dl>
+            </div>
+            <div class="slds-col--padded slds-size--1-of-4">
+                <dl>
+                    <dt>
+                        <p class="slds-text-heading--label slds-truncate" title="Stage">Stage</p>
+                    </dt>
+                    <dd>
+                        <p class="slds-text-body--regular slds-truncate">{!opportunity.StageName}</p>
+                    </dd>
+                </dl>
+            </div>
+            <div class="slds-col--padded slds-size--1-of-4">
+                <dl>
+                    <dt>
+                        <p class="slds-text-heading--label slds-truncate" title="Probability">Probability</p>
+                    </dt>
+                    <dd>
+                        <p class="slds-text-body--regular slds-truncate">{!opportunity.Probability}%</p>
+                    </dd>
+                </dl>
+            </div>
+            <div class="slds-col--padded slds-size--1-of-4">
+                <dl>
+                    <dt>
+                        <p class="slds-text-heading--label slds-truncate" title="Close Date">Close Date</p>
+                    </dt>
+                    <dd>
+                        <p class="slds-text-body--regular slds-truncate">{!MONTH(opportunity.CloseDate)}/{!DAY(opportunity.CloseDate)}/{!YEAR(opportunity.CloseDate)}</p>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ACCOUNT HIERARCHY JSTREE-->
+<div class="slds">
+    <div id="hierarchy-header" class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <img src="{!URLFOR($Resource.lightning_design, 'assets/icons/standard/household_120.png')}" class="slds-icon slds-icon-standard-household slds-icon--small"/>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-text-heading--small slds-truncate">Accounts, Contacts, and Products</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="account-hierarchy" class="slds-text"><ul></ul></div>
+<!-- COMMISSIONS -->
+<div class="slds">
+    <div class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <img src="{!URLFOR($Resource.lightning_design, 'assets/icons/standard/contract_120.png')}" class="slds-icon slds-icon-standard-contract slds-icon--small"/>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-text-heading--small slds-truncate">Commission Details</h2>
+                </div>
+            </div>
+        </div>
+        <div class="slds-card__body slds-grid slds-grid--align-center">
+            <div class="slds-col--padded">
+                <h2 class="slds-text-heading--label">COMING SOON</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- DIALOG BOXES -->
+<div class="slds">
+    <!-- Account Dialog -->
+    <form id="account-form" role="form" class="slds-form">
+        <div id="account-dialog" style="display:none;">
+            <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header">
+                        <h2 id="account-dialog-header" class="slds-text-heading--medium">New Account</h2>
+                    </div>
+                    <div class="slds-modal__content">
+                        <div class="slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                    <div class="slds-media__figure">
+                                        <img src="{!URLFOR($Resource.lightning_design, 'assets/icons/standard/account_120.png')}" class="slds-icon slds-icon-standard-account slds-icon--small"/>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-text-heading--small slds-truncate">General Information</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col--padded" style="padding:1rem;">
+                            <div class="slds-form-element is-required">
+                                <label for="account-name" class="slds-form-element__label">Account Name</label>
+                                <input id="account-name" fieldname="Name" class="slds-input" required="true"></input>
+                            </div>
+                            <div class="slds-form-element">
+                                <label for="account-phone" class="slds-form-element__label">Phone</label>
+                                <input id="account-phone" fieldname="Phone" class="slds-input slds-form-element__control phone-number"></input>
+                            </div>
+                        </div>
+                        <div class="slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                    <div class="slds-media__figure">
+                                        <img src="{!URLFOR($Resource.lightning_design, 'assets/icons/action/description_120.png')}" class="slds-icon slds-icon-action-description slds-icon--small"/>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-text-heading--small slds-truncate">Billing Address</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col--padded" style="padding:1rem;">
+                            <div class="slds-form-element is-required">
+                                <label for="account-billing-street" class="slds-form-element__label">Street Address</label>
+                                <input id="account-billing-street" fieldname="BillingStreet" class="slds-input slds-form-element__control" required="true"></input>
+                            </div>
+                            <div class="slds-form-element is-required">
+                                <label for="account-billing-city" class="slds-form-element__label">City</label>
+                                <input id="account-billing-city" fieldname="BillingCity" class="slds-input slds-form-element__control" required="true"></input>
+                            </div>
+                            <div class="slds-form-element is-required">
+                                <label for="account-billing-state" class="slds-form-element__label">State</label>
+                                <input id="account-billing-state" fieldname="BillingState" class="slds-input slds-form-element__control" required="true"></input>
+                            </div>
+                            <div class="slds-form-element is-required">
+                                <label for="account-billing-postal-code" class="slds-form-element__label">Zip Code</label>
+                                <input id="account-billing-postal-code" fieldname="BillingPostalCode" class="slds-input slds-form-element__control" required="true"></input>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-modal__footer">
+                        <button id="account-dialog-cancel" type="button" class="slds-button slds-button--neutral">Cancel</button>
+                        <button id="account-dialog-save" type="button" class="slds-button slds-button--brand">Save</button>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+        </div>
+    </form>
+    <!-- Contact Dialog -->
+    <form id="contact-form" role="form" class="slds-form">
+        <div id="contact-dialog" style="display:none;">
+            <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header">
+                        <h2 id="contact-dialog-header" class="slds-text-heading--medium">New Contact</h2>
+                    </div>
+                    <div class="slds-modal__content">
+                        <div class="slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                    <div class="slds-media__figure">
+                                        <img src="{!URLFOR($Resource.lightning_design, 'assets/icons/standard/contact_120.png')}" class="slds-icon slds-icon-standard-contact slds-icon--small"/>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-text-heading--small slds-truncate">General Information</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col--padded" style="padding:1rem;">
+                            <div class="slds-form-element is-required">
+                                <label for="contact-first-name" class="slds-form-element__label">First Name</label>
+                                <input id="contact-first-name" fieldname="FirstName" class="slds-input slds-form-element__control contact-name" required="true"></input>
+                            </div>
+                            <div class="slds-form-element is-required">
+                                <label for="contact-last-name" class="slds-form-element__label">Last Name</label>
+                                <input id="contact-last-name" fieldname="LastName" class="slds-input slds-form-element__control contact-name" required="true"></input>
+                            </div>
+                            <div class="slds-form-element is-required">
+                                <label for="contact-title" class="slds-form-element__label">Title</label>
+                                <select id="contact-title" fieldname="Title__c" options="titles" style="height:36px;" class="slds-select slds-form-element__control" required="true">
+                                    <option value="" disabled="true" selected="true"></option>
+                                </select>
+                            </div>
+                            <div class="slds-form-element">
+                                <label for="contact-phone" class="slds-form-element__label">Phone</label>
+                                <input id="contact-phone" fieldname="Phone" class="slds-input slds-form-element__control phone-number"></input>
+                            </div>
+                            <div class="slds-form-element">
+                                <label for="contact-email" class="slds-form-element__label">Email</label>
+                                <input id="contact-email" fieldname="Email" class="slds-input slds-form-element__control"></input>
+                            </div>
+                        </div>
+                        <div class="slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                                    <div class="slds-media__figure">
+                                        <img src="{!URLFOR($Resource.lightning_design, 'assets/icons/standard/people_120.png')}" class="slds-icon slds-icon-standard-people slds-icon--small"/>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-text-heading--small slds-truncate">Qualification</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col--padded" style="padding:1rem;">
+                            <div class="slds-form-element">
+                                <label id="specialty" class="slds-checkbox">
+                                    <input id="contact-is-prescriber" fieldname="Prescriber__c" name="contact-is-prescriber" type="checkbox"/>
+                                    <span class="slds-checkbox--faux"/>
+                                    <span class="slds-form-element__label">Prescriber</span>
+                                </label>
+                            </div>
+                            <div style="padding-top:5px;">
+                                <div class="slds-form-element">
+                                    <label for="contact-npi" class="slds-form-element__label">NPI #</label>
+                                    <input id="contact-npi" fieldname="NPI__c" class="slds-input slds-form-element__control" maxlength="10"></input>
+                                </div>
+                                <div class="slds-form-element">
+                                    <label for="contact-specialty" class="slds-form-element__label">Specialty</label>
+                                    <select id="contact-specialty" fieldname="Specialty__c" options="specialties" style="height:36px;" class="slds-select slds-form-element__control">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                <div class="slds-form-element">
+                                    <label for="contact-qualification" class="slds-form-element__label">Qualification</label>
+                                    <h1 id="contact-qualification" fieldname="Qualification__c" class="slds-form-element__control" style="text-transform:uppercase; color:#54698d;">Not Qualified</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-modal__footer">
+                        <button id="contact-dialog-cancel" type="button" class="slds-button slds-button--neutral">Cancel</button>
+                        <button id="contact-dialog-save" type="button" class="slds-button slds-button--brand">Save</button>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+        </div>
+    </form>
+    <!-- Product Dialog -->
+    <form id="product-form" role="form" class="slds-form">
+        <div id="product-dialog" style="display:none;">
+            <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header">
+                        <h2 id="product-dialog-header" class="slds-text-heading--medium">Add Product</h2>
+                    </div>
+                    <div class="slds-modal__content">
+                        <div class="slds-grid">
+                            <div class="slds-col--padded slds-size--1-of-2">
+                                <div class="slds-form-element">
+                                    <label for="product" class="slds-form-element__label">Product</label>
+                                    <select id="product" fieldname="PricebookEntryId" class="slds-select slds-form-element__control" required="true">
+                                        <option value="" disabled="true" selected="true"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="slds-col--padded slds-size--1-of-2">
+                                <div class="slds-form-element">
+                                    <label for="product-quantity" class="slds-form-element__label">Quantity</label>
+                                    <input id="product-quantity" fieldname="Quantity" type="number" class="slds-input slds-form-element__control" required="true"></input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-modal__footer">
+                        <button id="product-dialog-cancel" type="button" class="slds-button slds-button--neutral">Cancel</button>
+                        <button id="product-dialog-save" type="button" class="slds-button slds-button--brand">Save</button>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+        </div>
+    </form>
+    <!-- Prompt Dialog -->
+    <div id="prompt-dialog" style="display:none;">
+        <div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <h2 class="slds-text-heading--medium">Are you sure?</h2>
+                </div>
+                <div class="slds-modal__content">
+                    <p style="text-align:center;" id="prompt-message"></p>
+                </div>
+                <div class="slds-modal__footer">
+                    <button id="prompt-dialog-cancel" type="button" class="slds-button slds-button--neutral">Cancel</button>
+                    <button id="prompt-dialog-save" type="button" class="slds-button slds-button--brand">Delete</button>
+                </div>
+            </div>
+        </div>
+        <div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notification" style="display:none;" class="slds-notify-container">
+        <div class="slds-notify slds-notify--alert slds-theme--error" role="alert">
+            <span class="slds-assistive-text">Info</span>
+            <button id="notification-close" type="button" class="slds-button slds-notify__close">
+                <img src="{!URLFOR($Resource.lightning_design, '/assets/icons/action/close_120.png')}" class="slds-button__icon button__icon--inverse"></img>
+                <span class="slds-assistive-text">Close</span>
+            </button>
+            <div class="notify__content">
+                <h2 id="notification-message" class="slds-text-heading--small">Base Toast</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="{!URLFOR($Resource.alertify)}"></script>
+<script src="{!URLFOR($Resource.jstree, 'dist/jstree.js')}"></script>
+<script src="{!URLFOR($Resource.GENERAL_JS)}"></script>
+<script src="{!URLFOR($Resource.addproductsjs)}"></script>
+<script>init();</script>
+</apex:page>

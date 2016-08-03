@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Commission Accelerator Thresholds are thresholds which when met will apply inflated commission rates for the opportunities after the threshold has been met.
+
+Example:
+
+PES closed opportunity threshold is to close 10 opportunities after the 10th every other opportunity will be computed by using inflated commission rate.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Accelerator_Stage_1__c</fullName>
+        <description>Threshold range will follow this format:
+
+startNumber-endNumber
+
+Example: 
+11-20</description>
+        <externalId>false</externalId>
+        <label>Accelerator Stage 1</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Accelerator_Stage_2__c</fullName>
+        <description>Threshold range will follow this format: 
+
+startNumber-endNumber 
+
+Example: 
+11-20</description>
+        <externalId>false</externalId>
+        <label>Accelerator Stage 2</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Commission Accelerator Threshols</label>
+    <visibility>Protected</visibility>
+</CustomObject>

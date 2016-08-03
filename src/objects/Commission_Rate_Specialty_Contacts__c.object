@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Custom setting contains the reference table to determine for given Qualification Type the commission amount for each qualified contract related to an opportunity. The logic will only give credit to contacts related greater than 1 
+
+For example: Opportunity has 10 Cardio contacts, user will get credit for 9 (n-1)
+
+The name of this custom setting will have the Qualificaiton_Type__c (Specialty, PCP, General Health) and the Commission_Amount_Field__c will contain the $ amount they will be paid for each contact n-1</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Commission_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Commission Amount</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inflated_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>Inflated Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>Commission Rate Specialty Contacts</label>
+    <visibility>Protected</visibility>
+</CustomObject>

@@ -1,0 +1,41 @@
+<apex:page standardController="Case" extensions="InlineAssetController">
+<apex:form id="form1">
+<apex:pageblock id="Assets">
+    <apex:pageBlockTable value="{!assets}" var="Asset" rendered="{!assets.size > 0}">
+        <apex:column >
+        <apex:facet name="header">Action</apex:facet>
+         <apex:Commandlink value="Edit" action="{!editAsset}" target="_Top" >
+                <apex:param value="{!Asset.Id}" name="AssetIdEdit" assignto="{!AssetIdEdit}"/>
+         </apex:Commandlink>
+        </apex:column>
+        <apex:column >
+            <apex:facet name="header">Asset Name</apex:facet>
+            <apex:Outputlink value="/{!Asset.Id}" target="_parent">{!Asset.Name}
+            </apex:Outputlink>
+        </apex:column>
+        <apex:column value="{!Asset.Status}">
+        <apex:facet name="header">Status</apex:facet>
+        </apex:column> 
+        <apex:column value="{!Asset.Outlet_Lock_Reason__c}">
+        <apex:facet name="header">Outlet Lock Status</apex:facet>
+        </apex:column> 
+        <apex:column value="{!Asset.Type__c}">
+        <apex:facet name="header">Type</apex:facet>
+        </apex:column>
+        <apex:column value="{!Asset.SerialNumber}">
+        <apex:facet name="header">Serial Number</apex:facet>
+        </apex:column>
+        <apex:column value="{!Asset.Player_location_at_site__c}">
+        <apex:facet name="header">Player location at site</apex:facet>
+        </apex:column>
+         <apex:column value="{!Asset.Model__c}">
+        <apex:facet name="header">Model</apex:facet>
+        </apex:column>
+         <apex:column value="{!Asset.OS__c}">
+        <apex:facet name="header">OS</apex:facet>
+        </apex:column>
+     </apex:pageBlockTable>
+     <apex:outputText value="No records to display" rendered="{!assets.size <= 0}"/>
+     </apex:pageblock>
+</apex:form>
+</apex:page>

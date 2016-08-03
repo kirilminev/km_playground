@@ -1,0 +1,1319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Media Change Requests</relationshipLabel>
+        <relationshipName>MediaChangeRequests</relationshipName>
+        <required>true</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AdditionalNotes__c</fullName>
+        <externalId>false</externalId>
+        <label>Additional Notes</label>
+        <length>32539</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>20</visibleLines>
+    </fields>
+    <fields>
+        <fullName>AgeInBusinessHours__c</fullName>
+        <externalId>false</externalId>
+        <label>Age in Business Hours</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Age__c</fullName>
+        <externalId>false</externalId>
+        <formula>DateAssigned__c - CreatedDate</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Age</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CMHID__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Account__r.CMHID__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CMH ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CompletedDate__c</fullName>
+        <description>Field used in a report and for Age calculation. DO NOT DELETE</description>
+        <externalId>false</externalId>
+        <label>Completed Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Completed_By__c</fullName>
+        <description>Field is being used in a report. It is used as a workaround because of the inability to filter on New and Old Values in the History reports.</description>
+        <externalId>false</externalId>
+        <label>Completed By</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CustomizedContent__c</fullName>
+        <externalId>false</externalId>
+        <label>Customized Content</label>
+        <picklist>
+            <picklistValues>
+                <fullName>ADHD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Allergy/Asthma</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Anxiety</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cardio</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cold and Flu</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Colon (Colonoscopy)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>COPD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dental</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Depression</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dermatology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Diabetes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Epilepsy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Exercise</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>General Health</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Geriatric</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hypertension</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Infectious Disease</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Men&apos;s Health</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Neurology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nutrition</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Orthopedic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pain Management</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pediatric (Cartoons)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pediatric Content</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Recipe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rheumatology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Seasonal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sleep</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Smoking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spanish Content</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thyroid</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Urology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vaccination</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Weight Loss</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Women&apos;s Health</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>DateAssigned__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Assigned to Media</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>DeviceType__c</fullName>
+        <externalId>false</externalId>
+        <label>Device Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>TV</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tablet</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wifi</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wallboard</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>DueDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Due Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ExpirationDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Expiration Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FileLink__c</fullName>
+        <externalId>false</externalId>
+        <label>File Link</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>FileNames__c</fullName>
+        <externalId>false</externalId>
+        <label>File Name(s)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HighPriorityReason__c</fullName>
+        <externalId>false</externalId>
+        <label>High Priority Reason</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>HighPriority__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>High Priority</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>NeverExpires__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Never Expires</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>OtherContent__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Content</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PortalPassword__c</fullName>
+        <externalId>false</externalId>
+        <label>Portal Password</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PortalUsername__c</fullName>
+        <externalId>false</externalId>
+        <label>Portal Username</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sponsor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sponsor</label>
+        <referenceTo>Campaign</referenceTo>
+        <relationshipLabel>Media Change Requests</relationshipLabel>
+        <relationshipName>MediaChangeRequests</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>StartDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>New</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On Hold - Media</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Subject__c</fullName>
+        <externalId>false</externalId>
+        <label>Subject</label>
+        <length>80</length>
+        <required>true</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Submit__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Used by the clinic customizations UI to indicate that a change request should be immediately submitted for approval.</description>
+        <externalId>false</externalId>
+        <label>Submit</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <picklist>
+            <controllingField>DeviceType__c</controllingField>
+            <picklistValues>
+                <fullName>Add Sponsor</fullName>
+                <default>false</default>
+                <controllingFieldValues>TV</controllingFieldValues>
+                <controllingFieldValues>Tablet</controllingFieldValues>
+                <controllingFieldValues>Wallboard</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ad Frequency</fullName>
+                <default>false</default>
+                <controllingFieldValues>TV</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Change Specialty Network</fullName>
+                <default>false</default>
+                <controllingFieldValues>TV</controllingFieldValues>
+                <controllingFieldValues>Wallboard</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Clinic Sidebar</fullName>
+                <default>false</default>
+                <controllingFieldValues>TV</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Clinic Slides</fullName>
+                <default>false</default>
+                <controllingFieldValues>TV</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Clinic Video</fullName>
+                <default>false</default>
+                <controllingFieldValues>TV</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Content Request</fullName>
+                <default>false</default>
+                <controllingFieldValues>TV</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Demo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hours Change</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hours Change Holiday</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Input Change</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Landing Page</fullName>
+                <default>false</default>
+                <controllingFieldValues>Wifi</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <controllingFieldValues>TV</controllingFieldValues>
+                <controllingFieldValues>Tablet</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RSS Preference</fullName>
+                <default>false</default>
+                <controllingFieldValues>TV</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Screenfeed</fullName>
+                <default>false</default>
+                <controllingFieldValues>TV</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sponsor Veto</fullName>
+                <default>false</default>
+                <controllingFieldValues>TV</controllingFieldValues>
+                <controllingFieldValues>Tablet</controllingFieldValues>
+                <controllingFieldValues>Wallboard</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tablet Content Request</fullName>
+                <default>false</default>
+                <controllingFieldValues>Tablet</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tablet Patient Portals &amp; Websites</fullName>
+                <default>false</default>
+                <controllingFieldValues>Tablet</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tablet Slides &amp; Videos</fullName>
+                <default>false</default>
+                <controllingFieldValues>Tablet</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Volume Change</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <label>Media Change Request</label>
+    <listViews>
+        <fullName>All_Media_Requests</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Account__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>DeviceType__c</columns>
+        <columns>Type__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>DueDate__c</columns>
+        <columns>HighPriority__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Media Requests</label>
+    </listViews>
+    <listViews>
+        <fullName>Completed_Sponsorship_Changes</fullName>
+        <columns>NAME</columns>
+        <columns>CMHID__c</columns>
+        <columns>Subject__c</columns>
+        <columns>Status__c</columns>
+        <columns>Type__c</columns>
+        <columns>HighPriority__c</columns>
+        <columns>DateAssigned__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </filters>
+        <filters>
+            <field>Type__c</field>
+            <operation>equals</operation>
+            <value>Add Sponsor,Ad Frequency,Sponsor Veto</value>
+        </filters>
+        <label>Completed Sponsorship Changes</label>
+        <sharedTo>
+            <group>SalesAnalysts</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Conor_s_Super_Customization_Fun_Time_1</fullName>
+        <columns>HighPriority__c</columns>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>CMHID__c</columns>
+        <columns>Account__c</columns>
+        <columns>Type__c</columns>
+        <columns>Subject__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Submitted,Accepted,In Progress,Rejected</value>
+        </filters>
+        <filters>
+            <field>OWNER.LAST_NAME</field>
+            <operation>equals</operation>
+            <value>Klusendorf</value>
+        </filters>
+        <label>Conor&apos;s In Progress MCRs (In Progress)</label>
+    </listViews>
+    <listViews>
+        <fullName>Conor_s_Super_Customization_Fun_Time_2</fullName>
+        <columns>HighPriority__c</columns>
+        <columns>Status__c</columns>
+        <columns>NAME</columns>
+        <columns>CMHID__c</columns>
+        <columns>Account__c</columns>
+        <columns>Type__c</columns>
+        <columns>Subject__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <filters>
+            <field>OWNER.LAST_NAME</field>
+            <operation>equals</operation>
+            <value>Klusendorf</value>
+        </filters>
+        <label>Conor&apos;s New MCRs (New)</label>
+    </listViews>
+    <listViews>
+        <fullName>Conor_s_Super_Fun_Completed_Fun_Time_1</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>CMHID__c</columns>
+        <columns>DateAssigned__c</columns>
+        <columns>DueDate__c</columns>
+        <columns>HighPriority__c</columns>
+        <columns>HighPriorityReason__c</columns>
+        <columns>Status__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </filters>
+        <filters>
+            <field>OWNER.LAST_NAME</field>
+            <operation>equals</operation>
+            <value>Klusendorf</value>
+        </filters>
+        <label>Conor&apos;s Completed MCRs (Completed, Subm)</label>
+    </listViews>
+    <listViews>
+        <fullName>IhsCustomizations_MediaChangeRequest</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IHS Customizations</label>
+        <queue>IhsCustomizations</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Katie_s_In_Progress_MCR_s</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>DateAssigned__c</columns>
+        <columns>Status__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </filters>
+        <filters>
+            <field>OWNER.LAST_NAME</field>
+            <operation>equals</operation>
+            <value>Shlemon</value>
+        </filters>
+        <label>Katie&apos;s In Progress MCR&apos;s</label>
+    </listViews>
+    <listViews>
+        <fullName>Pending_Sponsorship_Requests</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Account__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>DeviceType__c</columns>
+        <columns>Type__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>DueDate__c</columns>
+        <columns>HighPriority__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Submitted</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>MediaChangeRequest__c.Sponsor_Change</value>
+        </filters>
+        <label>Pending Sponsorship Requests</label>
+    </listViews>
+    <listViews>
+        <fullName>Submitted_Sponsorship_Change</fullName>
+        <columns>NAME</columns>
+        <columns>CMHID__c</columns>
+        <columns>Subject__c</columns>
+        <columns>Status__c</columns>
+        <columns>Type__c</columns>
+        <columns>HighPriority__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Submitted</value>
+        </filters>
+        <filters>
+            <field>Type__c</field>
+            <operation>equals</operation>
+            <value>Add Sponsor,Ad Frequency,Sponsor Veto</value>
+        </filters>
+        <label>Submitted Sponsorship Change</label>
+        <sharedTo>
+            <group>SalesAnalysts</group>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <displayFormat>{0000}</displayFormat>
+        <label>Request Number</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Media Change Requests</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Media_Change</fullName>
+        <active>true</active>
+        <label>Media Change</label>
+        <picklistValues>
+            <picklist>CustomizedContent__c</picklist>
+            <values>
+                <fullName>ADHD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Allergy%2FAsthma</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Anxiety</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>COPD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cardio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cold and Flu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Colon %28Colonoscopy%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Depression</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dermatology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Diabetes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Epilepsy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exercise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>General Health</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geriatric</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hypertension</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Infectious Disease</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Men%27s Health</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Neurology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nutrition</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Orthopedic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pain Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pediatric %28Cartoons%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pediatric Content</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recipe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rheumatology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seasonal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sleep</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Smoking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spanish Content</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thyroid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Urology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vaccination</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Weight Loss</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Women%27s Health</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>DeviceType__c</picklist>
+            <values>
+                <fullName>TV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tablet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wallboard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wifi</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold - Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>Change Specialty Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clinic Sidebar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clinic Slides</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clinic Video</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Content Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hours Change</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hours Change Holiday</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Input Change</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Landing Page</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RSS Preference</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Screenfeed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tablet Content Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tablet Patient Portals %26 Websites</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tablet Slides %26 Videos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Volume Change</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Sponsor_Change</fullName>
+        <active>true</active>
+        <label>Sponsor Change</label>
+        <picklistValues>
+            <picklist>CustomizedContent__c</picklist>
+            <values>
+                <fullName>Allergy%2FAsthma</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>COPD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cardio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cold and Flu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Diabetes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>General Health</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Men%27s Health</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Neurology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Orthopedic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pain Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pediatric Content</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rheumatology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seasonal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spanish Content</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Women%27s Health</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>DeviceType__c</picklist>
+            <values>
+                <fullName>TV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tablet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wallboard</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>Ad Frequency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Add Sponsor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sponsor Veto</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>DateAssigned__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CompletedDate__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Completed_By__c</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Does_Not_Expire_with_no_Expiration_Date</fullName>
+        <active>true</active>
+        <description>The user left &quot;Never Expires&quot; unchecked but did not enter an expiration date.</description>
+        <errorConditionFormula>AND(ISNULL(ExpirationDate__c), NOT(NeverExpires__c))</errorConditionFormula>
+        <errorDisplayField>ExpirationDate__c</errorDisplayField>
+        <errorMessage>Expiration date cannot be empty if &quot;Never Expires&quot; is unchecked.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>High_Priority_Reason</fullName>
+        <active>true</active>
+        <description>Requires the user to fill out a reason in the High Priority Reason field if high priority is checked.</description>
+        <errorConditionFormula>AND(HighPriority__c, ISBLANK(HighPriorityReason__c))</errorConditionFormula>
+        <errorDisplayField>HighPriorityReason__c</errorDisplayField>
+        <errorMessage>You must enter a reason in the High Priority Reason field in order to mark this request as high priority.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Missing_File_Link_for_Certain_Types</fullName>
+        <active>true</active>
+        <description>Throws an error if the user selects specific types but does not include a file link.</description>
+        <errorConditionFormula>AND(
+OR(ISPICKVAL(Type__c, &quot;Clinic Video&quot;), ISPICKVAL(Type__c, &quot;Clinic Sidebar&quot;), ISPICKVAL(Type__c, &quot;Clinic Slides&quot;)),
+ISBLANK(FileLink__c))</errorConditionFormula>
+        <errorDisplayField>FileLink__c</errorDisplayField>
+        <errorMessage>You must include a file link for Clinic Sidebars, Slides, or Videos.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Never_Expires_with_an_Expiration_Date</fullName>
+        <active>true</active>
+        <description>The user checked &quot;Never Expires&quot; but there is an expiration date filled out.</description>
+        <errorConditionFormula>AND(NOT(ISNULL(ExpirationDate__c)), NeverExpires__c)</errorConditionFormula>
+        <errorDisplayField>ExpirationDate__c</errorDisplayField>
+        <errorMessage>Expiration date cannot be filled out if &quot;Never Expires&quot; is checked.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Patient_Portal_Username_and_Password</fullName>
+        <active>true</active>
+        <description>Requires the user to enter a Portal Username and Portal Password for the patient portal types.</description>
+        <errorConditionFormula>AND(
+    ISPICKVAL(Type__c, &quot;Tablet Patient Portals &amp; Websites&quot;),
+    OR(ISBLANK(PortalUsername__c), ISBLANK(PortalPassword__c))
+)</errorConditionFormula>
+        <errorDisplayField>PortalUsername__c</errorDisplayField>
+        <errorMessage>You must enter both a portal username and password for this change type.</errorMessage>
+    </validationRules>
+</CustomObject>

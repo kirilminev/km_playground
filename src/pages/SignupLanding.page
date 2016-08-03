@@ -1,0 +1,29 @@
+<apex:page showHeader="false" sidebar="false">
+  <center>
+  	<apex:image value="{!$Resource.cmhlogo}" width="256" height="64"/>
+    <apex:panelGrid bgcolor="white" columns="1" style="align: center;"> 
+      <br/>
+      <br/>
+      <apex:panelGrid width="758" cellpadding="0" cellspacing="0" bgcolor="white" columns="1" style="topPanel"> 
+        <br/>
+        <apex:outputPanel layout="block" styleClass="topPanelContainer">
+          <apex:panelGrid width="758" cellpadding="0" cellspacing="0" bgcolor="white" columns="2"> 
+            <apex:image url="{!URLFOR($Resource.SiteSamples, 'img/clock.png')}"/>
+            <apex:panelGroup >
+              <br/>
+              <apex:outputText value="Thank you! Your sign-up form was successfully submitted."/>
+              <br/>
+              <br/>
+              <apex:outputText value="We look forward to a long-standing relationship with you. An Onboarding Specialist will be in touch to set up the installation process, but if you have any questions in the meantime, please call us at (855) 290-2686."/>
+              <br/>
+              <br/>
+              <apex:outputLink value="http://contextmediahealth.com">back to site</apex:outputLink>
+              <br/>
+            </apex:panelGroup>
+          </apex:panelGrid> 
+        </apex:outputPanel>
+      </apex:panelGrid> 
+   </apex:panelGrid>
+  </center>
+  <br/>
+</apex:page>

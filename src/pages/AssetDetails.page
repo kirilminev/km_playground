@@ -1,0 +1,143 @@
+<apex:page showHeader="true" sidebar="true" standardController="Asset" extensions="AssetDetailsController">
+<head>
+	<apex:includeScript value="/support/console/33.0/integration.js"/>
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"/>
+	<apex:stylesheet value="{!URLFOR($Resource.GeneralCSS)}"/>
+</head>
+
+<script>
+jQuery.noConflict();
+jQuery(document).ready(function(){
+	if(sforce.console.isInConsole()){
+		defaultTabTitle();
+	}
+});
+
+function defaultTabTitle(){
+	sforce.console.setTabTitle("{!asset.Name}");
+}
+</script>
+<apex:form id="idForm">
+	<apex:pageBlock id="assetData" mode="inlineEdit">
+		<apex:pageBlockButtons location="top" id="buttons">
+			<apex:commandButton action="{!saveTablet}" onclick="this.disabled=true;" oncomplete="this.disabled=false;" id="saveButton" value="Save" style="display:none;" reRender="assetData"/>
+		</apex:pageBlockButtons>
+		<apex:pageBlockSection id="idBroadsignData" columns="2" collapsible="true" title="Broadsign Details {!broadsignStatus}" rendered="{!asset.Type__c == 'Player'}">
+			<apex:pageBlockSectionItem >
+				<apex:outputText id="idStatus" value="{!broadsignStatus}" styleClass="{!CASE(broadsignBo.status, '0', 'offline', '1', 'online', '2', 'mia', '')}"/>
+				<apex:image url="{!CASE(broadsignBo.status,
+										'0', $Resource.caution,
+										'1', $Resource.checkmark,
+										'2', $Resource.xmark, '')}" width="24" height="24" rendered="{!OR(broadsignBo.status == '0',
+																										  broadsignBo.status == '1',
+																										  broadsignBo.status == '2')}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idAvVersion" value="AV Version"/>
+				<apex:outputText id="idAvVersion" value="{!broadsignBo.avVersion}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idClockSkew" value="Clock Skew"/>
+				<apex:outputText id="idClockSkew" value="{!broadsignBo.clockSkew}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idCurrentLocation" value="Current Location"/>
+				<apex:outputText id="idCurrentLocation" value="{!broadsignBo.currentLocation}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idCurrentlyDownloading" value="Currently Downloading"/>
+				<apex:outputText id="idCurrentlyDownloading" value="{!broadsignBo.currentlyDownloading}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idCurrentlyPlaying" value="Currently Playing"/>
+				<apex:outputText id="idCurrentlyPlaying" value="{!broadsignBo.currentlyPlaying}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idCurrentVolume" value="Current Volume"/>
+				<apex:outputText id="idCurrentVolume" value="{!broadsignBo.currentVolume}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idDisplayUnitId" value="Display Unit ID"/>
+				<apex:outputText id="idDisplayUnitId" value="{!broadsignBo.displayUnitId}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idVersion" value="Version"/>
+				<apex:outputText id="idVersion" value="{!broadsignBo.issue}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idLastPoll" value="Last Poll"/>
+				<apex:outputText id="idLastPoll" value="{!broadsignBo.lastPoll}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idLocalTime" value="Local Time"/>
+				<apex:outputText id="idLocalTime" value="{!broadsignBo.localTime}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idLoop" value="Loop(s)"/>
+				<apex:outputText id="idLoop" value="{!broadsignBo.loopx}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idName" value="Name"/>
+				<apex:outputText id="idName" value="{!broadsignBo.name}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idNextAdToDownload" value="Next Ad To Download"/>
+				<apex:outputText id="idNextAdToDownload" value="{!broadsignBo.nextAdToDownload}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idNextPoll" value="Next Poll"/>
+				<apex:outputText id="idNextPoll" value="{!broadsignBo.nextPoll}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idPlayerId" value="ID"/>
+				<apex:outputText id="idPlayerId" value="{!broadsignBo.playerId}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idPlayerVersion" value="Player Version"/>
+				<apex:outputText id="idPlayerVersion" value="{!broadsignBo.playerVersion}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idScreenResolution" value="Screen Resolution"/>
+				<apex:outputText id="idScreenResolution" value="{!broadsignBo.screenResolution}"/>
+			</apex:pageBlockSectionItem>
+		</apex:pageBlockSection>
+		<apex:pageBlockSection id="idMdmData" columns="2" collapsible="true" title="MDM Details {!mdmStatus}" rendered="{!asset.Type__c == 'Tablet'}">
+			<apex:inlineEditSupport showOnEdit="saveButton"/>
+			<apex:pageBlockSectionItem >
+				<apex:outputText id="idMdmStatus" value="{!mdmStatus}" styleClass="{!CASE(mdmStatus, '(MIA)', 'mia', '(Online)', 'online', '')}"/>
+				<apex:image url="{!CASE(mdmStatus, '(MIA)', $Resource.xmark,
+												   '(Online)', $Resource.checkmark, '')}" width="24" height="24" rendered="{!OR(mdmStatus == '(Online)',
+																																mdmStatus == '(MIA)')}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idMdmLastSeen" value="Last Seen"/>
+				<apex:outputText id="idMdmLastSeen" value="{!mdmBo.lastSeen}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idExamRoom" value="Clinic Exam Room"/>
+				<apex:outputField id="idExamRoom" value="{!asset.ClinicExamRoom__c}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idVolume" value="TTL Volume"/>
+				<apex:outputField id="idVolume" value="{!asset.Volume__c}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idInstallationStatus" value="Installation Status"/>
+				<apex:outputField id="idInstallationStatus" value="{!asset.Installation_Status__c}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idInstalledDate" value="Installed Date"/>
+				<apex:outputField id="idInstalledDate" value="{!asset.InstalledDate__c}"/>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel for="idSpeciality" value="Speciality"/>
+				<apex:outputField id="idSpeciality" value="{!asset.Speciality__c}"/>
+			</apex:pageBlockSectionItem>
+		</apex:pageBlockSection>
+	</apex:pageBlock>
+
+	<apex:pageMessages />
+	<apex:detail inlineEdit="true"/>
+
+</apex:form>
+</apex:page>

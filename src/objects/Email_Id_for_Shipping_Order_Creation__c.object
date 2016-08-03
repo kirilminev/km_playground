@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Email Id for shipping order creation.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>email_id__c</fullName>
+        <description>mail id</description>
+        <externalId>false</externalId>
+        <label>email id</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <label>Email Id for Shipping Order Creation</label>
+    <visibility>Protected</visibility>
+</CustomObject>

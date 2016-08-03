@@ -1,0 +1,38 @@
+<apex:page showHeader="true" sidebar="true" standardController="Contract" extensions="ContractDetailsController">
+	<apex:pageMessages id="messages"/>
+	<apex:form>
+	<apex:pageBlock rendered="{!contract.RecordType.Name == 'Master Contract'}">
+		<apex:pageBlockButtons location="top">
+			<apex:commandButton action="{!addAddendum}" value="Add Addendum" reRender="messages"></apex:commandButton>
+		</apex:pageBlockButtons>
+		<apex:pageBlockSection title="Total Agreement" columns="1" collapsible="false">
+			<apex:pageBlockSectionItem>
+				<apex:outputLabel for="totalAmount" value="Total Amount"/>
+				<apex:outputText id="totalAmount" value="{0, number, currency}">
+					<apex:param value="{!totalAmount}"/>
+				</apex:outputText>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem>
+				<apex:outputLabel for="startDate" value="Start Date"/>
+				<apex:outputText id="startDate" value="{0, date, M/dd/yyyy}">
+					<apex:param value="{!startDate}"/>
+				</apex:outputText>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem>
+				<apex:outputLabel for="endDate" value="End Date"/>
+				<apex:outputText id="endDate" value="{0, date, M/dd/yyyy}">
+					<apex:param value="{!endDate}"/>
+				</apex:outputText>
+			</apex:pageBlockSectionItem>
+		</apex:pageBlockSection>
+		<apex:pageBlockTable value="{!products}" var="product">
+			<apex:column value="{!products[product].Product2.Name}"/>
+			<apex:column value="{!products[product].Quantity}"/>
+			<apex:column value="{!products[product].UnitPrice}"/>
+			<apex:column value="{!products[product].NumberOfDevices__c}"/>
+			<apex:column value="{!products[product].TotalPrice}"/>
+		</apex:pageBlockTable>
+	</apex:pageBlock>
+	</apex:form>
+	<apex:detail inlineEdit="true" showChatter="true"></apex:detail>
+</apex:page>

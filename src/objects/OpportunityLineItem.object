@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>AddProduct</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ChoosePricebook</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>EditAllProduct</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>Sponsorship</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Sponsorship</fullName>
+        <fields>Product2Id</fields>
+        <fields>Quantity</fields>
+        <fields>ListPrice</fields>
+        <fields>Discount</fields>
+        <fields>TotalPrice</fields>
+        <label>Sponsorship</label>
+    </compactLayouts>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Products</relationshipLabel>
+        <relationshipName>OpportunityProducts</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Campaign__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>LInks to the campaign created by the Opportunity going into a Closed Won stage.</description>
+        <externalId>false</externalId>
+        <label>Campaign</label>
+        <referenceTo>Campaign</referenceTo>
+        <relationshipLabel>Products</relationshipLabel>
+        <relationshipName>OpportunityProducts</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CommissionAmount__c</fullName>
+        <externalId>false</externalId>
+        <label>Commission Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>DateInstalled__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Installed</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Description</fullName>
+    </fields>
+    <fields>
+        <fullName>Discount</fullName>
+    </fields>
+    <fields>
+        <fullName>EndDate__c</fullName>
+        <externalId>false</externalId>
+        <formula>ServiceDate + (NumberOfMonths__c * 30)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>End Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>InventoryStartDate__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(NOT(ISNULL(Campaign__c)),  Campaign__r.StartDate, ServiceDate)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Inventory Start Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ListPrice</fullName>
+    </fields>
+    <fields>
+        <fullName>MonthlyAmount__c</fullName>
+        <externalId>false</externalId>
+        <formula>Quantity * UnitPrice</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Monthly Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>NumberConfirmed__c</fullName>
+        <externalId>false</externalId>
+        <label># Confirmed</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumberInstalled__c</fullName>
+        <externalId>false</externalId>
+        <label># Installed</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumberOfMonths__c</fullName>
+        <defaultValue>1</defaultValue>
+        <externalId>false</externalId>
+        <label># of Months</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OpportunityId</fullName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Product_Link__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot; + Id, PricebookEntry.Product2.Name)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Opportunity Product Link</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product2Id</fullName>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ProductCode</fullName>
+    </fields>
+    <fields>
+        <fullName>ProductStage__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Stage</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Unconfirmed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Confirmed Unscheduled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Waitlist</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending IT Coordination</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending Competitor Removal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending Line Drop</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Scheduled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Scheduled - Competitor Removal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Installed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partial Install Plays Content</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partial Install No Content</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partial Install DVD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending Repair - No Content</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending Repair - Playing Content</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DVD Site - Pending Repair/Awaiting Upgrade</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Uninstalled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Retired</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sold Delayed Confirmation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Confirmed Delayed Installation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Retracted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ProductType__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Type</label>
+        <length>80</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Quantity</fullName>
+    </fields>
+    <fields>
+        <fullName>RetractedDetails__c</fullName>
+        <externalId>false</externalId>
+        <label>Retracted Details</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ServiceDate</fullName>
+    </fields>
+    <fields>
+        <fullName>Subtotal</fullName>
+    </fields>
+    <fields>
+        <fullName>TotalAmount__c</fullName>
+        <externalId>false</externalId>
+        <formula>NumberOfMonths__c *  Quantity *  UnitPrice</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>TotalPrice</fullName>
+    </fields>
+    <fields>
+        <fullName>UnitPrice</fullName>
+    </fields>
+    <fields>
+        <fullName>Value__c</fullName>
+        <externalId>false</externalId>
+        <label>Value</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Currency</type>
+    </fields>
+    <validationRules>
+        <fullName>Date_Installed</fullName>
+        <active>true</active>
+        <description>&quot;Date Installed&quot; on Opportunity Product cannot be filled in without a value in &quot;# Installed&quot;</description>
+        <errorConditionFormula>AND(
+ISNULL(NumberInstalled__c),
+NOT(ISNULL(DateInstalled__c))
+)</errorConditionFormula>
+        <errorDisplayField>DateInstalled__c</errorDisplayField>
+        <errorMessage>Date Installed cannot be entered without # Installed</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Number_Installed</fullName>
+        <active>true</active>
+        <description>&quot;# Installed&quot; must be greater than zero - &quot;# Installed&quot; can be blank or greater than zero</description>
+        <errorConditionFormula>NumberInstalled__c  &lt;= 0</errorConditionFormula>
+        <errorDisplayField>NumberInstalled__c</errorDisplayField>
+        <errorMessage># Installed must be greater than zero</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Retracted_Details</fullName>
+        <active>true</active>
+        <description>Requires Retracted Details to be filled out when the product stage is set to &quot;Retracted&quot;.</description>
+        <errorConditionFormula>AND(ISPICKVAL(ProductStage__c, &quot;Retracted&quot;),
+ISBLANK(RetractedDetails__c))</errorConditionFormula>
+        <errorDisplayField>RetractedDetails__c</errorDisplayField>
+        <errorMessage>You must fill out the Retracted Details when the Product Stage is set to &quot;Retracted&quot;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Update_Quantities</fullName>
+        <active>true</active>
+        <description>User with a Healthcare Sales role or Member Services role cannot update Product Quantities on Opportunities with StageName = Closed Won</description>
+        <errorConditionFormula>AND(  
+ISPICKVAL(Opportunity.StageName, &quot;Closed Won&quot;),
+ISCHANGED(Quantity), 
+OR(
+$Profile.Name = &quot;Healthcare Sales&quot;,
+$Profile.Name = &quot;Healthcare Sales Lead&quot;,
+$Profile.Name = &quot;Member Services&quot;, 
+$Profile.Name = &quot;Member Services Lead&quot;)
+)</errorConditionFormula>
+        <errorDisplayField>Quantity</errorDisplayField>
+        <errorMessage>Cannot update Quantity because Opportunity stage is Closed Won</errorMessage>
+    </validationRules>
+</CustomObject>

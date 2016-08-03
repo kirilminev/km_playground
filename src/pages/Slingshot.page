@@ -1,0 +1,79 @@
+<apex:page showHeader="false" sidebar="false" controller="SlingshotController" docType="html-5.0">
+<head>
+	<link rel="stylesheet" href="{!URLFOR($Resource.lightning_design, 'assets/styles/salesforce-lightning-design-system-vf.css')}"></link>
+	<style>
+		.fade-enter {
+		  opacity: 0.01;
+		}
+
+		.fade-enter.fade-enter-active {
+		  opacity: 1;
+		  transition: opacity 500ms ease-in;
+		}
+
+		.fade-leave {
+		  opacity: 1;
+		}
+
+		.fade-leave.fade-leave-active {
+		  opacity: 0.01;
+		  transition: opacity 300ms ease-in;
+		}
+
+		.is-required:before{
+			content: '*';
+			color: #c23934;
+			position: absolute;
+			left: -0.5rem;
+		}
+
+		.is-required-header:before{
+			content: '*';
+			color: #c23934;
+			left: -0.5rem;
+		}
+
+		.popup-background {
+			background-color: black;
+			opacity: 0.20;
+			filter: alpha(opacity = 20);
+
+			width:100%;
+			height:100%;
+			
+			top: 0;
+			left: 0;
+			z-index: 998;
+			position: fixed;
+
+			cursor: wait;
+		}
+
+		.popup-panel {
+			left: 50%;
+			width: 200px;
+			margin-left: -100px;
+			top: 50%;
+			height: 50px;
+			margin-top: -25px;
+			z-index: 999;
+			position: fixed;
+
+			cursor: pointer;
+		}
+	</style>
+</head>
+<script>
+	window.__APEX_VARS__ = {
+		banner: '{!$Resource.cmhbanner}',
+		getOptions: SlingshotController.getOptions,
+		lightningDesign: '{!URLFOR($Resource.lightning_design)}',
+		progressBar: '{!$Resource.progressbar}',
+		save: SlingshotController.save
+	};
+</script>
+
+<div id="root"></div>
+
+<script src="{!URLFOR($Resource.Slingshot)}"></script>
+</apex:page>

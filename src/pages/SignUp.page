@@ -1,0 +1,423 @@
+<apex:page cache="false" showHeader="false" sidebar="false" controller="SignupController" tabStyle="Contact" docType="html-5.0">
+<head>
+	<apex:stylesheet value="{!URLFOR($Resource.GeneralCSS)}"/>
+	<apex:stylesheet value="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+	<apex:stylesheet value="{!URLFOR($Resource.lightning_design, 'assets/styles/salesforce-lightning-design-system-vf.css')}"/>
+</head>
+<script>
+window.__APEX_VARS__ = {
+	referenceNumber: '{!referenceNumber}'
+};
+</script>
+<apex:remoteObjects >
+	<apex:remoteObjectModel name="Account" fields="AverageExamRoomWaitTime__c,AverageWaitingRoomWaitTime__c,BillingCity,BillingPostalCode,BillingState,BillingStreet,Contact_to_sort_out_IT__c,EMR_System__c,FacilityType__c,Fax,Id,IdGenerator__c,Internet_In_Facility__c,IT_Phone_and_Email__c,Name,Network__c,NumberOfExamRooms__c,NumberOfPatientsPerWeek__c,of_Waiting_Rooms__c,Phone,SignUpFormCompleted__c,WifiOptOut__c"/>
+	<apex:remoteObjectModel name="Contact" fields="AccountId,FirstName,Id,LastName,Specialty__c,Title__c"/>
+</apex:remoteObjects>
+
+<apex:actionStatus id="save-status" stopText="">
+	<apex:facet name="start">
+		<div class="popup-background"/>
+		<div class="popup-panel">
+			<img src="{!$Resource.progressbar}"/>
+		</div>
+	</apex:facet>
+</apex:actionStatus>
+
+<form id="clinic-form" role="form" class="slds-form">
+<div class="slds">
+	<div style="width:100%; background-color: rgb(110,41,141);">
+		<img src="{!$Resource.cmhbanner}"/>
+	</div>
+	<!-- Practice Information -->
+	<div class="slds-card">
+		<div class="slds-card__header slds-grid">
+			<div class="slds-media slds-media--center slds-has-flexi-truncate">
+				<div class="slds-media__figure">
+					<img src="{!URLFOR($Resource.lightning_design, 'assets/icons/standard/home_120.png')}" class="slds-icon slds-icon-standard-contact slds-icon--small"/>
+				</div>
+				<div class="slds-media__body">
+					<h2 class="slds-text-heading--small slds-truncate">General Practice Information</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="general-section" class="slds-container--fluid">
+		<div style="padding:1rem;" class="slds-grid slds-wrap slds-grid--align-left">
+			<div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-4">
+				<div class="slds-form-element">
+					<label for="reference-number" class="slds-form-element__label">Reference Number</label>
+					<input id="reference-number" sobject="account" fieldname="IdGenerator__c" class="slds-input slds-form-element__control"/>
+				</div>
+				<div class="slds-grid">
+					<div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-4">
+						<div class="slds-form-element is-required">
+							<label for="contact-first-name" class="slds-form-element__label">Your First Name</label>
+							<input id="contact-first-name" sobject="contact" fieldname="FirstName" class="slds-input slds-form-element__control" required="true"/>
+						</div>
+					</div>
+					<div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-4">
+						<div class="slds-form-element is-required">
+							<label for="contact-last-name" class="slds-form-element__label">Your Last Name</label>
+							<input id="contact-last-name" sobject="contact" fieldname="LastName" class="slds-input slds-form-element__control" required="true"/>
+						</div>
+					</div>
+				</div>
+				<div class="slds-form-element is-required">
+					<label for="contact-title" class="slds-form-element__label">Your Title</label>
+					<select id="contact-title" sobject="contact" fieldname="Title__c" style="height:36px;" class="slds-select slds-form-element__control" required="true">
+						<option value=""></option>
+					</select>
+				</div>
+				<div class="slds-form-element">
+					<label for="email-address" class="slds-form-element__label">Email Address</label>
+					<input id="email-address" sobject="contact" fieldname="Email" class="slds-input slds-form-element__control"/>
+				</div>
+				<div class="slds-grid">
+					<div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-4">
+						<div class="slds-form-element is-required">
+							<label for="office-phone" class="slds-form-element__label">Office Phone</label>
+							<input id="office-phone" sobject="account" fieldname="Phone" class="slds-input slds-form-element__control phone-number" required="true"/>
+						</div>
+					</div>
+					<div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-4">
+						<div class="slds-form-element">
+							<label for="office-fax" class="slds-form-element__label">Office Fax</label>
+							<input id="office-fax" sobject="account" fieldname="Fax" class="slds-input slds-form-element__control phone-number"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-4">
+				<div class="slds-form-element is-required">
+					<label for="clinic-name" class="slds-form-element__label">Clinic Name</label>
+					<input id="clinic-name" sobject="account" fieldname="Name" class="slds-input slds-form-element__control" required="true"/>
+				</div>
+				<div class="slds-form-element is-required">
+					<label for="billing-street" class="slds-form-element__label">Street Address</label>
+					<input id="billing-street" sobject="account" fieldname="BillingStreet" class="slds-input slds-form-element__control" required="true"/>
+				</div>
+				<div class="slds-form-element">
+					<label for="billing-street-2" class="slds-form-element__label">Address Line 2</label>
+					<input id="billing-street-2" class="slds-input slds-form-element__control"/>
+				</div>
+				<div class="slds-form-element is-required">
+					<label for="billing-city" class="slds-form-element__label">City</label>
+					<input id="billing-city" sobject="account" fieldname="BillingCity" class="slds-input slds-form-element__control" required="true"/>
+				</div>
+				<div class="slds-grid">
+					<div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-4">
+						<div class="slds-form-element is-required">
+							<label for="billing-state" class="slds-form-element__label">State</label>
+							<select id="billing-state" sobject="account" fieldname="BillingState" class="slds-select slds-form-element__control" required="true">
+								<option value=""></option>
+							</select>
+						</div>
+					</div>
+					<div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-4">
+						<div class="slds-form-element is-required">
+							<label for="billing-postal-code" class="slds-form-element__label">Zip</label>
+							<input id="billing-postal-code" sobject="account" fieldname="BillingPostalCode" class="slds-input slds-form-element__control" required="true"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Specialties Treated -->
+	<div class="slds-card">
+		<div class="slds-card__header slds-grid">
+			<div class="slds-media slds-media--center slds-has-flexi-truncate">
+				<div class="slds-media__figure">
+					<img src="{!URLFOR($Resource.lightning_design, 'assets/icons/standard/metrics_120.png')}" class="slds-icon slds-icon-standard-contact slds-icon--small"/>
+				</div>
+				<div class="slds-media__body">
+					<h2 class="slds-text-heading--small slds-truncate">Specialties Treated</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="slds-container--fluid">
+		<div id="specialties-container" style="padding:1rem;" class="slds-grid slds-grid--align-left">
+			<div class="slds-col slds-col--padded slds-size--1-of-4">
+				<div id="specialties-form">
+					<div id="checkbox-template" style="display:none;">
+						<div class="slds-form-element">
+							<label id="specialty" class="slds-checkbox">
+								<input id="checkbox" name="checkbox" type="checkbox"/>
+								<span class="slds-checkbox--faux"/>
+								<span class="slds-form-element__label">Checkbox</span>
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="slds-col slds-col--padded slds-size--3-of-4">
+				<div id="demographics" class="slds-grid slds-wrap">
+					<div id="demographic-template" style="display:none; width:150px; padding:5px;" class="slds-form-element">
+						<label for="demographic" class="slds-form-element__label">Demographic</label>
+						<select id="demographic" sobject="account" fieldname="" class="slds-select slds-form-element__control">
+							<option value=""></option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Practice Characteristics -->
+	<div class="slds-card">
+		<div class="slds-card__header slds-grid">
+			<div class="slds-media slds-media--center slds-has-flexi-truncate">
+				<div class="slds-media__figure">
+					<img src="{!URLFOR($Resource.lightning_design, 'assets/icons/standard/account_120.png')}" class="slds-icon slds-icon-standard-contact slds-icon--small"/>
+				</div>
+				<div class="slds-media__body">
+					<h2 class="slds-text-heading--small slds-truncate">Practice Characteristics</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="slds-container--fluid">
+		<div style="padding:1rem;" class="slds-grid slds-wrap slds-grid--align-left">
+			<div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-4">
+				<div class="slds-grid">
+					<div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-4">
+						<div class="slds-form-element is-required">
+							<label for="facility-type" class="slds-form-element__label">Facility Type</label>
+							<select id="facility-type" sobject="account" fieldname="FacilityType__c" style="height:36px;" class="slds-select slds-form-element__control" required="true">
+								<option value=""></option>
+							</select>
+						</div>
+					</div>
+					<div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-4">
+						<div class="slds-form-element is-required">
+							<label for="number-of-patients" class="slds-form-element__label"># of Patients Seen From Waiting Area Per Week</label>
+							<input id="number-of-patients" type="number" sobject="account" fieldname="NumberOfPatientsPerWeek__c" class="slds-input slds-form-element__control" required="true"/>
+						</div>
+					</div>
+				</div>
+				<div id="it-contact-details" class="slds-grid">
+					<div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-4">
+						<div class="slds-form-element is-required">
+							<label for="it-contact-name" class="slds-form-element__label">IT Contact Name</label>
+							<input id="it-contact-name" sobject="account" fieldname="Contact_to_sort_out_IT__c" class="slds-input slds-form-element__control" required="true"/>
+						</div>
+					</div>
+					<div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-4">
+						<div class="slds-form-element is-required">
+							<label for="it-contact-phone" class="slds-form-element__label">IT Contact Phone</label>
+							<input id="it-contact-phone" sobject="account" fieldname="IT_Phone_and_Email__c" class="slds-input slds-form-element__control phone-number" required="true"/>
+						</div>
+					</div>
+				</div>
+				<div class="slds-grid">
+					<div class="slds-col--padded slds-size--1-of-2">
+						<div class="slds-form-element is-required">
+							<label for="has-internet" class="slds-form-element__label">Does your facility have internet?</label>
+							<select id="has-internet" sobject="account" fieldname="Internet_In_Facility__c" style="height:36px;" class="slds-select slds-form-element__control" required="true">
+								<option value=""></option>
+								<option value="Yes">Yes</option>
+								<option value="No">No</option>
+							</select>
+						</div>
+					</div>
+					<div class="slds-col--padded slds-size--1-of-2"></div>
+				</div>
+			</div>
+			<div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-4">
+				<div class="slds-grid">
+					<div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-4">
+						<div class="slds-form-element is-required">
+							<label for="number-of-waiting-rooms" class="slds-form-element__label"># of Waiting Rooms</label>
+							<input id="number-of-waiting-rooms" type="number" sobject="account" fieldname="of_Waiting_Rooms__c" class="slds-input slds-form-element__control" required="true"/>
+						</div>
+						<div class="slds-form-element is-required">
+							<label for="number-of-exam-rooms" class="slds-form-element__label"># of Exam Rooms</label>
+							<input id="number-of-exam-rooms" type="number" sobject="account" fieldname="NumberOfExamRooms__c" class="slds-input slds-form-element__control" required="true"/>
+						</div>
+						<div class="slds-form-element is-required">
+							<label for="full-time" class="slds-form-element__label">Full/Part Time Hours</label>
+							<select id="full-time" sobject="account" fieldname="FullOrPartTime__c" style="height:36px;" class="slds-select slds-form-element__control" required="true">
+								<option value=""></option>
+								<option value="Full Time">Full Time (40+ Hours)</option>
+								<option value="Part Time">Part Time (0-40 Hours)</option>
+							</select>
+						</div>
+					</div>
+					<div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-4">
+						<div class="slds-form-element">
+							<label for="wr-wait-time" class="slds-form-element__label">Average Waiting Room Wait Time</label>
+							<select id="wr-wait-time" sobject="account" fieldname="AverageWaitingRoomWaitTime__c" style="height:36px;" class="slds-select slds-form-element__control wait-times">
+								<option value=""></option>
+							</select>
+						</div>
+						<div class="slds-form-element">
+							<label for="er-wait-time" class="slds-form-element__label">Average Exam Room Wait Time</label>
+							<select id="er-wait-time" sobject="account" fieldname="AverageExamRoomWaitTime__c" style="height:36px;" class="slds-select slds-form-element__control wait-times">
+								<option value=""></option>
+							</select>
+						</div>
+						<div class="slds-form-element">
+							<label for="emr-system" class="slds-form-element__label">EMR System</label>
+							<input id="emr-system" sobject="account" fieldname="EMR_System__c" class="slds-input slds-form-element__control"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Provider Information -->
+	<div class="slds-container--fluid">
+		<div id="provider-card" class="slds-card">
+			<div class="slds-card__header slds-grid">
+				<div class="slds-media slds-media--center">
+					<div class="slds-media__figure">
+						<img src="{!URLFOR($Resource.lightning_design, 'assets/icons/standard/contact_120.png')}" class="slds-icon slds-icon-standard-contact slds-icon--small"/>
+					</div>
+					<div class="slds-media__body">
+						<h2 class="slds-text-heading--small slds-truncate">Providers</h2>
+					</div>
+				</div>
+			</div>
+			<div id="provider-table" class="slds-card__body">
+				<table class="slds-table slds-table--bordered slds-max-medium-table--stacked-horizontal slds-no-row-hover">
+					<thead>
+						<tr>
+							<th class="slds-text-heading--label" scope="col"></th>
+							<th class="slds-text-heading--label slds-size--1-of-4 is-required-header" scope="col">First Name</th>
+							<th class="slds-text-heading--label slds-size--1-of-4 is-required-header" scope="col">Last Name</th>
+							<th class="slds-text-heading--label slds-size--1-of-4 is-required-header" scope="col">Title</th>
+							<th class="slds-text-heading--label slds-size--1-of-4 is-required-header" scope="col">Specialty</th>
+							<th class="slds-text-heading--label" scope="col">Delete</th>
+						</tr>
+					</thead>
+					<tbody id="provider-table-body">
+						<tr id="provider-template" class="slds-hint-parent">
+							<td>
+								<div class="slds-text-heading--label">Provider 1</div>
+							</td>
+							<td data-label="First Name">
+								<label for="provider-first-name" style="display:none;" fieldname="First Name">Provider 1 First Name</label>
+								<input id="provider-first-name" class="slds-input" required="true"/>
+							</td>
+							<td data-label="Last Name">
+								<label for="provider-last-name" style="display:none;" fieldname="Last Name">Provider 1 Last Name</label>
+								<input id="provider-last-name" class="slds-input" required="true"/>
+							</td>
+							<td data-label="Title">
+								<label for="provider-title" style="display:none;" fieldname="Title">Provider 1 Title</label>
+								<select id="provider-title" style="height:36px;" class="slds-select" required="true">
+									<option value=""></option>
+								</select>
+							</td>
+							<td data-label="Specialty">
+								<label for="provider-specialty" style="display:none;" fieldname="Specialty">Provider 1 Specialty</label>
+								<select id="provider-specialty" style="height:36px;" class="slds-select" required="true">
+									<option value=""></option>
+								</select>
+							</td>
+							<td>
+								<button id="remove-provider" type="button" style="display:none;" class="slds-button slds-button--icon-border-filled slds-button--icon-border-small">
+									<img src="{!URLFOR($Resource.lightning_design, 'assets/icons/action/delete_120.png')}" style="background-color: rgba(22, 56, 92, 0.55);" class="slds-button__icon slds-button__icon--hint slds-button__icon--medium"/>
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="slds-card__footer">
+				<button id="add-provider" type="button" class="slds-button slds-button--neutral">+ Add Another</button>
+			</div>
+		</div>
+	</div>
+	<!-- Terms and Conditions -->
+	<div class="slds-container--fluid">
+		<div class="slds-card">
+			<div class="slds-card__header slds-grid">
+				<div class="slds-media slds-media--center slds-has-flexi-truncate">
+					<div class="slds-media__figure">
+						<img src="{!URLFOR($Resource.lightning_design, 'assets/icons/standard/contract_120.png')}" class="slds-icon slds-icon-standard-contact slds-icon--small"/>
+					</div>
+					<div class="slds-media__body">
+						<h2 class="slds-text-heading--small slds-truncate">Terms and Conditions</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="padding:1rem;" class="slds-grid slds-grid--align-left">
+			<div class="slds-col--padded slds-size--1-of-4">
+				<div class="slds-form-element is-required">
+					<label id="accept-terms" class="slds-checkbox">
+						<input id="accept-terms-input" name="checkbox" type="checkbox"/>
+						<span class="slds-checkbox--faux"/>
+						<span class="slds-form-element__label">I agree to all of the below terms and conditions for ContextMedia:Health's services.</span>
+					</label>
+				</div>
+				<div class="slds-form-element">
+					<textarea id="terms-and-conditions" style="height:190px;" class="slds-textarea slds-form-element__control" readonly="true">{!termsAndConditions}</textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="slds-card">
+		<div class="slds-card__header slds-grid">
+			<div class="slds-media slds-media--center slds-has-flexi-truncate">
+				<div class="slds-media__figure">
+					<img src="{!URLFOR($Resource.lightning_design, 'assets/icons/standard/connected_apps_120.png')}" class="slds-icon slds-icon-standard-contact slds-icon--small"/>
+				</div>
+				<div class="slds-media__body">
+					<h2 class="slds-text-heading--small slds-truncate">WiFi Addendum</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="slds-container--fluid">
+		<div style="padding:1rem;" class="slds-grid slds-grid--align-left">
+			<div class="slds-col--padded slds-size--1-of-4">
+				<div class="slds-form-element">
+					<label class="slds-checkbox">
+						<input id="wifi-opt-out" name="checkbox" sobject="account" fieldname="WifiOptOut__c" type="checkbox"/>
+						<span class="slds-checkbox--faux"/>
+						<span class="slds-form-element__label">I wish to opt-out of receiving the free WiFi product.</span>
+					</label>
+				</div>
+				<div class="slds-form-element">
+					<textarea id="wifi-terms-and-conditions" style="height:250px;" class="slds-textarea slds-form-element__control" readonly="true">{!wifiTermsAndConditions}</textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="slds-container--fluid">
+		<div class="slds-grid slds-grid--align-center">
+			<div class="slds-col">
+				<div style="padding:1rem;" class="slds-button-group" role="group">
+					<button id="submit" type="button" class="slds-button slds-button--brand">Submit</button>
+					<button id="submit-and-new" type="button" class="slds-button slds-button--neutral">Submit and New</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+
+<div class="slds">
+	<!-- Message Dialog -->
+	<div id="message-dialog" style="display:none;">
+		<div aria-hidden="false" role="dialog" class="slds-modal slds-fade-in-open">
+			<div class="slds-modal__container">
+				<div class="slds-modal__header">
+					<h2 class="slds-text-heading--medium">The following error(s) occurred:</h2>
+				</div>
+				<div class="slds-modal__content">
+					<div><p id="error-messages"></p></div>
+				</div>
+				<div class="slds-modal__footer">
+					<button id="message-dialog-ok" type="button" class="slds-button slds-button--brand">OK</button>
+				</div>
+			</div>
+		</div>
+		<div class="slds-modal-backdrop slds-modal-backdrop--open"></div>
+	</div>
+</div>
+
+<script src="{!URLFOR($Resource.SignupForm)}"></script>
+</apex:page>
